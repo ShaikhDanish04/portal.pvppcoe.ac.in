@@ -196,17 +196,17 @@
                                     <label for="">Institite ID or Email</label>
                                     <input type="text" class="form-control" name="login_id" autocomplete="on">
                                 </div>
-                                <div class="form-group toggle-password mb-0">
+                                <!-- <div class="form-group toggle-password mb-0">
                                     <label for="u_pass">Password</label>
                                     <input type="password" class="form-control" name="u_pass" id="u_pass" autocomplete="on">
                                     <i class="fa fa-eye-slash"></i>
-                                </div>
-                                <div class="form-check form-group">
+                                </div> -->
+                                <!-- <div class="form-check form-group">
                                     <label class="form-check-label">
                                         <input type="checkbox" class="form-check-input" name="signed_in" id="" value="signed_in">
                                         Keep me signed in.
                                     </label>
-                                </div>
+                                </div> -->
                                 <div class="form-group m-0">
                                     <input type="submit" class="btn btn-success w-100" name="login_submit" value="login">
                                     <label for="" class="my-1"><a href="javascript:void(0)">Forgot Password?</a></label>
