@@ -66,7 +66,7 @@
         $pass = sha1($pass);
 
         $result = $conn->query("SELECT users.UID FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
-                                WHERE users.UID = '$login_id' OR staff_role_manager.staff_biometic = '$login_id'");
+                                WHERE users.UID = '$login_id' OR users.u_email = '$login_id' OR staff_role_manager.staff_biometic = '$login_id'");
         $row = $result->fetch_assoc();
         // print_r($row);
 
@@ -74,7 +74,7 @@
             $no_found = 1;
 
             $result = $conn->query("SELECT users.UID FROM users INNER JOIN student_academic_manager ON users.UID = student_academic_manager.UID 
-                            WHERE users.UID = '$login_id' OR student_academic_manager.student_id = '$login_id'");
+                            WHERE users.UID = '$login_id' OR users.u_email = '$login_id' OR student_academic_manager.student_id = '$login_id'");
             $row = $result->fetch_assoc();
             // print_r($row);
             if ($result->num_rows == 0) {
@@ -194,7 +194,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="">Institite ID or Email</label>
-                                    <input type="text" class="form-control" name="login_id" autocomplete="on">
+                                    <input type="text" class="form-control" name="login_id" autocomplete="on" required>
                                 </div>
                                 <div class="form-group toggle-password mb-0">
                                     <label for="u_pass">Password</label>
