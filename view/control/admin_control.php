@@ -1,39 +1,3 @@
-<?php
-
-$result = $conn->query("SELECT * FROM users");
-
-$count_admin = 0;
-$count_pending = 0;
-$count_users = 0;
-while ($users = $result->fetch_assoc()) {
-    if ($users['u_admin'] == "1") {
-        $count_admin++;
-    }
-    if ($users['u_usage'] == "0") {
-        $count_pending++;
-    }
-    if ($users['UID'] != "") {
-        $count_users++;
-    }
-}
-// $result->data_seek(0);
-
-// $GLOBALS['urow'] = $row;
-
-// if (!isset($_GET['UID'])) {
-//     $_GET['UID'] = $_SESSION["UID"];
-// }
-
-// $self = false;
-// if ($_GET['UID'] == $_SESSION["UID"]) {
-//     $self = true;
-// }
-
-// while ($row = $result->fetch_assoc()) {
-//     if ($_GET['UID'] == $row['UID'])
-//         $GLOBALS['urow'] = $row;
-// }
-?>
 <!-- Nav pills -->
 <div class="card">
     <div class="card-body">
