@@ -140,10 +140,16 @@ if (isset($_POST['login_submit'])) {
                                     <label for="">Institite ID or Email</label>
                                     <input type="text" class="form-control" name="login_id" autocomplete="on" required>
                                 </div>
-                                <div class="form-group toggle-password">
+                                <div class="form-group toggle-password mb-0">
                                     <label for="u_pass">Password</label>
                                     <input type="password" class="form-control" name="u_pass" id="u_pass" autocomplete="on">
                                     <i class="fa fa-eye-slash"></i>
+                                </div>
+                                <div class="form-check form-group">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="signed_in" id="" value="signed_in">
+                                        Keep me signed in.
+                                    </label>
                                 </div>
                                 <div class="form-group m-0">
                                     <input type="submit" class="btn btn-success w-100" name="login_submit" value="login">
