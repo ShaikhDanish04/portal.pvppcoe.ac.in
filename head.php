@@ -23,10 +23,15 @@
 include("connect.php");
 
 if (isset($_GET['logout'])) {
+    setcookie("cK123", "", 0); // 86400 = 1 day
+    setcookie("cKsd", "", 0); // 86400 = 1 day
     session_unset();
     session_destroy();
+
     header('Location: login');
 }
+
+
 
 if (!isset($_GET['page'])) {
     $_GET['page'] = 'my_profile';
