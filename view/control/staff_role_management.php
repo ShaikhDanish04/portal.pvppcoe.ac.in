@@ -1,24 +1,23 @@
 <?php
-$sql = "SELECT users.*,staff_role_management.*
-            FROM users INNER JOIN staff_role_management ON users.UID=staff_role_management.UID";
+$sql = "SELECT * FROM users INNER JOIN staff_role_manager ON users.UID=staff_role_manager.UID";
 
 $result = $conn->query($sql);
 
-$GLOBALS['urow'] = $row;
+// $GLOBALS['urow'] = $staff;
 
-if (!isset($_GET['UID'])) {
-    $_GET['UID'] = $_SESSION["UID"];
-}
+// if (!isset($_GET['UID'])) {
+//     $_GET['UID'] = $_SESSION["UID"];
+// }
 
-$self = false;
-if ($_GET['UID'] == $_SESSION["UID"]) {
-    $self = true;
-}
+// $self = false;
+// if ($_GET['UID'] == $_SESSION["UID"]) {
+//     $self = true;
+// }
 
-while ($row = $result->fetch_assoc()) {
-    if ($_GET['UID'] == $row['UID'])
-        $GLOBALS['urow'] = $row;
-}
+// while ($staff = $result->fetch_assoc()) {
+//     if ($_GET['UID'] == $staff['UID'])
+//         $GLOBALS['urow'] = $staff;
+// }
 // print_r($GLOBALS['urow']['UID']);
 // print_r($urow);
 // print_r($urow);
@@ -31,34 +30,47 @@ while ($row = $result->fetch_assoc()) {
                 <div class="card-head d-flex align-items-center">
                     <img class="reg-user-img" src="" alt="">
                     <div class="d-block">
-                        <p><?php echo $urow['u_fname'] ?></p>
-                        <h4 class="text-success m-0"><?php echo $urow['u_lname'] ?></h4>
+                        <p><?php //echo $urow['u_fname'] 
+                            ?></p>
+                        <h4 class="text-success m-0"><?php //echo $urow['u_lname'] 
+                                                        ?></h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="card-text my-2"><b>UID : </b><?php echo $urow['UID'] ?></p>
-                    <p class="card-text my-1"><b>Biometric ID : </b><?php echo $urow['staff_bid'] ?></p>
-                    <p class="card-text my-1"><b>Email : </b><?php echo $urow['u_email'] ?></p>
-                    <p class="card-text my-1"><b>Phone : </b><?php echo $urow['u_phone'] ?></p>
+                    <p class="card-text my-2"><b>UID : </b><?php //echo $urow['UID'] 
+                                                            ?></p>
+                    <p class="card-text my-1"><b>Biometric ID : </b><?php //echo $urow['staff_bid'] 
+                                                                    ?></p>
+                    <p class="card-text my-1"><b>Email : </b><?php //echo $urow['u_email'] 
+                                                                ?></p>
+                    <p class="card-text my-1"><b>Phone : </b><?php //echo $urow['u_phone'] 
+                                                                ?></p>
                     <div class="divider"></div>
-                    <p class="card-text my-1"><b>Staff Type : </b><?php echo $urow['staff_type'] ?></p>
-                    <p class="card-text my-1"><b>Branch : </b><?php echo $urow['staff_branch'] ?></p>
-                    <p class="card-text my-1"><b>Application : </b><?php echo $urow['staff_app'] ?></p>
-                    <p class="card-text my-1"><b>Post : </b><?php echo $urow['staff_post'] ?></p>
+                    <p class="card-text my-1"><b>Staff Type : </b><?php //echo $urow['staff_type'] 
+                                                                    ?></p>
+                    <p class="card-text my-1"><b>Branch : </b><?php //echo $urow['staff_branch'] 
+                                                                ?></p>
+                    <p class="card-text my-1"><b>Application : </b><?php //echo $urow['staff_app'] 
+                                                                    ?></p>
+                    <p class="card-text my-1"><b>Post : </b><?php //echo $urow['staff_post'] 
+                                                            ?></p>
                 </div>
                 <div class="card-footer">
                     <form action="" method="post">
-                        <input type="hidden" name="current_UID" value="<?php echo $urow['UID'] ?>">
+                        <input type="hidden" name="current_UID" value="<?php //echo $urow['UID'] 
+                                                                        ?>">
                         <div class="form-group">
                             <label for="">Biometric ID</label>
-                            <input type="tel" class="form-control" name="staff_bid" value="<?php echo $urow['staff_bid'] ?>">
+                            <input type="tel" class="form-control" name="staff_bid" value="<?php //echo $urow['staff_bid'] 
+                                                                                            ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Staff Type</label>
 
                             <select class="form-control text-capitalize" name="staff_type" required>
 
-                                <?php echo $urow['staff_type'] != "" ? '<option value="' . $urow['staff_type'] . '">' . $urow['staff_type'] . '</option>' : '<option value="">--- Select ---</option>'; ?>
+                                <?php //echo $urow['staff_type'] != "" ? '<option value=//"' . $urow['staff_type'] . '"//>' . $urow['staff_type'] . '</option>' : '<option value="">--- Select ---</option>'; 
+                                ?>
                                 <option value="Administration">Administration</option>
                                 <option value="Teaching">Teaching</option>
                                 <option value="Technical">Technical</option>
@@ -67,7 +79,8 @@ while ($row = $result->fetch_assoc()) {
                         <div class="form-group">
                             <label for="">Branch</label>
                             <select class="form-control text-capitalize" name="staff_branch" required>
-                                <?php echo $urow['staff_branch'] != "" ? '<option value="' . $urow['staff_branch'] . '">' . $urow['staff_branch'] . '</option>' : '<option value="">--- Select ---</option>'; ?>
+                                <?php //echo $urow['staff_branch'] != "" ? '<option value=//"' . $urow['staff_branch'] . '"//>' . $urow['staff_branch'] . '</option>' : '<option value="">--- Select ---</option>'; 
+                                ?>
                                 <option value="Account section">Account section</option>
                                 <option value="Computer Engg">Computer Engg</option>
                                 <option value="Electronics Engg">Electronics Engg</option>
@@ -89,7 +102,8 @@ while ($row = $result->fetch_assoc()) {
                         <div class="form-group">
                             <label for="">Application</label>
                             <select class="form-control text-capitalize" name="staff_app" required>
-                                <?php echo $urow['staff_app'] != "" ? '<option value="' . $urow['staff_app'] . '">' . $urow['staff_app'] . '</option>' : '<option value="">--- Select ---</option>'; ?>
+                                <?php //echo $urow['staff_app'] != "" ? '<option value=//"' . $urow['staff_app'] . '"//>' . $urow['staff_app'] . '</option>' : '<option value="">--- Select ---</option>'; 
+                                ?>
                                 <option value="ADHOC">ADHOC</option>
                                 <option value="Contract">Contract</option>
                                 <option value="Permenent">Permenent</option>
@@ -99,7 +113,8 @@ while ($row = $result->fetch_assoc()) {
                         <div class="form-group">
                             <label for="">Post</label>
                             <select class="form-control text-capitalize" name="staff_post" required>
-                                <?php echo $urow['staff_post'] != "" ? '<option value="' . $urow['staff_post'] . '">' . $urow['staff_post'] . '</option>' : '<option value="">--- Select ---</option>'; ?>
+                                <?php //echo $urow['staff_post'] != "" ? '<option value=//"' . $urow['staff_post'] . '"//>' . $urow['staff_post'] . '</option>' : '<option value="">--- Select ---</option>'; 
+                                ?>
                                 <option value="">--- Select ---</option>
                                 <option value="Account Assistant">Account Assistant</option>
                                 <option value="Accountant">Accountant</option>
@@ -138,7 +153,8 @@ while ($row = $result->fetch_assoc()) {
                             </select>
                         </div>
                         <div class="form-group d-flex justify-content-between">
-                            <input type="submit" name="update_staff_role" class="btn btn-success" value="Process" <?php echo ($self) ? "disabled" : "" ?>>
+                            <input type="submit" name="update_staff_role" class="btn btn-success" value="Process" <?php //echo ($self) ? "disabled" : "" 
+                                                                                                                    ?>>
                         </div>
                     </form>
                     <?php
@@ -194,23 +210,21 @@ while ($row = $result->fetch_assoc()) {
                                         <th>Branch</th>
                                         <th>App</th>
                                         <th>Post</th>
-                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<tr  class='user-select' data-id='" . $row['UID'] . "'>";
-                                        echo "<td>" . $row['u_count'] . "</td>";
-                                        echo "<td><a href=''>" . $row['UID'] . "</a></td>";
-                                        echo "<td>" . $row['staff_bid'] . "</td>";
-                                        echo "<td class='text-uppercase'>" . $row['u_fname'] . "</td>";
-                                        echo "<td class='text-uppercase'>" . $row['u_lname'] . "</td>";
-                                        echo "<td>" . $row['staff_type'] . "</td>";
-                                        echo "<td>" . $row['staff_branch'] . "</td>";
-                                        echo "<td>" . $row['staff_app'] . "</td>";
-                                        echo "<td>" . $row['staff_post'] . "</td>";
-                                        echo $row['status'] == 1 ? "<td class='alert-success'> Active </td>" : "<td class='alert-warning'> Inactive</td>";
+                                    while ($staff = $result->fetch_assoc()) {
+                                        echo "<tr  class='user-select' data-id='" . $staff['UID'] . "'>";
+                                        echo "<td>" . $staff['u_count'] . "</td>";
+                                        echo "<td><a href=''>" . $staff['UID'] . "</a></td>";
+                                        echo "<td>" . $staff['staff_biometic'] . "</td>";
+                                        echo "<td class='text-uppercase'>" . $staff['u_name'] . "</td>";
+                                        echo "<td class='text-uppercase'>" . $staff['u_surname'] . "</td>";
+                                        echo "<td>" . $staff['staff_type'] . "</td>";
+                                        echo "<td>" . $staff['staff_branch'] . "</td>";
+                                        echo "<td>" . $staff['staff_approv'] . "</td>";
+                                        echo "<td>" . $staff['staff_post'] . "</td>";
 
                                         echo "</tr>";
                                     }
@@ -227,7 +241,6 @@ while ($row = $result->fetch_assoc()) {
                                         <th>Branch</th>
                                         <th>App</th>
                                         <th>Post</th>
-                                        <th>Status</th>
                                     </tr>
                                 </tfoot>
                             </table>

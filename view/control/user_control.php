@@ -55,24 +55,24 @@
                 <div class="card-head d-flex align-items-center">
                     <img class="reg-user-img" src="" alt="">
                     <div class="d-block">
-                        <p><?php echo $urow['u_fname'] ?></p>
-                        <h4 class="text-success m-0"><?php echo $urow['u_lname'] ?></h4>
+                        <p><?php //echo $urow['u_fname'] ?></p>
+                        <h4 class="text-success m-0"><?php //echo $urow['u_lname'] ?></h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <?php $u_date_of_birth = new DateTime($urow['u_date_of_birth']); ?>
-                    <p class="card-text my-2"><b>UID : </b><?php echo $urow['UID'] ?></p>
-                    <p class="card-text my-1"><b>Email : </b><?php echo $urow['u_email'] ?></p>
-                    <p class="card-text my-1"><b>Phone : </b><?php echo $urow['u_phone'] ?></p>
-                    <p class="card-text my-1"><b>Gender : </b><?php echo $urow['u_gender'] ?></p>
-                    <p class="card-text my-1"><b>Date of Birth : </b><?php echo $u_date_of_birth->format('d-M-Y') ?></p>
+                    <?php ///$u_date_of_birth = new DateTime($urow['u_date_of_birth']); ?>
+                    <p class="card-text my-2"><b>UID : </b><?php //echo $urow['UID'] ?></p>
+                    <p class="card-text my-1"><b>Email : </b><?php //echo $urow['u_email'] ?></p>
+                    <p class="card-text my-1"><b>Phone : </b><?php //echo $urow['u_phone'] ?></p>
+                    <p class="card-text my-1"><b>Gender : </b><?php //echo $urow['u_gender'] ?></p>
+                    <p class="card-text my-1"><b>Date of Birth : </b><?php //echo $u_date_of_birth->format('d-M-Y') ?></p>
                     <p class="card-text my-1"><b>Nationality : </b></p>
                     <p class="card-text my-1"><b>Address : </b></p>
                     <div class="divider"></div>
-                    <p class="card-text my-1 text-capitalize"><b>User Type : </b><?php echo $urow['u_type'] ?></p>
-                    <p class="card-text my-1"><b>Usage Access : </b><?php echo $urow['u_access'] ? "Granted" : "Pending"; ?></p>
+                    <p class="card-text my-1 text-capitalize"><b>User Type : </b><?php //echo $urow['u_type'] ?></p>
+                    <p class="card-text my-1"><b>Usage Access : </b><?php //echo $urow['u_access'] ? "Granted" : "Pending"; ?></p>
 
-                    <p class="text-center my-2"><input type="button" data-toggle="tab" tabindex="-1" href="#user_profile" class="btn btn-info btn-sm br-5rem px-5" value="View Profile" <?php echo ($self) ? "disabled" : "" ?>></p>
+                    <p class="text-center my-2"><input type="button" data-toggle="tab" tabindex="-1" href="#user_profile" class="btn btn-info btn-sm br-5rem px-5" value="View Profile" <?php //echo ($self) ? "disabled" : "" ?>></p>
                 </div>
                 <script>
                     $('[href="#user_profile"]').click(function() {
@@ -86,16 +86,16 @@
                 </script>
                 <div class="card-footer">
                     <form action="" method="post">
-                        <input type="hidden" name="current_UID" value="<?php echo $urow['UID'] ?>">
+                        <input type="hidden" name="current_UID" value="<?php //echo $urow['UID'] ?>">
                         <div class="form-group">
                             <label for="">Usage Access</label>
                             <select class="form-control text-capitalize" name="u_access" required>
                                 <?php
-                                if ($urow['u_access'] == 0) {
-                                    echo '<option value="0"> Pending</option>';
-                                }
-                                echo '<option value="1">Granted</option>';
-                                echo '<option value="0">Pending</option>';
+                                // if ($urow['u_access'] == 0) {
+                                //     echo '<option value="0"> Pending</option>';
+                                // }
+                                // echo '<option value="1">Granted</option>';
+                                // echo '<option value="0">Pending</option>';
 
                                 ?>
                             </select>
@@ -104,17 +104,17 @@
                             <label for="">Admin Access</label>
                             <select class="form-control text-capitalize" name="admin_access" required>
                                 <?php
-                                if ($urow['admin_access'] == 0) {
-                                    echo '<option value="0"> No</option>';
-                                }
-                                echo '<option value="1">Yes</option>';
-                                echo '<option value="0">No</option>';
+                                // if ($urow['admin_access'] == 0) {
+                                //     echo '<option value="0"> No</option>';
+                                // }
+                                // echo '<option value="1">Yes</option>';
+                                // echo '<option value="0">No</option>';
 
                                 ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="update_profile_usage_all" class="btn btn-success form-control" value="Submit" <?php echo ($self) ? "disabled" : "" ?>>
+                            <input type="submit" name="update_profile_usage_all" class="btn btn-success form-control" value="Submit" <?php //echo ($self) ? "disabled" : "" ?>>
                         </div>
                     </form>
                     <?php
@@ -158,7 +158,6 @@
                                         <th>Surname</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Gender</th>
                                         <th>Date & Time</th>
                                         <th>User Type</th>
                                         <th>Admin Access</th>
@@ -167,21 +166,20 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    // while ($row = $result->fetch_assoc()) {
-                                    //     echo "<tr class='user-select' data-id='" . $row['UID'] . "'>";
-                                    //     echo "<td>" . $row['u_count'] . "</td>";
-                                    //     echo "<td><a href=''>" . $row['UID'] . "</a></td>";
-                                    //     echo "<td class='text-uppercase'>" . $row['u_fname'] . "</td>";
-                                    //     echo "<td class='text-uppercase'>" . $row['u_lname'] . "</td>";
-                                    //     echo "<td>" . $row['u_email'] . "</td>";
-                                    //     echo "<td>" . $row['u_phone'] . "</td>";
-                                    //     echo "<td>" . $row['u_gender'] . "</td>";
-                                    //     echo "<td>" . $row['u_register_time'] . "</td>";
-                                    //     echo "<td class='text-capitalize'>" . $row['u_type'] . "</td>";
-                                    //     echo $row['admin_access'] == 1 ? "<td class='alert-warning'> Yes </td>" : "<td class='alert-success'> No</td>";
-                                    //     echo $row['u_access'] == 1 ? "<td class='alert-success'> Granted </td>" : "<td class='alert-warning'> Pending</td>";
-                                    //     echo "</tr>";
-                                    // }
+                                    while ($users = $result->fetch_assoc()) {
+                                        echo "<tr class='user-select' data-id='" . $users['UID'] . "'>";
+                                        echo "<td>" . $users['u_count'] . "</td>";
+                                        echo "<td><a href=''>" . $users['UID'] . "</a></td>";
+                                        echo "<td class='text-uppercase'>" . $users['u_name'] . "</td>";
+                                        echo "<td class='text-uppercase'>" . $users['u_surname'] . "</td>";
+                                        echo "<td>" . $users['u_email'] . "</td>";
+                                        echo "<td>" . $users['u_phone'] . "</td>";
+                                        echo "<td class='text-capitalize'>" . $users['u_type'] . "</td>";
+                                        echo "<td>" . $users['u_register'] . "</td>";
+                                        echo $users['u_admin'] == 1 ? "<td class='alert-warning'> Yes </td>" : "<td class='alert-success'> No</td>";
+                                        echo $users['u_usage'] == 1 ? "<td class='alert-success'> Granted </td>" : "<td class='alert-warning'> Pending</td>";
+                                        echo "</tr>";
+                                    }
                                     ?>
                                 </tbody>
                                 <tfoot>
@@ -192,9 +190,8 @@
                                         <th>Surname</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Gender</th>
-                                        <th>Date & Time</th>
                                         <th>User Type</th>
+                                        <th>Date & Time</th>
                                         <th>Admin Access</th>
                                         <th>Usage Access</th>
                                     </tr>
@@ -289,7 +286,7 @@
                 'colvis'
             ],
             columnDefs: [{
-                "targets": [7, 9],
+                "targets": [6, 8],
                 "visible": false
             }],
             initComplete: function() {
