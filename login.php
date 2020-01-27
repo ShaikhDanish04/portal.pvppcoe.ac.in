@@ -6,15 +6,114 @@
     <?php $addr_space = "";
     include("head.php") ?>
 
-    <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-    </script>
     <?php
-    if (isset($_SESSION["u_uid"])) {
+
+
+    // if (!isset($_COOKIE[$cookie_name])) {
+    //     echo "Cookie named '" . $cookie_name . "' is not set!";
+    // } else {
+    //     echo "Cookie '" . $cookie_name . "' is set!<br>";
+    //     echo "Value is: " . $_COOKIE[$cookie_name];
+    // }
+
+    // $UID = 'UR2020D0002';
+    // $UID = sha1($UID);
+    // if (isset($_POST['login'])) {
+    //     if (!empty($_POST['signed_in'])) {
+    //         setcookie("u_uid", $UID, time() + (86400 * 30), "/"); // 86400 = 1 day
+    //     }
+    // }
+    // setcookie("u_uid", "", time() + (86400 * 30), "/"); // 86400 = 1 day
+
+
+    ?>
+
+    <?php
+    if (isset($_SESSION["UID"])) {
         header('Location: panel');
-    } ?>
+    } else if (isset($_COOKIE['cK123']) && isset($_COOKIE['cKsd'])) {
+        $UID = $_COOKIE['cK123'];
+        $pass = $_COOKIE['cKsd'];
+        $result = $conn->query("SELECT `UID`,u_type FROM users WHERE `UID` = '$UID' AND u_password='$pass'");
+
+        if ($row = $result->fetch_assoc()) {
+
+            $login_response = '<div class="alert alert-success">Validation Sucessfull !!!</div>';
+
+            $_SESSION["UID"] = $row["UID"];
+            $_SESSION["u_type"] = $row["u_type"];
+
+            if (!empty($_POST['signed_in'])) {
+                setcookie("cK123", $_SESSION["UID"], time() + (10 * 365 * 24 * 60 * 60)); // 86400 = 1 day
+                setcookie("cKsd", $pass, time() + (10 * 365 * 24 * 60 * 60)); // 86400 = 1 day
+            }
+
+            echo '<script>location.href = "panel"</script>';
+        } else {
+            $login_response = '<div class="alert alert-danger">Incorrect Password !!! Try Again</div>';
+        }
+    }
+
+    // setcookie("cK", "Its good", time() + (10 * 365 * 24 * 60 * 60)); // 86400 = 1 day
+    // print_r($_COOKIE);
+    ?>
+    <?php
+    $login_response = "";
+    if (isset($_POST['login_submit'])) {
+
+        $login_id = $_POST["login_id"];
+        $pass = $_POST["u_pass"];
+        $pass = sha1($pass);
+
+        $result = $conn->query("SELECT users.UID FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
+                                WHERE users.UID = '$login_id' OR staff_role_manager.staff_biometic = '$login_id'");
+        $row = $result->fetch_assoc();
+        // print_r($row);
+
+        if ($result->num_rows == 0) {
+            $no_found = 1;
+
+            $result = $conn->query("SELECT users.UID FROM users INNER JOIN student_academic_manager ON users.UID = student_academic_manager.UID 
+                            WHERE users.UID = '$login_id' OR student_academic_manager.student_id = '$login_id'");
+            $row = $result->fetch_assoc();
+            // print_r($row);
+            if ($result->num_rows == 0) {
+                $no_found = 1;
+            } else {
+                $no_found = 0;
+            }
+        } else {
+            $no_found = 0;
+        }
+
+        if ($no_found) {
+            $login_response = '<div class="alert alert-warning">No Such Account found !!!</div>';
+        } else {
+
+            $UID = $row['UID'];
+            $result = $conn->query("SELECT `UID`,u_type FROM users WHERE `UID` = '$UID' AND u_password='$pass'");
+
+            if ($row = $result->fetch_assoc()) {
+
+                $login_response = '<div class="alert alert-success">Validation Sucessfull !!!</div>';
+
+                $_SESSION["UID"] = $row["UID"];
+                $_SESSION["u_type"] = $row["u_type"];
+
+                if (!empty($_POST['signed_in'])) {
+                    setcookie("cK123", $_SESSION["UID"], time() + (10 * 365 * 24 * 60 * 60)); // 86400 = 1 day
+                    setcookie("cKsd", $pass, time() + (10 * 365 * 24 * 60 * 60)); // 86400 = 1 day
+                }
+
+                echo '<script>location.href = "panel"</script>';
+            } else {
+                $login_response = '<div class="alert alert-danger">Incorrect Password !!! Try Again</div>';
+            }
+        }
+    }
+    ?>
+
+
     <style>
         body {
             background: #f5f5f5;
@@ -72,59 +171,16 @@
             // console.log($(this));
         });
     </script>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+
+
+
 </head>
 
-<?php
-$login_response = "";
-if (isset($_POST['login_submit'])) {
-
-    $login_id = $_POST["login_id"];
-    $pass = $_POST["u_pass"];
-    $pass = sha1($pass);
-
-    $result = $conn->query("SELECT users.UID FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
-                                WHERE users.UID = '$login_id' OR staff_role_manager.staff_biometic = '$login_id'");
-    $row = $result->fetch_assoc();
-    // print_r($row);
-
-    if ($result->num_rows == 0) {
-        $no_found = 1;
-
-        $result = $conn->query("SELECT users.UID FROM users INNER JOIN student_academic_manager ON users.UID = student_academic_manager.UID 
-                            WHERE users.UID = '$login_id' OR student_academic_manager.student_id = '$login_id'");
-        $row = $result->fetch_assoc();
-        // print_r($row);
-        if ($result->num_rows == 0) {
-            $no_found = 1;
-        } else {
-            $no_found = 0;
-        }
-    } else {
-        $no_found = 0;
-    }
-
-    if ($no_found) {
-        $login_response = '<div class="alert alert-warning">No Such Account found !!!</div>';
-    } else {
-
-        $UID = $row['UID'];
-        $result = $conn->query("SELECT `UID`,u_type FROM users WHERE `UID` = '$UID' AND u_password='$pass'");
-
-        if ($row = $result->fetch_assoc()) {
-
-            $login_response = '<div class="alert alert-success">Validation Sucessfull !!!</div>';
-
-            $_SESSION["UID"] = $row["UID"];
-            $_SESSION["u_type"] = $row["u_type"];
-
-            echo '<script>location.href = "panel"</script>';
-        } else {
-            $login_response = '<div class="alert alert-danger">Incorrect Password !!! Try Again</div>';
-        }
-    }
-}
-
-?>
 
 <body>
     <div id="login_slide" class="carousel slide" data-touch="false" data-ride="carousel" data-interval="false">
@@ -138,7 +194,7 @@ if (isset($_POST['login_submit'])) {
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="">Institite ID or Email</label>
-                                    <input type="text" class="form-control" name="login_id" autocomplete="on" required>
+                                    <input type="text" class="form-control" name="login_id" autocomplete="on">
                                 </div>
                                 <div class="form-group toggle-password mb-0">
                                     <label for="u_pass">Password</label>
