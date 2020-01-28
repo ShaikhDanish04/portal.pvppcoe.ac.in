@@ -96,10 +96,23 @@
     }
 
     .bar-menu {
-        background: #00000080;
-        padding: 4px 10px;
-        border-radius: 5rem;
+        transition: .3s;
+        height: 0px;
+        font-size: 0px;
+        width: 0px;
+        padding: 0px;
+        overflow: hidden;
         color: #fff;
+        border-radius: 5rem;
+        background: #00000000;
+    }
+
+    .bar-menu.open {
+        background: #00000080;
+        font-size: unset;
+        height: unset;
+        width: unset;
+        padding: 4px 10px;
     }
 
     .bar-menu i.fa:hover {
@@ -433,11 +446,15 @@
 
                 $('#pin_menu').click(function() {
                     if (innerWidth > 996) {
+
                         $('.side,.content').toggleClass('stick');
 
+
                         if ($('.side,.content').hasClass('stick')) {
+                            $('#pin_menu').css('transform', 'rotateZ(-45deg)')
                             localStorage.setItem("side-stick", "true");
                         } else {
+                            $('#pin_menu').css('transform', 'rotateZ(0deg)')
                             localStorage.setItem("side-stick", "false");
                         }
                     }
@@ -471,19 +488,31 @@
 
                 if (localStorage.getItem("side-stick") == "true" && innerWidth > 996) {
                     $('.side,.content').addClass('stick');
+                    $('#pin_menu').css('transform', 'rotateZ(-45deg)')
+                    $('.bar-menu').addClass('open');
                 }
 
                 $('#lock_side,.side-overlay').click(function() {
                     $('.side').toggleClass('hover');
                     $('.side-overlay').toggleClass('show');
+                    $('.bar-menu').toggleClass('open');
+
                 })
 
-                $('.side').hover(function() {
-                    $(this).addClass('hover');
+                // $('.side').hover(function() {
+                //     setTimeout(function() {
+                //         // do something
+                //         $('.side').addClass('hover');
+                //         $('.side-overlay').addClass('show');
+                //     }, 500);
+                // }, function() {
+                //     $(this).removeClass('hover');
+                //     $('.side-overlay').removeClass('show');
+                // })
+
+                $('.list-content').click(function() {
+                    $('.side').addClass('hover');
                     $('.side-overlay').addClass('show');
-                }, function() {
-                    $(this).removeClass('hover');
-                    $('.side-overlay').removeClass('show');
                 })
             </script>
         </div>
