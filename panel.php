@@ -494,7 +494,7 @@
                 if (localStorage.getItem("side-stick") == "true" && innerWidth > 996) {
                     $('.side,.content').addClass('stick');
                     $('#pin_menu').css('transform', 'rotateZ(-45deg)')
-                    $('.bar-menu').addClass('open');
+                    // $('.bar-menu').addClass('open');
                 }
 
                 $('#lock_side,.side-overlay').click(function() {
