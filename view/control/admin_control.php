@@ -1,39 +1,3 @@
-<?php
-
-$result = $conn->query("SELECT * FROM users");
-
-// $count_admin = 0;
-// $count_pending = 0;
-// $count_users = 0;
-// while ($row = $result->fetch_assoc()) {
-//     if ($row['admin_access'] == "1") {
-//         $count_admin++;
-//     }
-//     if ($row['u_access'] == "0") {
-//         $count_pending++;
-//     }
-//     if ($row['UID'] != "") {
-//         $count_users++;
-//     }
-// }
-// $result->data_seek(0);
-
-// $GLOBALS['urow'] = $row;
-
-// if (!isset($_GET['UID'])) {
-//     $_GET['UID'] = $_SESSION["UID"];
-// }
-
-// $self = false;
-// if ($_GET['UID'] == $_SESSION["UID"]) {
-//     $self = true;
-// }
-
-// while ($row = $result->fetch_assoc()) {
-//     if ($_GET['UID'] == $row['UID'])
-//         $GLOBALS['urow'] = $row;
-// }
-?>
 <!-- Nav pills -->
 <div class="card">
     <div class="card-body">
@@ -53,12 +17,11 @@ $result = $conn->query("SELECT * FROM users");
 
 <div class="tab-content">
     <div class="tab-pane active" id="all_users"><?php include('user_control.php'); ?></div>
-    <div class="tab-pane fade" id="staff_role_management"><?php //include('staff_role_management.php'); ?></div>
+    <div class="tab-pane fade" id="staff_role_management"><?php include('staff_role_management.php'); ?></div>
     <div class="tab-pane fade" id="user_profile"></div>
 </div>
 
 <script>
-
     let url = location.href;
 
     if (location.hash) {

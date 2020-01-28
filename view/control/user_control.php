@@ -1,19 +1,31 @@
 <?php
-// define('DEBUG', false);
-// error_reporting(E_ALL);
+$result = $conn->query("SELECT * FROM users");
 
-// if (DEBUG) {
-//     ini_set('display_errors', 'On');
-// } else {
-//     ini_set('display_errors', 'Off');
-// }
-// $sql = "SELECT user_registered.*,user_base_profile.*
-//             FROM user_registered INNER JOIN user_base_profile ON user_registered.UID=user_base_profile.UID";
+$count_admin = 0;
+$count_pending = 0;
+$count_users = 0;
+while ($users = $result->fetch_assoc()) {
+    if ($users['u_admin'] == "1") {
+        $count_admin++;
+    }
+    if ($users['u_usage'] == "0") {
+        $count_pending++;
+    }
+    if ($users['UID'] != "") {
+        $count_users++;
+    }
+}
 
+if (!isset($_GET['UID'])) {
+    $_GET['UID'] = $_SESSION["UID"];
+}
 
-// print_r($GLOBALS['urow']['UID']);
-// print_r($urow);
-// print_r($urow);
+$self = false;
+if ($_GET['UID'] == $_SESSION["UID"]) {
+    $self = true;
+}
+$selected_UID = $_GET['UID'];
+
 ?>
 <style>
     .user-select {
@@ -40,7 +52,7 @@
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-4 p-0">
-            <div class="head-card bg-danger-gradient" onclick="setQView('payment.view')">
+            <div class="head-card bg-danger-gradient">
                 <div>
                     <span class="count"><?php echo $count_admin ?></span>
                     <p>Admin Access</p>
@@ -54,25 +66,27 @@
             <div class="card">
                 <div class="card-head d-flex align-items-center">
                     <img class="reg-user-img" src="" alt="">
+                    <?php
+                    $selected_result = $conn->query("SELECT * FROM users WHERE `UID`='$selected_UID'");
+                    $select_user = $selected_result->fetch_assoc();
+                    // print_r($select_user);
+                    ?>
                     <div class="d-block">
-                        <p><?php echo $urow['u_fname'] ?></p>
-                        <h4 class="text-success m-0"><?php echo $urow['u_lname'] ?></h4>
+                        <p><?php echo $select_user['u_name'] ?></p>
+                        <h4 class="text-success m-0"><?php echo $select_user['u_surname'] ?></h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <?php $u_date_of_birth = new DateTime($urow['u_date_of_birth']); ?>
-                    <p class="card-text my-2"><b>UID : </b><?php echo $urow['UID'] ?></p>
-                    <p class="card-text my-1"><b>Email : </b><?php echo $urow['u_email'] ?></p>
-                    <p class="card-text my-1"><b>Phone : </b><?php echo $urow['u_phone'] ?></p>
-                    <p class="card-text my-1"><b>Gender : </b><?php echo $urow['u_gender'] ?></p>
-                    <p class="card-text my-1"><b>Date of Birth : </b><?php echo $u_date_of_birth->format('d-M-Y') ?></p>
-                    <p class="card-text my-1"><b>Nationality : </b></p>
-                    <p class="card-text my-1"><b>Address : </b></p>
+                    <?php $u_register = new DateTime($select_user['u_register']); ?>
+                    <p class="card-text my-2"><b>UID : </b><?php echo $select_user['UID'] ?></p>
+                    <p class="card-text my-1"><b>Email : </b><?php echo $select_user['u_email'] ?></p>
+                    <p class="card-text my-1"><b>Phone : </b><?php echo $select_user['u_phone'] ?></p>
+                    <p class="card-text my-1"><b>Registered : </b><?php echo $u_register->format('d-M-Y') ?></p>
                     <div class="divider"></div>
-                    <p class="card-text my-1 text-capitalize"><b>User Type : </b><?php echo $urow['u_type'] ?></p>
-                    <p class="card-text my-1"><b>Usage Access : </b><?php echo $urow['u_access'] ? "Granted" : "Pending"; ?></p>
+                    <p class="card-text my-1 text-capitalize"><b>Admin Access : </b><?php echo $select_user['u_admin'] ? "Yes" : "No"; ?></p>
+                    <p class="card-text my-1"><b>Usage Access : </b><?php echo $select_user['u_usage'] ? "Granted" : "Pending"; ?></p>
 
-                    <p class="text-center my-2"><input type="button" data-toggle="tab" tabindex="-1" href="#user_profile" class="btn btn-info btn-sm br-5rem px-5" value="View Profile" <?php echo ($self) ? "disabled" : "" ?>></p>
+                    <p class="text-center my-2"><input type="button" data-toggle="tab" tabindex="-1" href="#user_profile" class="btn btn-info btn-sm br-5rem px-5" value="View Profile" <?php //echo ($self) ? "disabled" : "" ?>></p>
                 </div>
                 <script>
                     $('[href="#user_profile"]').click(function() {
@@ -86,30 +100,28 @@
                 </script>
                 <div class="card-footer">
                     <form action="" method="post">
-                        <input type="hidden" name="current_UID" value="<?php echo $urow['UID'] ?>">
+                        <input type="hidden" name="current_UID" value="<?php echo $select_user['UID'] ?>">
                         <div class="form-group">
                             <label for="">Usage Access</label>
-                            <select class="form-control text-capitalize" name="u_access" required>
+                            <select class="form-control text-capitalize" name="u_usage" required>
                                 <?php
-                                if ($urow['u_access'] == 0) {
+                                if ($select_user['u_usage'] == 0) {
                                     echo '<option value="0"> Pending</option>';
                                 }
                                 echo '<option value="1">Granted</option>';
                                 echo '<option value="0">Pending</option>';
-
                                 ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Admin Access</label>
-                            <select class="form-control text-capitalize" name="admin_access" required>
+                            <select class="form-control text-capitalize" name="u_admin" required>
                                 <?php
-                                if ($urow['admin_access'] == 0) {
+                                if ($select_user['u_admin'] == 0) {
                                     echo '<option value="0"> No</option>';
                                 }
                                 echo '<option value="1">Yes</option>';
                                 echo '<option value="0">No</option>';
-
                                 ?>
                             </select>
                         </div>
@@ -119,27 +131,26 @@
                     </form>
                     <?php
 
-                    // if (isset($_POST['update_profile_usage_all'])) {
+                    if (isset($_POST['update_profile_usage_all'])) {
 
-                    //     $uid = $_POST['current_UID'];
-                    //     $u_access = $_POST['u_access'];
-                    //     $admin_access = $_POST['admin_access'];
+                        $uid = $_POST['current_UID'];
+                        $u_usage = $_POST['u_usage'];
+                        $u_admin = $_POST['u_admin'];
 
-                    //     $conn->query("UPDATE users 
-                    //     SET 
-                    //         admin_access = '$admin_access',
-                    //         u_access = '$u_access'
-                    //     WHERE UID = '$uid'");
+                        $conn->query("UPDATE users 
+                        SET 
+                            u_admin = '$u_admin',
+                            u_usage = '$u_usage'
+                        WHERE UID = '$uid'");
 
-                    //     echo '<script>location.reload()</script>';
-                    // }
+                        echo '<script>location.reload()</script>';
+                    }
 
                     ?>
 
                 </div>
             </div>
         </div>
-        <?php $result->data_seek(0); ?>
         <div class="col-md-8 p-0">
             <div class="card">
                 <div class="card-head">
@@ -158,7 +169,6 @@
                                         <th>Surname</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Gender</th>
                                         <th>Date & Time</th>
                                         <th>User Type</th>
                                         <th>Admin Access</th>
@@ -167,21 +177,21 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    // while ($row = $result->fetch_assoc()) {
-                                    //     echo "<tr class='user-select' data-id='" . $row['UID'] . "'>";
-                                    //     echo "<td>" . $row['u_count'] . "</td>";
-                                    //     echo "<td><a href=''>" . $row['UID'] . "</a></td>";
-                                    //     echo "<td class='text-uppercase'>" . $row['u_fname'] . "</td>";
-                                    //     echo "<td class='text-uppercase'>" . $row['u_lname'] . "</td>";
-                                    //     echo "<td>" . $row['u_email'] . "</td>";
-                                    //     echo "<td>" . $row['u_phone'] . "</td>";
-                                    //     echo "<td>" . $row['u_gender'] . "</td>";
-                                    //     echo "<td>" . $row['u_register_time'] . "</td>";
-                                    //     echo "<td class='text-capitalize'>" . $row['u_type'] . "</td>";
-                                    //     echo $row['admin_access'] == 1 ? "<td class='alert-warning'> Yes </td>" : "<td class='alert-success'> No</td>";
-                                    //     echo $row['u_access'] == 1 ? "<td class='alert-success'> Granted </td>" : "<td class='alert-warning'> Pending</td>";
-                                    //     echo "</tr>";
-                                    // }
+                                    $result->data_seek(0);
+                                    while ($users = $result->fetch_assoc()) {
+                                        echo "<tr class='user-select' data-id='" . $users['UID'] . "'>";
+                                        echo "<td>" . $users['u_count'] . "</td>";
+                                        echo "<td><a href=''>" . $users['UID'] . "</a></td>";
+                                        echo "<td class='text-uppercase'>" . $users['u_name'] . "</td>";
+                                        echo "<td class='text-uppercase'>" . $users['u_surname'] . "</td>";
+                                        echo "<td>" . $users['u_email'] . "</td>";
+                                        echo "<td>" . $users['u_phone'] . "</td>";
+                                        echo "<td>" . $users['u_register'] . "</td>";
+                                        echo "<td class='text-capitalize'>" . $users['u_type'] . "</td>";
+                                        echo $users['u_admin'] == 1 ? "<td class='alert-warning'> Yes </td>" : "<td class='alert-success'> No</td>";
+                                        echo $users['u_usage'] == 1 ? "<td class='alert-success'> Granted </td>" : "<td class='alert-warning'> Pending</td>";
+                                        echo "</tr>";
+                                    }
                                     ?>
                                 </tbody>
                                 <tfoot>
@@ -192,9 +202,8 @@
                                         <th>Surname</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Gender</th>
-                                        <th>Date & Time</th>
                                         <th>User Type</th>
+                                        <th>Date & Time</th>
                                         <th>Admin Access</th>
                                         <th>Usage Access</th>
                                     </tr>
@@ -289,7 +298,7 @@
                 'colvis'
             ],
             columnDefs: [{
-                "targets": [7, 9],
+                "targets": [6, 8],
                 "visible": false
             }],
             initComplete: function() {
