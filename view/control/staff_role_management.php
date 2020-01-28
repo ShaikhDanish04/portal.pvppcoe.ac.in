@@ -1,27 +1,3 @@
-<?php
-$sql = "SELECT * FROM users INNER JOIN staff_role_manager ON users.UID=staff_role_manager.UID";
-
-$result = $conn->query($sql);
-
-// $GLOBALS['urow'] = $staff;
-
-// if (!isset($_GET['UID'])) {
-//     $_GET['UID'] = $_SESSION["UID"];
-// }
-
-// $self = false;
-// if ($_GET['UID'] == $_SESSION["UID"]) {
-//     $self = true;
-// }
-
-// while ($staff = $result->fetch_assoc()) {
-//     if ($_GET['UID'] == $staff['UID'])
-//         $GLOBALS['urow'] = $staff;
-// }
-// print_r($GLOBALS['urow']['UID']);
-// print_r($urow);
-// print_r($urow);
-?>
 <div class="container-fluid">
     <div class="row flex-md-row-reverse">
         <div class="col-md-4 p-0">
@@ -30,46 +6,39 @@ $result = $conn->query($sql);
                 <div class="card-head d-flex align-items-center">
                     <img class="reg-user-img" src="" alt="">
                     <div class="d-block">
-                        <p><?php //echo $urow['u_fname'] 
-                            ?></p>
-                        <h4 class="text-success m-0"><?php //echo $urow['u_lname'] 
-                                                        ?></h4>
+                        <?php
+                        $staff_result = $conn->query("SELECT * FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID WHERE users.UID = '$selected_UID'");
+                        $select_staff = $staff_result->fetch_assoc();
+                        // print_r($select_staff);
+                        ?>
+                        <p><?php echo $select_staff['u_name'] ?></p>
+                        <h4 class="text-success m-0"><?php echo $select_staff['u_surname'] ?></h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="card-text my-2"><b>UID : </b><?php //echo $urow['UID'] 
-                                                            ?></p>
-                    <p class="card-text my-1"><b>Biometric ID : </b><?php //echo $urow['staff_bid'] 
-                                                                    ?></p>
-                    <p class="card-text my-1"><b>Email : </b><?php //echo $urow['u_email'] 
-                                                                ?></p>
-                    <p class="card-text my-1"><b>Phone : </b><?php //echo $urow['u_phone'] 
-                                                                ?></p>
+                    <p class="card-text my-2"><b>UID : </b><?php echo $select_staff['UID'] ?></p>
+                    <p class="card-text my-1"><b>Biometric ID : </b><?php echo $select_staff['staff_biometic'] ?></p>
+                    <p class="card-text my-1"><b>Email : </b><?php echo $select_staff['u_email'] ?></p>
+                    <p class="card-text my-1"><b>Phone : </b><?php echo $select_staff['u_phone'] ?></p>
                     <div class="divider"></div>
-                    <p class="card-text my-1"><b>Staff Type : </b><?php //echo $urow['staff_type'] 
-                                                                    ?></p>
-                    <p class="card-text my-1"><b>Branch : </b><?php //echo $urow['staff_branch'] 
-                                                                ?></p>
-                    <p class="card-text my-1"><b>Application : </b><?php //echo $urow['staff_app'] 
-                                                                    ?></p>
-                    <p class="card-text my-1"><b>Post : </b><?php //echo $urow['staff_post'] 
-                                                            ?></p>
+                    <p class="card-text my-1"><b>Staff Type : </b><?php echo $select_staff['staff_type'] ?></p>
+                    <p class="card-text my-1"><b>Branch : </b><?php echo $select_staff['staff_branch'] ?></p>
+                    <p class="card-text my-1"><b>Application : </b><?php echo $select_staff['staff_approv'] ?></p>
+                    <p class="card-text my-1"><b>Post : </b><?php echo $select_staff['staff_post'] ?></p>
                 </div>
                 <div class="card-footer">
                     <form action="" method="post">
-                        <input type="hidden" name="current_UID" value="<?php //echo $urow['UID'] 
-                                                                        ?>">
+                        <input type="hidden" name="current_UID" value="<?php echo $select_staff['UID'] ?>">
                         <div class="form-group">
                             <label for="">Biometric ID</label>
-                            <input type="tel" class="form-control" name="staff_bid" value="<?php //echo $urow['staff_bid'] 
-                                                                                            ?>">
+                            <input type="tel" class="form-control" name="staff_biometic" value="<?php echo $select_staff['staff_biometic'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Staff Type</label>
 
                             <select class="form-control text-capitalize" name="staff_type" required>
 
-                                <?php //echo $urow['staff_type'] != "" ? '<option value=//"' . $urow['staff_type'] . '"//>' . $urow['staff_type'] . '</option>' : '<option value="">--- Select ---</option>'; 
+                                <?php echo $select_staff['staff_type'] != "" ? '<option value="' . $select_staff['staff_type'] . '">' . $select_staff['staff_type'] . '</option>' : '<option value="">--- Select ---</option>';
                                 ?>
                                 <option value="Administration">Administration</option>
                                 <option value="Teaching">Teaching</option>
@@ -79,8 +48,7 @@ $result = $conn->query($sql);
                         <div class="form-group">
                             <label for="">Branch</label>
                             <select class="form-control text-capitalize" name="staff_branch" required>
-                                <?php //echo $urow['staff_branch'] != "" ? '<option value=//"' . $urow['staff_branch'] . '"//>' . $urow['staff_branch'] . '</option>' : '<option value="">--- Select ---</option>'; 
-                                ?>
+                                <?php echo $select_staff['staff_branch'] != "" ? '<option value="' . $select_staff['staff_branch'] . '">' . $select_staff['staff_branch'] . '</option>' : '<option value="">--- Select ---</option>'; ?>
                                 <option value="Account section">Account section</option>
                                 <option value="Computer Engg">Computer Engg</option>
                                 <option value="Electronics Engg">Electronics Engg</option>
@@ -101,9 +69,8 @@ $result = $conn->query($sql);
                         </div>
                         <div class="form-group">
                             <label for="">Application</label>
-                            <select class="form-control text-capitalize" name="staff_app" required>
-                                <?php //echo $urow['staff_app'] != "" ? '<option value=//"' . $urow['staff_app'] . '"//>' . $urow['staff_app'] . '</option>' : '<option value="">--- Select ---</option>'; 
-                                ?>
+                            <select class="form-control text-capitalize" name="staff_approv" required>
+                                <?php echo $select_staff['staff_approv'] != "" ? '<option value="' . $select_staff['staff_approv'] . '">' . $select_staff['staff_approv'] . '</option>' : '<option value="">--- Select ---</option>'; ?>
                                 <option value="ADHOC">ADHOC</option>
                                 <option value="Contract">Contract</option>
                                 <option value="Permenent">Permenent</option>
@@ -113,8 +80,7 @@ $result = $conn->query($sql);
                         <div class="form-group">
                             <label for="">Post</label>
                             <select class="form-control text-capitalize" name="staff_post" required>
-                                <?php //echo $urow['staff_post'] != "" ? '<option value=//"' . $urow['staff_post'] . '"//>' . $urow['staff_post'] . '</option>' : '<option value="">--- Select ---</option>'; 
-                                ?>
+                                <?php echo $select_staff['staff_post'] != "" ? '<option value="' . $select_staff['staff_post'] . '">' . $select_staff['staff_post'] . '</option>' : '<option value="">--- Select ---</option>'; ?>
                                 <option value="">--- Select ---</option>
                                 <option value="Account Assistant">Account Assistant</option>
                                 <option value="Accountant">Accountant</option>
@@ -153,8 +119,7 @@ $result = $conn->query($sql);
                             </select>
                         </div>
                         <div class="form-group d-flex justify-content-between">
-                            <input type="submit" name="update_staff_role" class="btn btn-success" value="Process" <?php //echo ($self) ? "disabled" : "" 
-                                                                                                                    ?>>
+                            <input type="submit" name="update_staff_role" class="btn btn-success" value="Process" <?php echo ($self) ? "disabled" : ""  ?>>
                         </div>
                     </form>
                     <?php
@@ -162,22 +127,20 @@ $result = $conn->query($sql);
                     if (isset($_POST['update_staff_role'])) {
 
                         $uid = $_POST['current_UID'];
-
-                        $staff_bid = $_POST['staff_bid'];
+                        $staff_biometic = $_POST['staff_biometic'];
                         $staff_type = $_POST['staff_type'];
                         $staff_branch = $_POST['staff_branch'];
-                        $staff_app = $_POST['staff_app'];
+                        $staff_approv = $_POST['staff_approv'];
                         $staff_post = $_POST['staff_post'];
 
 
-                        $conn->query("UPDATE staff_role_management 
+                        $conn->query("UPDATE staff_role_manager
                             SET 
-                                staff_bid = '$staff_bid',
+                                staff_biometic = '$staff_biometic',
                                 staff_type = '$staff_type',
                                 staff_branch = '$staff_branch',
-                                staff_app = '$staff_app',
-                                staff_post = '$staff_post',
-                                status = '1'
+                                staff_approv = '$staff_approv',
+                                staff_post = '$staff_post'
                             WHERE UID = '$uid'");
 
                         echo '<script>location.reload()</script>';
@@ -188,7 +151,6 @@ $result = $conn->query($sql);
                 </div>
             </div>
         </div>
-        <?php $result->data_seek(0); ?>
         <div class="col-md-8 p-0">
             <div class="card">
                 <div class="card-head">
@@ -214,6 +176,7 @@ $result = $conn->query($sql);
                                 </thead>
                                 <tbody>
                                     <?php
+                                    $result = $conn->query("SELECT * FROM users INNER JOIN staff_role_manager ON users.UID=staff_role_manager.UID");
                                     while ($staff = $result->fetch_assoc()) {
                                         echo "<tr  class='user-select' data-id='" . $staff['UID'] . "'>";
                                         echo "<td>" . $staff['u_count'] . "</td>";

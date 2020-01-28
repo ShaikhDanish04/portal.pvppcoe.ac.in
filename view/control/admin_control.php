@@ -22,7 +22,6 @@
 </div>
 
 <script>
-
     let url = location.href;
 
     if (location.hash) {
