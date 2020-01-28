@@ -13,9 +13,11 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #1e1e1e;
 }
-html,div {
+
+html, div {
     scroll-behavior: smooth;
 }
+
 body {
     font-size: .8rem;
     overflow: hidden;
@@ -130,11 +132,10 @@ div.divider {
     max-width: 200px;
 }
 
-.bar-item a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
+.bar-item i {
+    border-radius: 5rem;
+    background: #164d49;
+    padding: 7px 14px;
 }
 
 .top-bar-center {
@@ -175,7 +176,7 @@ div.divider {
 }
 
 .bar-item {
-    padding: 10px 20px
+    padding: 5px 5px
 }
 
 .content-view {
@@ -308,7 +309,7 @@ div.divider {
     /* overflow-y: scroll; */
 }
 
-.side-list:hover {
+.side.hover .side-list {
     overflow-y: scroll;
 }
 
@@ -824,6 +825,6 @@ table.dataTable tfoot th, table.dataTable tfoot td {
 }
 
 table.dataTable tfoot th .form-control, table.dataTable tfoot td .form-control {
-    font-size: 14px ;
-    padding: 2px ;
+    font-size: 14px;
+    padding: 2px;
 }
