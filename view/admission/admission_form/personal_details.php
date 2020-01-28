@@ -57,35 +57,6 @@
                         position: relative;
                     }
 
-                    .upload-here:hover::after {
-                        cursor: pointer;
-                        content: "\f093 \a";
-                        white-space: pre;
-                        display: flex;
-                        align-items: center;
-                        font: normal normal normal 18px/1 FontAwesome;
-                        justify-content: center;
-                        position: absolute;
-                        border-radius: .5rem;
-                        color: #fff;
-                        border: 2px dashed #fff;
-                        height: 90%;
-                        width: 90%;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%)
-                    }
-
-                    .upload-here:hover::before {
-                        content: "";
-                        top: 0px;
-                        left: 0px;
-                        position: absolute;
-                        height: 100%;
-                        width: 100%;
-                        background: rgba(0, 0, 0, 0.6);
-                    }
-
                     #photo {
                         height: 150px;
                         width: 120px;
@@ -263,4 +234,3 @@
         </div>
     </form>
 </div>
-

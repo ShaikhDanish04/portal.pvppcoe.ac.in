@@ -158,7 +158,7 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
             </ul>
         </div>
     </div>
-    <div id="file_handle"></div>
+
 
 
     <!-- Tab panes -->

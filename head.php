@@ -103,5 +103,33 @@ if (!isset($_GET['page'])) {
     input:focus+.slider {
         box-shadow: 0 0 1px #2196F3;
     }
-</style>
 
+    .upload-here:hover::after {
+        cursor: pointer;
+        content: "\f093 \a";
+        white-space: pre;
+        display: flex;
+        align-items: center;
+        font: normal normal normal 18px/1 FontAwesome;
+        justify-content: center;
+        position: absolute;
+        border-radius: inherit;
+        color: #fff;
+        border: 2px dashed #fff;
+        height: 90%;
+        width: 90%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .upload-here:hover::before {
+        content: "";
+        top: 0px;
+        left: 0px;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.6);
+    }
+</style>

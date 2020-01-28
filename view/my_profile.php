@@ -85,6 +85,8 @@
             background-repeat: no-repeat;
             box-shadow: 1px 1px 7px #aaa;
             overflow: hidden;
+            position: relative;
+
         }
 
         .profile-name {
@@ -122,7 +124,7 @@
             </div>
             <div class="profile-picture-container">
                 <div class="profile-picture">
-                    <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/profile_photo.jpg")) ?>" alt="Photo" height="100%" width="100%" />
+                    <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/profile-picture.jpg")) ?>" alt="Photo" height="100%" width="100%" />
                 </div>
 
             </div>
@@ -184,7 +186,7 @@
                 }
             </style>
             <div class="card ">
-                <?php include('view/profile/student_id.php')?>
+                <?php include('view/profile/student_id.php') ?>
             </div>
         </div>
         <div class="col-md-8 p-0">
@@ -206,7 +208,6 @@
                     <div class="divider my-3"></div>
                     <div class="tab-content">
                         <div class="tab-pane container active" id="home">
-                            <?php include('view/id_card.php'); ?>
                         </div>
                         <div class="tab-pane container fade" id="menu1">...</div>
                         <div class="tab-pane container fade" id="menu2">...</div>
