@@ -499,23 +499,11 @@
 
                 })
 
-                // $('.side').hover(function() {
-                //     setTimeout(function() {
-                //         // do something
-                //         $('.side').addClass('hover');
-                //         $('.side-overlay').addClass('show');
-                //     }, 500);
-                // }, function() {
-                //     $(this).removeClass('hover');
-                //     $('.side-overlay').removeClass('show');
-                // })
-
                 $('.list-content').click(function() {
                     $('.side').addClass('hover');
                     $('.side-overlay').addClass('show');
                 })
                 $('[data-upload]').click(function() {
-                    //     $('#file_uploader').load('constraint/file_uploader.php');
                     $.ajax({
                         method: "POST",
                         url: "constraint/file_handler.php",
