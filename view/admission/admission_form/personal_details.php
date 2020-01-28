@@ -32,10 +32,9 @@
                     <div class="image-response"></div>
                     <div class="form-group">
                         <label for="">My Photo</label>
-                        <div class="personal_photo upload-here" data-upload="profile_photo" id="profile_photo">
-                            <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/profile_photo.jpg")) ?>" alt="Profile Photo" height="100%" width="100%" />
+                        <div class="personal_photo upload-here" data-upload="photo" id="photo">
+                            <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/photo.jpg")) ?>" alt="Profile Photo" height="100%" width="100%" />
                         </div>
-                        <!-- <input type="file" name="profile_photo" accept="image/*" onchange="loadFile('profile_photo',event)"> -->
                         <small class="text-muted">*Required</small>
                     </div>
                     <div class="form-group">
@@ -58,36 +57,7 @@
                         position: relative;
                     }
 
-                    .upload-here:hover::after {
-                        cursor: pointer;
-                        content: "\f093 \a";
-                        white-space: pre;
-                        display: flex;
-                        align-items: center;
-                        font: normal normal normal 18px/1 FontAwesome;
-                        justify-content: center;
-                        position: absolute;
-                        border-radius: .5rem;
-                        color: #fff;
-                        border: 2px dashed #fff;
-                        height: 90%;
-                        width: 90%;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%)
-                    }
-
-                    .upload-here:hover::before {
-                        content: "";
-                        top: 0px;
-                        left: 0px;
-                        position: absolute;
-                        height: 100%;
-                        width: 100%;
-                        background: rgba(0, 0, 0, 0.6);
-                    }
-
-                    #profile_photo {
+                    #photo {
                         height: 150px;
                         width: 120px;
                         background: url('<?php echo $addr_space ?>assets/img/dummy-avatar.png');

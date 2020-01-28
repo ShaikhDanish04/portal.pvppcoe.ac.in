@@ -12,6 +12,8 @@
         background-image: url(assets/img/dummy-avatar.png);
         background-size: contain;
         background-position: center;
+        position: relative;
+        overflow: hidden;
     }
 </style>
 
@@ -22,10 +24,12 @@ include('constraint/password_update.php') ?>
     <div class="row">
         <div class="col-md-12 mt-3 mb-2 d-flex align-items-center">
             <div class="d-block">
-                <h1 class="h3 mb-0"><?php echo $row['u_fname'] . " " . $row['u_lname']; ?> <span class="badge badge-info text-capitalize"><?php echo $row['u_type']; ?></span></h1>
-                <p class="">UID : <?php echo $row['UID']; ?></p>
+                <h1 class="h3 mb-0"><?php echo $user['u_name'] . " " . $user['u_surname']; ?> <span class="badge badge-info text-capitalize"><?php echo $user['u_type']; ?></span></h1>
+                <p class="">UID : <?php echo $user['UID']; ?></p>
             </div>
-            <img class="user-img" src="" alt="">
+            <div class="user-img upload-here" data-upload="profile-picture">
+                <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/profile-picture.jpg")) ?>" alt="Photo" height="100%" width="100%" />
+            </div>
         </div>
         <div class="divider w-100 mb-3"></div>
 
@@ -131,9 +135,11 @@ include('constraint/password_update.php') ?>
                 <?php //echo $row['u_type']; 
                 ?>
                 <div class="card-body">
-                    <p>Name : <?php echo $row['u_fname'] . " " . $row['u_lname'] ?></p>
-                    <p>Gender : <?php echo $row['u_gender'] ?></p>
-                    <p>Birthday : <?php echo $row['u_date_of_birth'] ?></p>
+                    <p>Name : <?php echo $user['u_name'] . " " . $user['u_surname'] ?></p>
+                    <p>Gender : <?php //echo $row['u_gender'] 
+                                ?></p>
+                    <p>Birthday : <?php //echo $row['u_date_of_birth'] 
+                                    ?></p>
                 </div>
             </div>
         </div>
@@ -143,8 +149,8 @@ include('constraint/password_update.php') ?>
                     Contact Info
                 </div>
                 <div class="card-body">
-                    <p>Email : <?php echo $row['u_email']; ?></p>
-                    <p>Phone : <?php echo $row['u_phone']; ?></p>
+                    <p>Email : <?php echo $user['u_email']; ?></p>
+                    <p>Phone : <?php echo $user['u_phone']; ?></p>
                     <p>Address : </p>
                 </div>
             </div>

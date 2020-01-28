@@ -3,26 +3,27 @@ class PathController
 {
     public $paths_view = array("my_profile,upcomming_feature");
 
-    public function default() {
-        array_push($this->paths_view, "settings",'our_team');
-        
+    public function
+    default()
+    {
+        array_push($this->paths_view, "settings", 'our_team');
     }
     public function controlPanel()
     {
         echo '<a class="list-item dash-button" href="?page=control%2Fadmin_control">' .
-        '<div class=" toggle-side-bar"><i class="fa fa-users"></i></div>' .
-        '<p>User Control</p>' .
-        '</a>';
-        
+            '<div class=" toggle-side-bar"><i class="fa fa-users"></i></div>' .
+            '<p>User Control</p>' .
+            '</a>';
+
         array_push($this->paths_view, 'control/admin_control', 'control/staff_role_management');
     }
     function student_dashboard()
     {
         echo '<a class="list-item dash-button" href="?page=student_dashboard">' .
-        '   <div class=" toggle-side-bar"><i class="fa fa-dashboard"></i></div>' .
-        '   <p>Dashboard</p>' .
-        '</a>';
-        
+            '   <div class=" toggle-side-bar"><i class="fa fa-dashboard"></i></div>' .
+            '   <p>Dashboard</p>' .
+            '</a>';
+
         array_push($this->paths_view, 'student_dashboard');
     }
 

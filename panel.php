@@ -311,7 +311,10 @@
                     <a href="?page=my_profile" class="text-decoration-none">
                         <div class="profile-card">
                             <div>
-                                <img class="user-img" src="" alt="">
+                                <!-- <img class="user-img" src="" alt=""> -->
+                                <div class="user-img">
+                                    <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/profile-picture.jpg")) ?>" alt="Photo" height="100%" width="100%" />
+                                </div>
                                 <div class="profile-link">
 
                                     <p class="text-dark">View Profile</p>
@@ -415,9 +418,11 @@
 
                         ?>
                     </div>
+                    <div class="test"></div>
                     <?php print_r($user); ?>
 
                 </div>
+                <div id="file_handle"></div>
 
                 <div class="footer flex-column-reverse flex-sm-row-reverse">
                     <p>© PVPP College of Engineering</p>
@@ -499,20 +504,23 @@
 
                 })
 
-                // $('.side').hover(function() {
-                //     setTimeout(function() {
-                //         // do something
-                //         $('.side').addClass('hover');
-                //         $('.side-overlay').addClass('show');
-                //     }, 500);
-                // }, function() {
-                //     $(this).removeClass('hover');
-                //     $('.side-overlay').removeClass('show');
-                // })
-
                 $('.list-content').click(function() {
                     $('.side').addClass('hover');
                     $('.side-overlay').addClass('show');
+                })
+                $('[data-upload]').click(function() {
+                    $.ajax({
+                        method: "POST",
+                        url: "constraint/file_handler.php",
+                        data: {
+                            document: $(this).attr('data-upload'),
+                            ID: "<?php echo $user['student_id'] ?>"
+                        },
+                        success: function(result) {
+                            $("#file_handle").html(result);
+                            $("#upload").modal('show')
+                        }
+                    })
                 })
             </script>
         </div>
@@ -535,6 +543,7 @@
         background-repeat: no-repeat;
         background-position: center;
         box-shadow: 0 3px 5px #ddd;
+        
     }
 </style>
 

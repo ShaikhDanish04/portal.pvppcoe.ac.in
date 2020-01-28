@@ -275,6 +275,7 @@ div.divider {
     height: 90px;
     width: 90px;
     margin: 10px auto;
+    overflow: hidden;
 }
 
 @media (max-width:426px) {
