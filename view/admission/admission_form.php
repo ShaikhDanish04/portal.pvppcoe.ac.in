@@ -4,11 +4,11 @@ $encryption = "";
 $iv = '1234567891011122';
 if (isset($_POST['request_admission_form'])) {
     $encryption = openssl_encrypt($simpletext, "AES-128-CTR", "$UID", 0, $iv);
-    
+
     $conn->query("INSERT INTO `student_admission_table` (`UID`, `personal`, `address`, `allotment`, `education`, `bank`, `family`, `form_status`) 
         VALUES ('$UID', '$encryption', '$encryption', '$encryption', '$encryption', '$encryption', '$encryption', 'pending')");
 
-$conn->error;
+    $conn->error;
 }
 
 // Display the decrypted string 
@@ -236,3 +236,4 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
 
     });
 </script>
+

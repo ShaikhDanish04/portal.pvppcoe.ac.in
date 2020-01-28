@@ -77,26 +77,7 @@
 
         <!-- <div class="btn btn-primary refresh">Proceed</div> -->
 
-        <script>
-            $(document).ready(function() {
-                $('[data-upload]').click(function() {
-                    //     $('#file_uploader').load('constraint/file_uploader.php');
-                    $.ajax({
-                        method: "POST",
-                        url: "constraint/file_handler.php",
-                        data: {
-                            document: $(this).attr('data-upload'),
-                            ID: "<?php echo $user['student_id'] ?>"
-                        },
-                        success: function(result) {
-                            $("#file_handle").html(result);
-                            $("#upload").modal('show')
-                        }
-                    })
-                    // alert('data');
-                })
-            })
-        </script>
+
 
     </div>
     <div class="card-foot d-flex justify-content-between flex-column-reverse flex-md-row">

@@ -514,6 +514,21 @@
                     $('.side').addClass('hover');
                     $('.side-overlay').addClass('show');
                 })
+                $('[data-upload]').click(function() {
+                    //     $('#file_uploader').load('constraint/file_uploader.php');
+                    $.ajax({
+                        method: "POST",
+                        url: "constraint/file_handler.php",
+                        data: {
+                            document: $(this).attr('data-upload'),
+                            ID: "<?php echo $user['student_id'] ?>"
+                        },
+                        success: function(result) {
+                            $("#file_handle").html(result);
+                            $("#upload").modal('show')
+                        }
+                    })
+                })
             </script>
         </div>
 
