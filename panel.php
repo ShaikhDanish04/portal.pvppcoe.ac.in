@@ -418,8 +418,7 @@
 
                         ?>
                     </div>
-                    <div class="test"></div>
-                    <?php print_r($user); ?>
+                    <?php //print_r($user); ?>
 
                 </div>
                 <div id="file_handle"></div>
