@@ -25,7 +25,7 @@
     if (isset($_POST['user_uid_form']) && !isset($_POST['student_verification'])) {
         $selected_UID = $_POST['user_uid_form'];
         $addr_space = "";
-        echo $selected_UID;
+        // echo $selected_UID;
         include("../../admission/admission_form_review.php");
         // include("../../student_section/admission/admission_form_verification.php");
     }

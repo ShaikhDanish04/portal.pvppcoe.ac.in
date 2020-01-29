@@ -47,7 +47,7 @@
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body">
+            <div class="modal-body bg-dark">
             </div>
 
             <!-- Modal footer -->

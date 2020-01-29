@@ -33,16 +33,15 @@
                     <div class="form-group">
                         <label for="">My Photo</label>
                         <div class="personal_photo upload-here" data-upload="photo" id="photo">
-                            <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/photo.jpg")) ?>" alt="Profile Photo" height="100%" width="100%" />
+                            <img src="<?php echo (!isset($allotment_details["C_UID"])) ? "data:image/jpg;base64," . base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/photo.jpg")) : "uploads/" . $allotment_details['C_UID'] . "/photo.jpg" ?>" alt="Profile Photo" height="100%" width="100%" />
                         </div>
                         <small class="text-muted">*Required</small>
                     </div>
                     <div class="form-group">
                         <label for="">Signature</label>
                         <div class="personal_photo upload-here" data-upload="signature" id="signature">
-                            <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/signature.jpg")) ?>" alt="Profile Photo" height="100%" width="100%" />
+                            <img src="<?php echo (!isset($allotment_details["C_UID"])) ? "data:image/jpg;base64," . base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/signature.jpg")) : "uploads/" . $allotment_details['C_UID'] . "/signature.jpg" ?>" alt="Profile Photo" height="100%" width="100%" />
                         </div>
-                        <!-- <input type="file" name="signature" accept="image/*" onchange="loadFile('signature',event)"> -->
                         <small class="text-muted">*Required</small>
                     </div>
                 </div>

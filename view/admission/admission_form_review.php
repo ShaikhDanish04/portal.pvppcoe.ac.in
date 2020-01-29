@@ -69,7 +69,7 @@
         </div>
     </div>
     <?php
-    print_r($_POST);
+    // print_r($_POST);
     if (isset($_POST['user_uid_form'])) {
         $Selected_UID = $_POST['user_uid_form'];
         $result = $conn->query("SELECT * FROM `student_admission_table` WHERE `UID` = '$Selected_UID'");
@@ -151,10 +151,10 @@
 
     ?>
     <script>
-        if ("<?php echo $user["admission_type"]; ?>" == "F") {
+        if ("<?php echo (isset($allotment_details['admission_type'])) ? $allotment_details['admission_type'] : $user["admission_type"]; ?>" == "F") {
             $('.DSE').remove();
             $('.alert-for-admision-type').remove();
-        } else if ("<?php echo $user["admission_type"]; ?>" == "S") {
+        } else if ("<?php echo (isset($allotment_details['admission_type'])) ? $allotment_details['admission_type'] : $user["admission_type"]; ?>" == "S") {
             $('.FE').remove();
             $('.alert-for-admision-type').remove();
         } else {
