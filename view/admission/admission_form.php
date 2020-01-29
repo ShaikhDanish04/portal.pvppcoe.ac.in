@@ -48,6 +48,11 @@ if ($result->num_rows == 0) {
     $_have_form = true;
 }
 
+if ($result_SAT['form_status'] == "verified") {
+    $_form_verified = true;
+} else {
+    $_form_verified = false;
+}
 
 
 
@@ -109,12 +114,11 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
 
     });
 </script>
-
 <div class="container <?php echo ($_have_form) ? 'd-none' : '' ?>">
-    
+
     <div class="card mt-5 mx-auto" style="max-width: 500px;">
         <form action="" method="post">
-            
+
             <div class="card-body text-center">
                 <p class="h2 my-3 text-info">WELCOME</p>
                 <p class="h5 mb-3 text-dark"><?php echo $user['u_name'] . " " . $user['u_surname'] ?></p>
@@ -125,10 +129,16 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
     </div>
 </div>
 
-<div class="container <?php echo ($_have_form) ? '' : 'd-none' ?>">
+<div class="container <?php echo ($_form_verified) ? '' : 'd-none' ?>">
+    <div class="alert alert-success m-3">Your Admission Form is been verified.</div>
+    <?php include('admission_form_review.php'); ?>
+</div>
+
+<div class="container <?php echo ($_have_form) ? '' : 'd-none';
+                        echo ($_form_verified) ? 'd-none' : '' ?>">
     <div class="nav-card card  mb-3">
         <div class="card-body">
-            
+
             <!-- Nav pills -->
             <ul class="nav nav-pills nav-justified align-items-center">
                 <li class="nav-item">

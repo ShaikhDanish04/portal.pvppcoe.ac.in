@@ -4,34 +4,27 @@
     <?php
     include('../../../connect.php');
 
-    // if (isset($_POST['student_verification'])) {
-    //     // print_r($_POST);
-    //     $u_uid = $_POST['user_uid_form'];
-    //     $admission_form_status = $_POST['admission_form_status'];
-    //     $verification_response = $_POST['verification_response'];
+    if (isset($_POST['student_verification'])) {
+        // print_r($_POST);
+        $selected_UID = $_POST['user_uid_form'];
+        $form_status = $_POST['admission_form_status'];
+        $verification_response = $_POST['verification_response'];
 
+        $conn->query("UPDATE `student_admission_table` SET `form_status` = '$form_status' WHERE `UID` = '$selected_UID'");
 
-    //     $data_array = array(
-    //         "admission_form_edit" => intval($_POST['admission_form_edit']),
-    //         "admission_form_status" => $_POST['admission_form_status'],
-    //         "verification_response" => $_POST['verification_response'],
-    //     );
-    //     $data = json_encode($data_array);
-    //     $conn->query("UPDATE `admission_table` SET `admission_form` = '$data' WHERE `UID` = '$u_uid'");
-
-    //     echo "<div class='alert alert-success'>Submitted Successfully</div>";
-    // }
+        echo "<div class='alert alert-success'>Submitted Successfully</div>";
+    }
 
     if (isset($_POST['user_uid_form']) && !isset($_POST['student_verification'])) {
         $selected_UID = $_POST['user_uid_form'];
         $addr_space = "";
-        echo $selected_UID;
+        // echo $selected_UID;
         include("../../admission/admission_form_review.php");
-        // include("../../student_section/admission/admission_form_verification.php");
+        include("../../student_section/admission/admission_form_verification.php");
     }
-    if (isset($_POST['user_uid_doc'])) {
-        print_r($_POST);
-    }
+    // if (isset($_POST['user_uid_doc'])) {
+    //     print_r($_POST);
+    // }
 
     // if (isset($_POST['mass_operation'])) {
 

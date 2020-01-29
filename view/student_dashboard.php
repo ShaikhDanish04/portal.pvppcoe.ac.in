@@ -102,15 +102,9 @@
     $JSON_admission_form .= json_encode(
         array_merge(
             array("UID" => $row_admission['UID']),
-            json_decode($row_admission['personal'], true),
-            json_decode($row_admission['address'], true),
-            json_decode($row_admission['allotment'], true),
-            json_decode($row_admission['education'], true),
-            json_decode($row_admission['bank'], true),
-            json_decode($row_admission['family'], true),
             array("form_status" => $row_admission['form_status'])
-            )
-        );
+        )
+    );
 
     // print_r($JSON_admission_form);
 
