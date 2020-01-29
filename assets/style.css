@@ -268,6 +268,8 @@ div.divider {
     background-image: url(../assets/img/dummy-avatar.png);
     background-size: contain;
     background-position: center;
+    border-radius: 5rem;
+    overflow: hidden;
 }
 
 .side.stick .my-profile .user-img, .side.hover .my-profile .user-img {

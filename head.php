@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="<?php echo $addr_space ?>assets/fonts/font-awesome.min.css?v4.6">
 <link rel="stylesheet" href="<?php echo $addr_space ?>assets/bootstrap/bootstrap.min.css?v4.6">
-<link rel="stylesheet" href="<?php echo $addr_space ?>assets/style.css?v4.6">
+<link rel="stylesheet" href="<?php echo $addr_space ?>assets/style.css?v4.7">
 
 <script src="<?php echo $addr_space ?>assets/jQuery/jquery.min.js?v4.6"></script>
 <script src="<?php echo $addr_space ?>assets/bootstrap/popper.min.js"></script>
