@@ -20,10 +20,10 @@
     }
 </style>
 <script>
-    if ("<?php echo $user["admission_type"]; ?>" == "F") {
+    if ("<?php echo (isset($allotment_details_decoded['admission_type'])) ? $allotment_details_decoded['admission_type'] : $user["admission_type"]; ?>" == "F") {
         $('.DSE').remove();
         $('.alert-for-admision-type').remove();
-    } else if ("<?php echo $user["admission_type"]; ?>" == "S") {
+    } else if ("<?php echo (isset($allotment_details_decoded['admission_type'])) ? $allotment_details_decoded['admission_type'] : $user["admission_type"]; ?>" == "S") {
         $('.FE').remove();
         $('.alert-for-admision-type').remove();
     } else {

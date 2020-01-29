@@ -60,7 +60,7 @@
         <div class="divider my-0"></div>
         <p class="h3 text-center my-3 text-uppercase text-success">Admission Form 2020 - 2021</p>
     </div>
-    <div class="card">
+    <div class="card <?php echo ($_form_verified) ? 'd-none' : '' ?>">
         <div class="card-head">
             <p class="text-danger">Details Pending</p>
         </div>
@@ -70,8 +70,12 @@
     </div>
     <?php
     // print_r($_POST);
-    if (isset($_POST['user_uid_form'])) {
-        $Selected_UID = $_POST['user_uid_form'];
+    if (isset($_POST['user_uid_form']) || $result_SAT['form_status'] == "verified") {
+        if (isset($_POST['user_uid_form'])) {
+            $Selected_UID = $_POST['user_uid_form'];
+        } else {
+            $Selected_UID = $UID;
+        }
         $result = $conn->query("SELECT * FROM `student_admission_table` WHERE `UID` = '$Selected_UID'");
         $result_SAT = $result->fetch_assoc();
 
@@ -135,13 +139,14 @@
         });
     </script>
     <?php
-    $personal_details = json_decode($personal_details, true);
-    $address_details = json_decode($address_details, true);
-    $allotment_details = json_decode($allotment_details, true);
-    $education_details = json_decode($education_details, true);
-    $bank_details = json_decode($bank_details, true);
-    $family_details = json_decode($family_details, true);
 
+    $personal_details_decoded = json_decode($personal_details, true);
+    $address_details_decoded = json_decode($address_details, true);
+    $allotment_details_decoded = json_decode($allotment_details, true);
+    $education_details_decoded = json_decode($education_details, true);
+    $bank_details_decoded = json_decode($bank_details, true);
+    $family_details_decoded = json_decode($family_details, true);
+    
     include("admission_form/personal_details.php");
     include("admission_form/address_details.php");
     include("admission_form/allotment_details.php");
@@ -151,10 +156,10 @@
 
     ?>
     <script>
-        if ("<?php echo (isset($allotment_details['admission_type'])) ? $allotment_details['admission_type'] : $user["admission_type"]; ?>" == "F") {
+        if ("<?php echo (isset($allotment_details_decoded['admission_type'])) ? $allotment_details_decoded['admission_type'] : $user["admission_type"]; ?>" == "F") {
             $('.DSE').remove();
             $('.alert-for-admision-type').remove();
-        } else if ("<?php echo (isset($allotment_details['admission_type'])) ? $allotment_details['admission_type'] : $user["admission_type"]; ?>" == "S") {
+        } else if ("<?php echo (isset($allotment_details_decoded['admission_type'])) ? $allotment_details_decoded['admission_type'] : $user["admission_type"]; ?>" == "S") {
             $('.FE').remove();
             $('.alert-for-admision-type').remove();
         } else {

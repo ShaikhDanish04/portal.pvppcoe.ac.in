@@ -7,12 +7,12 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">First Name</label>
-                    <input type="text" name="first_name" class="require form-control text-uppercase" <?php echo (!isset($personal_details['first_name'])) ? 'value="' . $user['u_name'] . '"' : '' ?> readonly>
+                    <input type="text" name="first_name" class="require form-control text-uppercase" <?php echo (!isset($personal_details_decoded['first_name'])) ? 'value="' . $user['u_name'] . '"' : '' ?> readonly>
                     <small class="text-muted">*Required</small>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Last Name</label>
-                    <input type="text" name="last_name" class="require form-control text-uppercase" <?php echo (!isset($personal_details['last_name'])) ? 'value="' . $user['u_surname'] . '"' : '' ?> readonly>
+                    <input type="text" name="last_name" class="require form-control text-uppercase" <?php echo (!isset($personal_details_decoded['last_name'])) ? 'value="' . $user['u_surname'] . '"' : '' ?> readonly>
                     <small class="text-muted">*Required</small>
                 </div>
                 <div class="form-group col-md-3">
@@ -33,14 +33,14 @@
                     <div class="form-group">
                         <label for="">My Photo</label>
                         <div class="personal_photo upload-here" data-upload="photo" id="photo">
-                            <img src="<?php echo (!isset($allotment_details["C_UID"])) ? "data:image/jpg;base64," . base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/photo.jpg")) : "uploads/" . $allotment_details['C_UID'] . "/photo.jpg" ?>" alt="Profile Photo" height="100%" width="100%" />
+                            <img src="<?php echo (!isset($allotment_details_decoded["C_UID"])) ? "data:image/jpg;base64," . base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/photo.jpg")) : "uploads/" . $allotment_details_decoded['C_UID'] . "/photo.jpg" ?>" alt="Profile Photo" height="100%" width="100%" />
                         </div>
                         <small class="text-muted">*Required</small>
                     </div>
                     <div class="form-group">
                         <label for="">Signature</label>
                         <div class="personal_photo upload-here" data-upload="signature" id="signature">
-                            <img src="<?php echo (!isset($allotment_details["C_UID"])) ? "data:image/jpg;base64," . base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/signature.jpg")) : "uploads/" . $allotment_details['C_UID'] . "/signature.jpg" ?>" alt="Profile Photo" height="100%" width="100%" />
+                            <img src="<?php echo (!isset($allotment_details_decoded["C_UID"])) ? "data:image/jpg;base64," . base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/signature.jpg")) : "uploads/" . $allotment_details_decoded['C_UID'] . "/signature.jpg" ?>" alt="Profile Photo" height="100%" width="100%" />
                         </div>
                         <small class="text-muted">*Required</small>
                     </div>
@@ -75,7 +75,7 @@
 
                     <div class="form-group col-md-8">
                         <label for="">Email</label>
-                        <input type="email" name="u_email" <?php echo (!isset($personal_details['u_email'])) ? 'value="' . $user['u_email'] . '"' : '' ?> class="require form-control" readonly>
+                        <input type="email" name="u_email" <?php echo (!isset($personal_details_decoded['u_email'])) ? 'value="' . $user['u_email'] . '"' : '' ?> class="require form-control" readonly>
                         <small class="text-muted">*Required</small>
                     </div>
                     <div class="form-group col-md-4">
