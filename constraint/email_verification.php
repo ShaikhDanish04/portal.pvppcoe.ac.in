@@ -22,10 +22,10 @@
             <div class="card-body carousel-item active otp_email">
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="hidden" name="fname" class="form-control" value="<?php echo $row['u_fname'] ?>">
-                    <input type="hidden" name="lname" class="form-control" value="<?php echo $row['u_lname'] ?>">
-                    <input type="hidden" name="UID" class="form-control" value="<?php echo $row['UID'] ?>"> 
-                    <input type="email" name="otp_email" class="form-control" value="<?php echo $row['u_email'] ?>">
+                    <input type="hidden" name="fname" class="form-control" value="<?php echo $user['u_name'] ?>">
+                    <input type="hidden" name="lname" class="form-control" value="<?php echo $user['u_surname'] ?>">
+                    <input type="hidden" name="UID" class="form-control" value="<?php echo $user['UID'] ?>">
+                    <input type="email" name="otp_email" class="form-control" value="<?php echo $user['u_email'] ?>">
                     <small class="form-text text-muted">*Enter Valid Email</small>
                 </div>
                 <div class="d-flex justify-content-end">
@@ -53,6 +53,7 @@
                         $('#otp_email_u').text($('.otp_email [type="email"]').val());
                         $.post("constraint/otp_verification.php", {
 
+                                UID: $('#email_verification [name="UID"]').val(),
                                 u_fname: $('#email_verification [name="fname"]').val(),
                                 u_lname: $('#email_verification [name="lname"]').val(),
                                 otp_email: $('[name="otp_email"]').val(),
@@ -66,6 +67,7 @@
                         $(this).html('<div><span class="spinner-grow spinner-grow-sm"></span> Sending...</div>');
                         $(this).attrClass('disabled');
                         $.post("constraint/otp_verification.php", {
+                                UID: $('#email_verification [name="UID"]').val(),
                                 u_fname: $('#email_verification [name="fname"]').val(),
                                 u_lname: $('#email_verification [name="lname"]').val(),
                                 otp_email: $('#email_verification [name="otp_email"]').val(),
