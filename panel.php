@@ -336,46 +336,46 @@
                     $pathObj = new PathController;
                     $pathObj->default();
 
-                    $pathObj->controlPanel();
-                    $pathObj->student_dashboard();
-                    $pathObj->student_admission();
-                    $pathObj->student_section();
-                    $pathObj->student_academics();
-                    $pathObj->student_department();
-                    $pathObj->student_examination();
-                    // if ($user['u_admin'] == "1") {
-                    // } else {
-                    //     if ($user['u_usage'] == '1') {
-                    //         switch ($user['u_type']) {
-                    //             case "staff":
-                    //                 $row_result = $conn->query("SELECT * FROM staff_role_management WHERE `UID` = '$UID'");
-                    //                 $role_row = $row_result->fetch_assoc();
-                    //                 switch ($role_row['staff_branch']) {
-                    //                     case "Student section":
-                    //                         $pathObj->student_section();
-                    //                         break;
+                    if ($user['u_admin'] == "1") {
+                        $pathObj->controlPanel();
+                        $pathObj->student_dashboard();
+                        $pathObj->student_admission();
+                        $pathObj->student_section();
+                        $pathObj->student_academics();
+                        $pathObj->student_department();
+                        $pathObj->student_examination();
+                    } else {
+                        if ($user['u_usage'] == '1') {
+                            switch ($user['u_type']) {
+                                case "staff":
+                                    $row_result = $conn->query("SELECT * FROM staff_role_management WHERE `UID` = '$UID'");
+                                    $role_row = $row_result->fetch_assoc();
+                                    switch ($role_row['staff_branch']) {
+                                        case "Student section":
+                                            $pathObj->student_section();
+                                            break;
 
-                    //                     case "Registrar Office":
-                    //                         $pathObj->controlPanel();
-                    //                         $pathObj->student_section();
-                    //                         break;
-                    //                 }
-                    //                 break;
+                                        case "Registrar Office":
+                                            $pathObj->controlPanel();
+                                            $pathObj->student_section();
+                                            break;
+                                    }
+                                    break;
 
-                    //             case "student":
-                    //                 $pathObj->student_dashboard();
-                    //                 $pathObj->student_admission();
-                    //                 $pathObj->student_academics();
-                    //                 $pathObj->student_department();
-                    //                 $pathObj->student_examination();
-                    //                 break;
-                    //             default:
-                    //                 $_GET['page'] = "my_profile";
-                    //         }
-                    //     } else {
-                    //         $_GET['page'] = "my_profile";
-                    //     }
-                    // }
+                                case "student":
+                                    $pathObj->student_dashboard();
+                                    $pathObj->student_admission();
+                                    $pathObj->student_academics();
+                                    $pathObj->student_department();
+                                    $pathObj->student_examination();
+                                    break;
+                                default:
+                                    $_GET['page'] = "my_profile";
+                            }
+                        } else {
+                            $_GET['page'] = "my_profile";
+                        }
+                    }
                     ?>
 
                 </div>
@@ -418,7 +418,8 @@
 
                         ?>
                     </div>
-                    <?php //print_r($user); ?>
+                    <?php //print_r($user); 
+                    ?>
 
                 </div>
                 <div id="file_handle"></div>
@@ -498,9 +499,12 @@
 
                 $('#lock_side,.side-overlay').click(function() {
                     $('.side').toggleClass('hover');
+                    $('.bar-menu').removeClass('open');
                     $('.side-overlay').toggleClass('show');
-                    $('.bar-menu').toggleClass('open');
+                });
 
+                $('#lock_side').click(function() {
+                    $('.bar-menu').toggleClass('open');
                 })
 
                 $('.list-content').click(function() {
@@ -542,7 +546,7 @@
         background-repeat: no-repeat;
         background-position: center;
         box-shadow: 0 3px 5px #ddd;
-        
+
     }
 </style>
 
