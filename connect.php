@@ -3,6 +3,8 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "portal_pvpp";
+$iv = '1234567891011122';
+
 
 // $servername = "localhost";
 // $username = "pvppcuwv";

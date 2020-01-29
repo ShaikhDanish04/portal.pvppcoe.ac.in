@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">College ID</label>
-                    <input type="text" name="C_UID" class="require form-control" <?php echo (!isset($row_allotment['C_UID'])) ? 'value="' . $user['student_id'] . '"' : '' ?> readonly>
+                    <input type="text" name="C_UID" class="require form-control" <?php echo (!isset($allotment_details['C_UID'])) ? 'value="' . $user['student_id'] . '"' : '' ?> readonly>
                     <small class="text-muted">*Required</small>
                 </div>
                 <div class="form-group col-md-4">
