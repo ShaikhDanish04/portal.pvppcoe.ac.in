@@ -7,12 +7,12 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">First Name</label>
-                    <input type="text" name="first_name" class="require form-control text-uppercase" <?php echo (!isset($row_personal['first_name'])) ? 'value="' . $user['u_name'] . '"' : '' ?> readonly>
+                    <input type="text" name="first_name" class="require form-control text-uppercase" <?php echo (!isset($personal_details['first_name'])) ? 'value="' . $user['u_name'] . '"' : '' ?> readonly>
                     <small class="text-muted">*Required</small>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Last Name</label>
-                    <input type="text" name="last_name" class="require form-control text-uppercase" <?php echo (!isset($row_personal['last_name'])) ? 'value="' . $user['u_surname'] . '"' : '' ?> readonly>
+                    <input type="text" name="last_name" class="require form-control text-uppercase" <?php echo (!isset($personal_details['last_name'])) ? 'value="' . $user['u_surname'] . '"' : '' ?> readonly>
                     <small class="text-muted">*Required</small>
                 </div>
                 <div class="form-group col-md-3">
@@ -76,7 +76,7 @@
 
                     <div class="form-group col-md-8">
                         <label for="">Email</label>
-                        <input type="email" name="u_email" <?php echo (!isset($row_personal['u_email'])) ? 'value="' . $user['u_email'] . '"' : '' ?> class="require form-control" readonly>
+                        <input type="email" name="u_email" <?php echo (!isset($personal_details['u_email'])) ? 'value="' . $user['u_email'] . '"' : '' ?> class="require form-control" readonly>
                         <small class="text-muted">*Required</small>
                     </div>
                     <div class="form-group col-md-4">

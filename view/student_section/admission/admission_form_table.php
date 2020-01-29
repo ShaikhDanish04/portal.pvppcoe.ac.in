@@ -62,8 +62,7 @@
 <?php
 include('../../../connect.php');
 
-$sql = "SELECT * FROM student_admission_table LIMIT 1";
-$iv = '1234567891011122';
+$sql = "SELECT * FROM student_admission_table";
 $result = $conn->query($sql);
 
 $table = array();
@@ -132,7 +131,17 @@ while ($row_admission = $result->fetch_assoc()) {
                 $($(this).closest('th')).removeClass('search-on');
             }
         })
+        $('#admission_table').on('click', '.user-ref', function() {
+            $("#admission_modal").modal("show");
 
+            $.post("view/student_section/admission/admission_form_review.php", {
+                    user_uid_form: $(this).attr('data-uid')
+                },
+                function(data, status) {
+                    // alert("Data: " + data + "\nStatus: " + status);
+                    $('#admission_modal .modal-body').html(data);
+                });
+        })
         $.fn.dataTable.ext.errMode = 'none';
         $('#admission_table').dataTable({
             dom: 'Bfrtip',
@@ -426,6 +435,16 @@ while ($row_admission = $result->fetch_assoc()) {
             }, {
                 "title": "Form status",
                 "data": "form_status"
+            }, {
+                "title": "Operation",
+                "data": "UID",
+                "className": "text-center",
+                "render": function(data, type, row, meta) {
+                    if (type === 'display') {
+                        data = '<button class="btn btn-primary btn-sm user-ref" data-uid="' + data + '"> View </button>';
+                    }
+                    return data;
+                }
             }],
             "columnDefs": [{
                 "render": function(data, type, full, meta) {

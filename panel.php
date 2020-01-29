@@ -36,7 +36,7 @@
 
 
 </head>
-<div class="modal fade myModal">
+<div id="admission_modal" class="modal fade">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
@@ -47,7 +47,7 @@
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body bg-dark">
+            <div class="modal-body">
             </div>
 
             <!-- Modal footer -->

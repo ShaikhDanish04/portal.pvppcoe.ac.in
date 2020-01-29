@@ -42,7 +42,7 @@
             </div>
             <div class="card-body">
                 <div class="pb-3">
-                    <div id="data"></div>
+                    <div id="admission_table_data"></div>
 
                     <!-- <table id="reg_table" class="table display border-light mb-3"> -->
                     <style>
@@ -69,89 +69,13 @@
 
 <script>
     $(document).ready(function() {
-        $("#data").load("view/student_section/admission/admission_form_table.php");
+        $("#admission_table_data").load("view/student_section/admission/admission_form_table.php");
         
         $('#reload_table').click(function(){
-            $("#data").load("view/student_section/admission/admission_form_table.php");
+            $("#admission_table_data").load("view/student_section/admission/admission_form_table.php");
         })
         
     })
-</script>
-
-<script>
-    // $(document).ready(function() {
-
-    //     var t = $('#reg_table').DataTable({
-    //         dom: 'Bfrtip',
-    //         // "scrollX": true,
-    //         lengthMenu: [
-    //             [10, 25, 50, -1],
-    //             ['10 rows', '25 rows', '50 rows', 'Show all']
-    //         ],
-    //         buttons: [{
-    //                 extend: 'copyHtml5',
-    //                 title: 'registeration_table',
-    //                 exportOptions: {
-    //                     columns: [0, ':visible']
-    //                 }
-    //             },
-    //             {
-    //                 extend: 'excelHtml5',
-    //                 title: 'registeration_table',
-    //                 exportOptions: {
-    //                     columns: ':visible'
-    //                 }
-    //             },
-    //             {
-    //                 extend: 'pdfHtml5',
-    //                 title: 'registeration_table',
-    //                 exportOptions: {
-    //                     columns: ':visible'
-    //                 }
-    //             },
-    //             'pageLength',
-    //             {
-    //                 extend: 'colvisGroup',
-    //                 text: 'Default',
-    //                 className: 'button-primary',
-    //                 show: [0],
-    //                 hide: [4, 5, 6, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45]
-    //                 // hide: 'hidden'
-    //             },
-    //             {
-    //                 extend: 'colvisGroup',
-    //                 text: 'Show all',
-    //                 show: ':hidden'
-    //             },
-    //             'colvis'
-    //         ],
-    //         "data": admission_form,
-    //         "columns": [{
-    //                 "title": "Sr. No."
-    //             }, {
-    //                 "title": "UID",
-    //                 "data": "u_uid",
-    //                 "render": function(data, type, row, meta) {
-    //                     if (type === 'display') {
-    //                         data = '<a href="">' + data + '</a>';
-    //                     }
-    //                     return data;
-    //                 }
-    //             },
-    //             {
-    //                 "title": "C_UID",
-    //                 "data": "C_UID"
-    //             }
-    //         ],
-    //         "columnDefs": [{
-    //             "render": function(data, type, full, meta) {
-    //                 admission_form[meta.row].id = meta.row + 1; // adds id to dataset
-    //                 return meta.row + 1; // adds id to serial no
-    //             },
-    //             "targets": 0
-    //         }]
-    //     });
-    // });
 </script>
 
 <style>

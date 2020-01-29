@@ -69,7 +69,78 @@
         </div>
     </div>
     <?php
+    print_r($_POST);
+    if (isset($_POST['user_uid_form'])) {
+        $Selected_UID = $_POST['user_uid_form'];
+        $result = $conn->query("SELECT * FROM `student_admission_table` WHERE `UID` = '$Selected_UID'");
+        $result_SAT = $result->fetch_assoc();
 
+        $personal_details = openssl_decrypt($result_SAT['personal'], "AES-128-CTR", "$Selected_UID", 0, $iv);
+        $address_details = openssl_decrypt($result_SAT['address'], "AES-128-CTR", "$Selected_UID", 0, $iv);
+        $allotment_details = openssl_decrypt($result_SAT['allotment'], "AES-128-CTR", "$Selected_UID", 0, $iv);
+        $education_details = openssl_decrypt($result_SAT['education'], "AES-128-CTR", "$Selected_UID", 0, $iv);
+        $bank_details = openssl_decrypt($result_SAT['bank'], "AES-128-CTR", "$Selected_UID", 0, $iv);
+        $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$Selected_UID", 0, $iv);
+    }
+
+
+    ?>
+    <script>
+        var personal_details = JSON.parse('<?php echo $personal_details ?>');
+        var address_details = JSON.parse('<?php echo $address_details ?>');
+        var allotment_details = JSON.parse('<?php echo $allotment_details ?>');
+        var education_details = JSON.parse('<?php echo $education_details ?>');
+        var bank_details = JSON.parse('<?php echo $bank_details ?>');
+        var family_details = JSON.parse('<?php echo $family_details ?>');
+
+        $(document).ready(function() {
+
+            Object.keys(personal_details).forEach(function(key) {
+                $('[name="' + key + '"]').val(personal_details[key]);
+                // $('img[id="' + key + '"]').attr("src", personal_details[key]);
+            })
+
+            Object.keys(address_details).forEach(function(key) {
+                $('[name="' + key + '"]').val(address_details[key]);
+            });
+
+            Object.keys(allotment_details).forEach(function(key) {
+
+                $('[type="radio"][name=' + key + '][value="' + allotment_details[key] + '"]').prop("checked", true);
+                $('[type="text"][name="' + key + '"]').val(allotment_details[key]);
+            });
+
+            Object.keys(education_details).forEach(function(key) {
+
+                $('[name="' + key + '"]').val(education_details[key]);
+
+            });
+
+            Object.keys(bank_details).forEach(function(key) {
+                $('[type="radio"][name=' + key + '][value="' + bank_details[key] + '"]').prop("checked", true);
+                $('[type="text"][name="' + key + '"]').val(bank_details[key]);
+            });
+
+
+            Object.keys(family_details).forEach(function(key) {
+                $('[type="radio"][name=' + key + '][value="' +
+
+                    family_details[key] + '"]').prop("checked", true);
+                $('[type="text"][name="' + key + '"]').val(family_details[key]);
+                $('[type="number"][name="' + key + '"]').val(family_details[key]);
+
+            });
+
+
+        });
+    </script>
+    <?php
+    $personal_details = json_decode($personal_details, true);
+    $address_details = json_decode($address_details, true);
+    $allotment_details = json_decode($allotment_details, true);
+    $education_details = json_decode($education_details, true);
+    $bank_details = json_decode($bank_details, true);
+    $family_details = json_decode($family_details, true);
 
     include("admission_form/personal_details.php");
     include("admission_form/address_details.php");

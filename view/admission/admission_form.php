@@ -1,7 +1,6 @@
 <?php
 $simpletext = "{}";
 $encryption = "";
-$iv = '1234567891011122';
 if (isset($_POST['request_admission_form'])) {
     $encryption = openssl_encrypt($simpletext, "AES-128-CTR", "$UID", 0, $iv);
 
@@ -58,6 +57,7 @@ $allotment_details = openssl_decrypt($result_SAT['allotment'], "AES-128-CTR", "$
 $education_details = openssl_decrypt($result_SAT['education'], "AES-128-CTR", "$UID", 0, $iv);
 $bank_details = openssl_decrypt($result_SAT['bank'], "AES-128-CTR", "$UID", 0, $iv);
 $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 0, $iv);
+
 ?>
 
 <script>
@@ -111,10 +111,10 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
 </script>
 
 <div class="container <?php echo ($_have_form) ? 'd-none' : '' ?>">
-
+    
     <div class="card mt-5 mx-auto" style="max-width: 500px;">
         <form action="" method="post">
-
+            
             <div class="card-body text-center">
                 <p class="h2 my-3 text-info">WELCOME</p>
                 <p class="h5 mb-3 text-dark"><?php echo $user['u_name'] . " " . $user['u_surname'] ?></p>
@@ -128,7 +128,7 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
 <div class="container <?php echo ($_have_form) ? '' : 'd-none' ?>">
     <div class="nav-card card  mb-3">
         <div class="card-body">
-
+            
             <!-- Nav pills -->
             <ul class="nav nav-pills nav-justified align-items-center">
                 <li class="nav-item">
@@ -236,4 +236,3 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
 
     });
 </script>
-
