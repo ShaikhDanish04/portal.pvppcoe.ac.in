@@ -46,7 +46,7 @@ if (isset($_POST['otp_email_set'])) {
                 $mail->msgHTML("The OTP is $OTP and Expire time is $expire_stamp.");
                 if ($mail->send()) {
                     echo '<div class="alert alert-success">OTP is resent !!! <a class="alert-link text-success" href="#email_verification" data-slide-to="1">Enter OTP</a></div>';
-                    $conn->query("UPDATE user_OTP SET u_otp = '$OTP',expire_time = '$expire_stamp' WHERE u_email = '$u_email'");
+                    $conn->query("UPDATE user_otp SET u_otp = '$OTP',expire_time = '$expire_stamp' WHERE u_email = '$u_email'");
                     // echo 'OTP Expire - RESENT';
                 } else {
                     echo '<div class="alert alert-danger">Connection Error !!! Try Again</div>';
@@ -65,7 +65,7 @@ if (isset($_POST['otp_email_set'])) {
             $mail->msgHTML("The OTP is $OTP and Expire time is $expire_stamp.");
             if ($mail->send()) {
                 echo '<div class="alert alert-success">OTP is sent !!! <a class="alert-link text-success" href="#email_verification" data-slide-to="1">Enter OTP</a></div>';
-                $conn->query("INSERT INTO user_OTP (`UID`,u_email, u_otp, expire_time) VALUES ('$u_UID','$u_email', '$OTP', '$expire_stamp')");
+                $conn->query("INSERT INTO user_otp (`UID`,u_email, u_otp, expire_time) VALUES ('$u_UID','$u_email', '$OTP', '$expire_stamp')");
                 // echo 'OTP SENT';
             } else {
                 echo '<div class="alert alert-danger">Connection Error !!! Try Again</div>';
