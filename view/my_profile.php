@@ -7,7 +7,7 @@
         .profile-card {
             overflow: hidden;
             position: relative;
-            margin-bottom: 5px;
+            /* margin-bottom: 5px; */
         }
 
 
@@ -115,7 +115,7 @@
 
         }
     </style>
-    <div class="card profile-card">
+    <div class="card profile-card mb-1">
         <div class="card-cover">
             <img class="cover-img" src="assets/img/cover.jpg" alt="">
             <div class="connect-button-container">
@@ -140,6 +140,15 @@
             </div>
         </div>
     </div>
+    <?php
+    $result = $conn->query("SELECT * FROM student_admission_table WHERE `UID`='$UID'");
+    if ($result->num_rows == 1) {
+        $row_admission = $result->fetch_assoc();
+
+        $JSON_admission_form = json_encode(array_merge(array("form_status" => $row_admission['form_status'])));
+        include('view/admission/admission_validation.php');
+    }
+    ?>
 
     <div class="row">
         <div class="col-md-4 p-0">

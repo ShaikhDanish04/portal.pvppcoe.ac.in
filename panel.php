@@ -338,7 +338,6 @@
 
                     if ($user['u_admin'] == "1") {
                         $pathObj->controlPanel();
-                        $pathObj->student_dashboard();
                         $pathObj->student_admission();
                         $pathObj->student_section();
                         $pathObj->student_academics();
@@ -363,7 +362,6 @@
                                     break;
 
                                 case "student":
-                                    $pathObj->student_dashboard();
                                     $pathObj->student_admission();
                                     $pathObj->student_academics();
                                     $pathObj->student_department();
