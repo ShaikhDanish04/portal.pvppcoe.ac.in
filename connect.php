@@ -1,15 +1,15 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "portal_pvpp";
-$iv = '1234567891011122';
-
-
 // $servername = "localhost";
-// $username = "pvppcuwv";
-// $password = "l!#7%V6!tZ0S";
-// $dbname = "pvppcuwv_portal_pvpp";
+// $username = "root";
+// $password = "";
+// $dbname = "portal_pvpp";
+
+
+$servername = "localhost";
+$username = "pvppcuwv";
+$password = "l!#7%V6!tZ0S";
+$dbname = "pvppcuwv_portal_pvpp";
+$iv = '1234567891011122';
 
 
 // Create connection
@@ -40,5 +40,3 @@ $mail->setFrom('shaikh.danish44444@gmail.com', 'PVPP Portal'); // From email and
 
 session_start();
 date_default_timezone_set('Asia/Kolkata');
-
-?>
