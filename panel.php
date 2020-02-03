@@ -28,7 +28,7 @@
         $user = $result->fetch_assoc();
     }
     if ($_SESSION['u_type'] == "staff") {
-        $result = $conn->query("SELECT users.UID FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
+        $result = $conn->query("SELECT * FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
                                 WHERE users.UID = '$UID' OR staff_role_manager.staff_biometic = '$UID'");
         $user = $result->fetch_assoc();
     }

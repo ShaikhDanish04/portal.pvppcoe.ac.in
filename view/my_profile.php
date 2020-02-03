@@ -135,18 +135,21 @@
                 <p class="small text-mute">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima magnam facilis incidunt quam, aspernatur non ipsam possimus consequatur quo aliquam recusandae libero dicta dolorum ipsum vitae corporis numquam dolorem veritatis.</p>
                 <div class="divider mb-3"></div>
                 <span class="badge badge-primary p-2"><i class="fa fa-user"></i> <?php echo $user['u_type']; ?></span>
-                <span class="badge badge-info p-2"><i class="fa fa-university"></i><?php echo $user['student_branch']; ?></p></span>
-                <span class="badge badge-success p-2"><i class="fa fa-graduation-cap"></i> 8th Semester</p></span>
+                <span class="badge badge-info p-2 <?php echo (isset($user['staff_branch'])) ? '' : 'd-none' ?>"><i class="fa fa-university"></i><?php echo $user['staff_branch']; ?></p></span>
+                <span class="badge badge-info p-2 <?php echo (isset($user['student_branch'])) ? '' : 'd-none' ?>"><i class="fa fa-university"></i><?php echo $user['student_branch']; ?></p></span>
+                <span class="badge badge-success p-2 <?php echo (isset($user['student_branch'])) ? '' : 'd-none' ?>"><i class="fa fa-graduation-cap"></i> <?php echo $user['student_active_semester'] ?>th Semester</p></span>
             </div>
         </div>
     </div>
     <?php
+    $admission_form_status = false;
     $result = $conn->query("SELECT * FROM student_admission_table WHERE `UID`='$UID'");
     if ($result->num_rows == 1) {
         $row_admission = $result->fetch_assoc();
 
         $JSON_admission_form = json_encode(array_merge(array("form_status" => $row_admission['form_status'])));
         include('view/admission/admission_validation.php');
+        $admission_form_status = true;
     }
     ?>
 
@@ -195,7 +198,10 @@
                 }
             </style>
             <div class="card ">
-                <?php include('view/profile/student_id.php') ?>
+                <?php
+                if ($admission_form_status) include('view/profile/student_id.php')
+
+                ?>
             </div>
         </div>
         <div class="col-md-8 p-0">
