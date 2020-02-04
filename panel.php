@@ -347,7 +347,7 @@
                         if ($user['u_usage'] == '1') {
                             switch ($user['u_type']) {
                                 case "staff":
-                                    $row_result = $conn->query("SELECT * FROM staff_role_management WHERE `UID` = '$UID'");
+                                    $row_result = $conn->query("SELECT * FROM staff_role_manager WHERE `UID` = '$UID'");
                                     $role_row = $row_result->fetch_assoc();
                                     switch ($role_row['staff_branch']) {
                                         case "Student section":

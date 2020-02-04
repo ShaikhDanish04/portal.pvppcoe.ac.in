@@ -7,7 +7,7 @@
     include("head.php") ?>
 
     <?php
-
+    
 
     // if (!isset($_COOKIE[$cookie_name])) {
     //     echo "Cookie named '" . $cookie_name . "' is not set!";
