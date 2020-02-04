@@ -54,6 +54,10 @@ class PathController
             '            <div class="toggle-side-bar"><i class="fa fa-rupee"></i></div>' .
             '            <p>Payment</p>' .
             '        </a>' .
+            '        <a class="list-item" href="?page=scholarship.view">' .
+            '            <div class="toggle-side-bar"><i class="fa fa-dot"></i></div>' .
+            '            <p>Scholarship</p>' .
+            '        </a>' .
             '    </div>' .
             '</div>';
 
