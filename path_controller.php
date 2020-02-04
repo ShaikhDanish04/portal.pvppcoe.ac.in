@@ -181,6 +181,10 @@ class PathController
             '        </a>' .
             '        <a class="list-item" href="javascipt:void(0)">' .
             '            <div class="toggle-side-bar"><i class="fa fa-circle-o"></i></div>' .
+            '            <p>Scholarship</p>' .
+            '        </a>' .
+            '        <a class="list-item" href="javascipt:void(0)">' .
+            '            <div class="toggle-side-bar"><i class="fa fa-circle-o"></i></div>' .
             '            <p>Issue Bonafite</p>' .
             '        </a>' .
             '        <a class="list-item" href="javascipt:void(0)">' .
