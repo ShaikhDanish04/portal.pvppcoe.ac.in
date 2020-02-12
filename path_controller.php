@@ -1,21 +1,40 @@
 <?php
 class PathController
 {
-    public $paths_view = array("my_profile,upcomming_feature");
+    public $paths_view = array("my_profile","upcomming_feature","settings", 'our_team');
 
-    public function
-    default()
-    {
-        array_push($this->paths_view, "settings", 'our_team');
-    }
     public function controlPanel()
     {
-        echo '<a class="list-item dash-button" href="?page=control%2Fadmin_control">' .
-            '<div class=" toggle-side-bar"><i class="fa fa-users"></i></div>' .
-            '<p>User Control</p>' .
-            '</a>';
+        // echo '<a class="list-item dash-button" href="?page=control%2Fadmin_control">' .
+        //     '<div class=" toggle-side-bar"><i class="fa fa-users"></i></div>' .
+        //     '</a>';
+        //     '<p>User Control</p>' .
 
-        array_push($this->paths_view, 'control/admin_control', 'control/staff_role_management');
+        echo '<div class="list-content">' .
+        '    <a class="list-item" data-target="#control_panel" data-toggle="collapse">' .
+        '        <div class="toggle-side-bar"><i class="fa fa-users"></i></div>' .
+        '        <div class="side-dropdown">' .
+        '            <p>User Control</p>' .
+        '            <i class="fa fa-caret-down"></i>' .
+        '        </div>' .
+        '    </a>' .
+        '    <div id="control_panel" class="fade collapse" data-parent="#student-accordion">' .
+        '        <a class="list-item" href="?page=control%2Fadduser">' .
+        '            <div class="toggle-side-bar"><i class="fa fa-user-plus"></i></div>' .
+        '            <p>Add User</p>' .
+        '        </a>' .
+        '        <a class="list-item" href="?page=control%2Fuser_control">' .
+        '            <div class="toggle-side-bar"><i class="fa fa-table"></i></div>' .
+        '            <p>List of Users</p>' .
+        '        </a>' .
+        '        <a class="list-item" href="?page=control%2Fstaff_role_management">' .
+        '            <div class="toggle-side-bar"><i class="fa fa-table"></i></div>' .
+        '            <p>Staff Role Manager</p>' .
+        '        </a>' .
+        '    </div>' .
+        '</div>';
+        
+        array_push($this->paths_view, 'control/user_control', 'control/adduser', 'control/staff_role_management');
     }
     function student_dashboard()
     {

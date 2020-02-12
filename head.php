@@ -15,6 +15,8 @@
 <script src="<?php echo $addr_space ?>assets/bootstrap/popper.min.js"></script>
 <script src="<?php echo $addr_space ?>assets/bootstrap/bootstrap.min.js?v4.6"></script>
 <script src="<?php echo $addr_space ?>assets/dropzone/dropzone.min.js?v4.6"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 
 
 

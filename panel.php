@@ -334,7 +334,7 @@
                     <?php
 
                     $pathObj = new PathController;
-                    $pathObj->default();
+                    // $pathObj->default();
 
                     if ($user['u_admin'] == "1") {
                         $pathObj->controlPanel();
