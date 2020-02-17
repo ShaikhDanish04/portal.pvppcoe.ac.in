@@ -16,7 +16,7 @@ if (isset($_POST['adduser'])) {
 ?>
 <div class="container my-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3 py-0">
             <div class="card m-0">
 
                 <div class="card-head">
@@ -24,7 +24,7 @@ if (isset($_POST['adduser'])) {
                 </div>
 
                 <div class="card-body text-center">
-                    <canvas id="doughnut-chart" class="mb-3 text-danger" width="800" height="450">
+                    <canvas id="doughnut-chart" class="mb-3 text-danger" width="600" height="450">
 
                     </canvas>
                     <span class="value text-success h3"><?php echo $user_count['u_count'] ?></span>
@@ -63,10 +63,12 @@ if (isset($_POST['adduser'])) {
                 </div>
             </div>
         </div>
-        <div class="col-md-6 card register-card">
-            <form action="" method="post">
-                <div class="card-head">
-                    <p class="text-danger"><i class="fa fa-user-plus"></i> Add New User</p>
+        <div class="col-md-6">
+            <div class="card register-card">
+
+                <form action="" method="post">
+                    <div class="card-head">
+                        <p class="text-danger"><i class="fa fa-user-plus"></i> Add New User</p>
                 </div>
                 <div class="card-body px-2">
                     <div class="row">
@@ -107,19 +109,20 @@ if (isset($_POST['adduser'])) {
                             <small class="form-text text-muted">*Required</small>
                         </div>
                         <!-- <div class="form-group col-md-12">
-                        <div class="form-check">
+                            <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input" name="" value="checkedValue">
                                 All the above details are valid
                             </label>
                         </div>
                     </div> -->
-                    </div>
                 </div>
-                <div class="card-foot">
-                    <input type="submit" name="adduser" class="btn btn-success btn-sm ml-auto d-block" value="Add User" required>
-                </div>
-            </form>
-        </div>
+            </div>
+            <div class="card-foot">
+                <input type="submit" name="adduser" class="btn btn-success btn-sm ml-auto d-block" value="Add User" required>
+            </div>
+        </form>
+    </div>
+</div>
     </div>
 </div>

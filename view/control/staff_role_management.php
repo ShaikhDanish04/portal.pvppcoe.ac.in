@@ -1,12 +1,16 @@
 <?php
-$result = $conn->query("SELECT * FROM users");
+$result = $conn->query("SELECT * FROM users INNER JOIN staff_role_manager ON users.UID=staff_role_manager.UID");
 
 $count_admin = 0;
+$count_granted = 0;
 $count_pending = 0;
 $count_staff = 0;
 while ($users = $result->fetch_assoc()) {
     if ($users['u_admin'] == "1") {
         $count_admin++;
+    }
+    if ($users['u_usage'] == "1") {
+        $count_granted++;
     }
     if ($users['u_usage'] == "0") {
         $count_pending++;
@@ -28,8 +32,11 @@ $selected_UID = $_GET['UID'];
 
 ?>
 <div class="container-fluid">
+    <?php //print_r($count_data);
+    ?>
+
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-4 p-0">
+        <div class="col-6 col-sm-6 col-md-3 p-0">
             <div class="head-card bg-success-gradient">
                 <div>
                     <span class="count"><?php echo $count_staff ?></span>
@@ -37,20 +44,28 @@ $selected_UID = $_GET['UID'];
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 p-0">
+        <div class="col-6 col-sm-6 col-md-3 p-0">
+            <div class="head-card bg-secondary-gradient">
+                <div>
+                    <span class="count"><?php echo $count_granted ?></span>
+                    <p>Granted Access</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-3 p-0">
             <div class="head-card bg-warning-gradient">
                 <div>
                     <span class="count"><?php echo $count_pending ?></span>
-                    <p>Pending Request</p>
+                    <p>Pending Usage</p>
                 </div>
 
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 p-0">
+        <div class="col-6 col-sm-6 col-md-3 p-0">
             <div class="head-card bg-danger-gradient">
                 <div>
                     <span class="count"><?php echo $count_admin ?></span>
-                    <p>Admin Access</p>
+                    <p>Rejected Access</p>
                 </div>
             </div>
         </div>
@@ -64,93 +79,96 @@ $selected_UID = $_GET['UID'];
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-12 col-sm-6 col-md-3">
                             <canvas id="staff_type" width="800" height="650"></canvas>
+                            <p class="h6 text-center mt-3">3 Types of staff</p>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-12 col-sm-6 col-md-3">
                             <canvas id="staff_branch" width="800" height="650"></canvas>
+                            <p class="h6 text-center mt-3">12 Types of Branch</p>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-12 col-sm-6 col-md-3">
                             <canvas id="staff_approv" width="800" height="650"></canvas>
+                            <p class="h6 text-center mt-3">4 Types of Approval</p>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-12 col-sm-6 col-md-3">
                             <canvas id="staff_post" width="800" height="650"></canvas>
+                            <p class="h6 text-center mt-3">21 Types of Approval</p>
                         </div>
                     </div>
 
                     <script>
-                        new Chart(document.getElementById("staff_type"), {
-                            type: 'doughnut',
-                            data: {
-                                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                                datasets: [{
-                                    // label: "Population (millions)",
-                                    backgroundColor: ["#fa4443", "#3fbfbe", "#ffb453", "#949fb1", "#4d5361"],
-                                    data: [2478, 5267, 734, 784, 433]
-                                }]
-                            },
-                            options: {
-                                legend: false,
-                                title: {
-                                    display: true,
-                                    text: 'Predicted world population (millions) in 2050'
+                        $(document).ready(function() {
+
+                            new Chart(document.getElementById("staff_type"), {
+                                type: 'doughnut',
+                                data: {
+                                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                                    datasets: [{
+                                        backgroundColor: ["#fa4443", "#3fbfbe", "#ffb453", "#949fb1", "#4d5361"],
+                                        data: [2478, 5267, 734, 784, 433]
+                                    }]
+                                },
+                                options: {
+                                    legend: false,
+                                    title: {
+                                        display: true,
+                                        text: 'Staff Type'
+                                    }
                                 }
-                            }
-                        });
-                        new Chart(document.getElementById("staff_branch"), {
-                            type: 'doughnut',
-                            data: {
-                                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                                datasets: [{
-                                    // label: "Population (millions)",
-                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                                    data: [2478, 5267, 734, 784, 433]
-                                }]
-                            },
-                            options: {
-                                legend: false,
-                                title: {
-                                    display: true,
-                                    text: 'Predicted world population (millions) in 2050'
+                            });
+                            new Chart(document.getElementById("staff_branch"), {
+                                type: 'doughnut',
+                                data: {
+                                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                                    datasets: [{
+                                        backgroundColor: ["#fa4443", "#3fbfbe", "#ffb453", "#949fb1", "#4d5361"],
+                                        data: [2478, 5267, 734, 784, 433]
+                                    }]
+                                },
+                                options: {
+                                    legend: false,
+                                    title: {
+                                        display: true,
+                                        text: 'Branch'
+                                    }
                                 }
-                            }
-                        });
-                        new Chart(document.getElementById("staff_approv"), {
-                            type: 'doughnut',
-                            data: {
-                                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                                datasets: [{
-                                    // label: "Population (millions)",
-                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                                    data: [2478, 5267, 734, 784, 433]
-                                }]
-                            },
-                            options: {
-                                legend: false,
-                                title: {
-                                    display: true,
-                                    text: 'Predicted world population (millions) in 2050'
+                            });
+                            new Chart(document.getElementById("staff_approv"), {
+                                type: 'doughnut',
+                                data: {
+                                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                                    datasets: [{
+                                        backgroundColor: ["#fa4443", "#3fbfbe", "#ffb453", "#949fb1", "#4d5361"],
+                                        data: [2478, 5267, 734, 784, 433]
+                                    }]
+                                },
+                                options: {
+                                    legend: false,
+                                    title: {
+                                        display: true,
+                                        text: 'Approvals'
+                                    }
                                 }
-                            }
-                        });
-                        new Chart(document.getElementById("staff_post"), {
-                            type: 'doughnut',
-                            data: {
-                                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                                datasets: [{
-                                    // label: "Population (millions)",
-                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                                    data: [2478, 5267, 734, 784, 433]
-                                }]
-                            },
-                            options: {
-                                legend: false,
-                                title: {
-                                    display: true,
-                                    text: 'Predicted world population (millions) in 2050'
+                            });
+                            new Chart(document.getElementById("staff_post"), {
+                                type: 'doughnut',
+                                data: {
+                                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                                    datasets: [{
+                                        backgroundColor: ["#fa4443", "#3fbfbe", "#ffb453", "#949fb1", "#4d5361"],
+                                        data: [2478, 5267, 734, 784, 433]
+                                    }]
+                                },
+                                options: {
+                                    legend: false,
+                                    title: {
+                                        display: true,
+                                        text: 'Staff Post'
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        })
                     </script>
                 </div>
             </div>

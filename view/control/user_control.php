@@ -110,6 +110,7 @@ $selected_UID = $_GET['UID'];
                                 }
                                 echo '<option value="1">Granted</option>';
                                 echo '<option value="0">Pending</option>';
+                                echo '<option value="2">Rejected</option>';
                                 ?>
                             </select>
                         </div>

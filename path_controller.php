@@ -31,10 +31,14 @@ class PathController
         '            <div class="toggle-side-bar"><i class="fa fa-table"></i></div>' .
         '            <p>Staff Role Manager</p>' .
         '        </a>' .
+            '        <a class="list-item" href="?page=control%2Fstudent_academic_management">' .
+        '            <div class="toggle-side-bar"><i class="fa fa-table"></i></div>' .
+        '            <p>Student Academic Manager</p>' .
+        '        </a>' .
         '    </div>' .
         '</div>';
         
-        array_push($this->paths_view, 'control/user_control', 'control/adduser', 'control/staff_role_management');
+        array_push($this->paths_view, 'control/user_control', 'control/adduser', 'control/staff_role_management' , 'control/student_academic_management');
     }
     function student_dashboard()
     {

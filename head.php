@@ -134,4 +134,10 @@ if (!isset($_GET['page'])) {
         width: 100%;
         background: rgba(0, 0, 0, 0.6);
     }
+    .table {
+        overflow-x: hidden;
+    }
+    .table:hover {
+        overflow-x: scroll;
+    }
 </style>
