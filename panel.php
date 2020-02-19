@@ -72,8 +72,19 @@
         text-align: center;
     }
 
+    .content .body-loading-overlay {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.75);
+    }
+
     .pre-loader {
         position: relative;
+    }
+
+    .content .pre-loader {
+        background: #fff;
+        padding: 30px 15px;
+        border-radius: 2rem;
     }
 
     .body-loading-overlay .pre-loader-logo {
@@ -127,9 +138,10 @@
 </style>
 
 <body>
-    <div class="body-loading-overlay ">
+    <div class="body-loading-overlay">
         <div class="pre-loader">
             <img src="assets/img/college_logo.png" alt="" class="pre-loader-logo">
+            <p class="h3 mt-3 mb-1">Portal</p>
             <img src="assets/img/loader.gif" alt="" class="pre-loader-gif">
 
             <!-- <i class="fa fa-circle-o-notch fa-spin "></i> -->
@@ -383,35 +395,100 @@
                 </a>
 
             </div>
+            <style>
+                .content .progress {
+                    transition: .5s;
+                    border-radius: 0px;
+                    z-index: 0;
+                    position: relative;
+                    height: 0;
+                }
+
+                .loading .progress {
+                    height: 1rem;
+                }
+
+                .loading .include {
+                    position: relative;
+                    z-index: 0;
+                }
+
+                .loading .include::before {
+                    content: "";
+                    top: -1rem;
+                    bottom: -3rem;
+                    position: absolute;
+                    width: 100%;
+                    display: block;
+                    background: rgba(0, 0, 0, 0.75);
+                    z-index: 1;
+                }
+            </style>
             <div class="content">
                 <div class="view">
                     <div class="min-height">
+                        <div class="progress br-0">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%"></div>
+                        </div>
+                        <div class="include"></div>
+                        <script>
+                            $(document).ready(function() {
+                                $('a[href]').click(function(e) {
+                                    e.preventDefault();
+                                    ref = $(this).attr('href').split('=');
 
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "page_controller.php",
+                                        async: true,
+                                        data: {
+                                            page: ref[1],
+                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>'
+                                        },
+                                        success: function(data) {
+                                            $('.include').html(data);
+                                        }
+                                    })
+
+                                });
+                                $('.include').load('page_controller.php');
+
+                            })
+                            $(document).ajaxStart(function() {
+                                $('.content').addClass('loading');
+                            });
+
+                            $(document).ajaxComplete(function() {
+                                $('.content').removeClass('loading');
+                                $('.side').removeClass('hover');
+                                $('.side-overlay').removeClass('show');
+                            });
+                        </script>
 
                         <?php
 
                         // include("view/" . $_GET['page'] . ".php");
 
-                        foreach ($pathObj->paths_view as $path_x) {
-                            if (urlencode($_GET['page']) == urlencode($path_x)) {
-                                if (file_exists("view/" . $path_x . ".php")) {
-                                    include("view/" . $path_x . ".php");
-                                    $home_path = false;
-                                } else {
-                                    // echo '<script>alert("This Feature will be next update")</script>';
-                                    $home_path = false;
-                                    include("view/upcomming_feature.php");
-                                }
-                                break;
-                            } else {
-                                $home_path = true;
-                                // include("view/upcomming_feature.php");
-                                // echo $path_x;
-                            }
-                        }
-                        if ($home_path) {
-                            include("view/my_profile.php");
-                        }
+                        // foreach ($pathObj->paths_view as $path_x) {
+                        //     if (urlencode($_GET['page']) == urlencode($path_x)) {
+                        //         if (file_exists("view/" . $path_x . ".php")) {
+                        //             include("view/" . $path_x . ".php");
+                        //             $home_path = false;
+                        //         } else {
+                        //             // echo '<script>alert("This Feature will be next update")</script>';
+                        //             $home_path = false;
+                        //             include("view/upcomming_feature.php");
+                        //         }
+                        //         break;
+                        //     } else {
+                        //         $home_path = true;
+                        //         // include("view/upcomming_feature.php");
+                        //         // echo $path_x;
+                        //     }
+                        // }
+                        // if ($home_path) {
+                        //     include("view/my_profile.php");
+                        // }
 
 
                         ?>

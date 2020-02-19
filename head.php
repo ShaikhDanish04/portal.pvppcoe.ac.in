@@ -18,7 +18,34 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
+<script>
+    url = window.location.search;
+    string = "";
+    var i = 0;
+    while (i < url.length) {
+        // console.log(url.charAt(i));
 
+        switch (url.charAt(i)) {
+            case '?':
+                string = string.concat('{"');
+                break;
+            case '=':
+                string = string.concat('":"');
+                break;
+            case '&':
+                string = string.concat('","');
+                break;
+
+            default:
+                string = string.concat(url.charAt(i));
+        }
+        i++;
+    }
+    string = string.concat('"}');
+    getObj = JSON.parse(string);
+
+    
+</script>
 
 
 <?php
@@ -134,9 +161,11 @@ if (!isset($_GET['page'])) {
         width: 100%;
         background: rgba(0, 0, 0, 0.6);
     }
+
     .table {
         overflow-x: hidden;
     }
+
     .table:hover {
         overflow-x: scroll;
     }
