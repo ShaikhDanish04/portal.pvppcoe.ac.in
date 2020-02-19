@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="<?php echo $addr_space ?>assets/fonts/font-awesome.min.css?v4.6">
 <link rel="stylesheet" href="<?php echo $addr_space ?>assets/bootstrap/bootstrap.min.css?v4.6">
-<link rel="stylesheet" href="<?php echo $addr_space ?>assets/style.css?v4.7">
+<link rel="stylesheet" href="<?php echo $addr_space ?>assets/style.css?v5">
 
 <script src="<?php echo $addr_space ?>assets/jQuery/jquery.min.js?v4.6"></script>
 <script src="<?php echo $addr_space ?>assets/bootstrap/popper.min.js"></script>
@@ -22,29 +22,30 @@
     url = window.location.search;
     string = "";
     var i = 0;
-    while (i < url.length) {
-        // console.log(url.charAt(i));
+    if (url.charAt(0) == '?') {
 
-        switch (url.charAt(i)) {
-            case '?':
-                string = string.concat('{"');
-                break;
-            case '=':
-                string = string.concat('":"');
-                break;
-            case '&':
-                string = string.concat('","');
-                break;
+        while (i < url.length) {
+            // console.log(url.charAt(i));
 
-            default:
-                string = string.concat(url.charAt(i));
+            switch (url.charAt(i)) {
+                case '?':
+                    string = string.concat('{"');
+                    break;
+                case '=':
+                    string = string.concat('":"');
+                    break;
+                case '&':
+                    string = string.concat('","');
+                    break;
+
+                default:
+                    string = string.concat(url.charAt(i));
+            }
+            i++;
         }
-        i++;
+        string = string.concat('"}');
+        getObj = JSON.parse(string);
     }
-    string = string.concat('"}');
-    getObj = JSON.parse(string);
-
-    
 </script>
 
 

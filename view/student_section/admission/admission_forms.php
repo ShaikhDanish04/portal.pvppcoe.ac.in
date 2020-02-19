@@ -1,6 +1,6 @@
 <div class="fluid-container">
     <div class="row">
-        <div class="col-md-3 p-0">
+        <div class="col-6 col-sm-6 col-md-3 p-0">
             <div class="head-card bg-success-gradient">
                 <div>
                     <span class="count total-forms">0</span>
@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 p-0">
+        <div class="col-6 col-sm-6 col-md-3 p-0">
             <div class="head-card bg-secondary-gradient">
                 <div>
                     <span class="count verified-forms">0</span>
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 p-0">
+        <div class="col-6 col-sm-6 col-md-3 p-0">
             <div class="head-card bg-warning-gradient">
                 <div>
                     <span class="count pending-forms">0</span>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 p-0">
+        <div class="col-6 col-sm-6 col-md-3 p-0">
             <div class="head-card bg-danger-gradient">
                 <div>
                     <span class="count rejected-forms">0</span>

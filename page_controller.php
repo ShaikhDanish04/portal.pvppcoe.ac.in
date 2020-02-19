@@ -1,4 +1,3 @@
-
 <?php
 include("connect.php");
 
@@ -41,3 +40,21 @@ if (isset($_POST['path_view']) && isset($_POST['page'])) {
 } else {
     include("view/my_profile.php");
 }
+?>
+
+<script>
+    $('[data-upload]').click(function() {
+        $.ajax({
+            method: "POST",
+            url: "constraint/file_handler.php",
+            data: {
+                document: $(this).attr('data-upload'),
+                ID: "<?php echo $user['student_id'] ?>"
+            },
+            success: function(result) {
+                $("#file_handle").html(result);
+                $("#upload").modal('show')
+            }
+        })
+    })
+</script>

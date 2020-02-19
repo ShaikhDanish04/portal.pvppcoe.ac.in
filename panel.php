@@ -72,8 +72,9 @@
         text-align: center;
     }
 
-    .content .body-loading-overlay {
+    .content-view .body-loading-overlay {
         position: absolute;
+        top: 0;
         background: rgba(0, 0, 0, 0.75);
     }
 
@@ -81,10 +82,14 @@
         position: relative;
     }
 
-    .content .pre-loader {
+    .content-view .pre-loader {
         background: #fff;
-        padding: 30px 15px;
+        padding: 30px 10px;
         border-radius: 2rem;
+    }
+
+    .content-view .body-loading-overlay .pre-loader-logo {
+        height: 160px;
     }
 
     .body-loading-overlay .pre-loader-logo {
@@ -115,11 +120,11 @@
         overflow: hidden;
         color: #fff;
         border-radius: 5rem;
-        background: #00000000;
+        background: rgba(0, 0, 0, 0);
     }
 
     .bar-menu.open {
-        background: #00000080;
+        background: rgba(0, 0, 0, 0.5);
         font-size: unset;
         height: unset;
         width: unset;
@@ -276,10 +281,12 @@
                 font-size: 10px;
             }
 
-            .side:hover .my-profile:hover {
+            .side.hover .my-profile:hover,
+            .side.stick .my-profile:hover {
                 /* transition: all 1s; */
                 background: linear-gradient(-45deg, #dcdcdc, #969696);
                 box-shadow: 0 0 10px #000;
+                height: 265px;
             }
 
             .my-profile {
@@ -318,9 +325,18 @@
         </style>
 
         <div class="content-view">
+            <div class="body-loading-overlay" style="display:none">
+                <div class="pre-loader">
+                    <img src="assets/img/college_logo.png" alt="" class="pre-loader-logo">
+                    <p class="h3 mt-3 mb-1">Loading ...</p>
+                    <img src="assets/img/loader.gif" alt="" class="pre-loader-gif">
+
+                    <!-- <i class="fa fa-circle-o-notch fa-spin "></i> -->
+                </div>
+            </div>
             <div class="side">
                 <div class="my-profile">
-                    <a href="?page=my_profile" class="text-decoration-none">
+                    <a href="?page=my_profile" class="text-decoration-none list-item">
                         <div class="profile-card">
                             <div>
                                 <!-- <img class="user-img" src="" alt=""> -->
@@ -395,47 +411,20 @@
                 </a>
 
             </div>
-            <style>
-                .content .progress {
-                    transition: .5s;
-                    border-radius: 0px;
-                    z-index: 0;
-                    position: relative;
-                    height: 0;
-                }
-
-                .loading .progress {
-                    height: 1rem;
-                }
-
-                .loading .include {
-                    position: relative;
-                    z-index: 0;
-                }
-
-                .loading .include::before {
-                    content: "";
-                    top: -1rem;
-                    bottom: -3rem;
-                    position: absolute;
-                    width: 100%;
-                    display: block;
-                    background: rgba(0, 0, 0, 0.75);
-                    z-index: 1;
-                }
-            </style>
             <div class="content">
                 <div class="view">
                     <div class="min-height">
-                        <div class="progress br-0">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%"></div>
-                        </div>
                         <div class="include"></div>
                         <script>
                             $(document).ready(function() {
-                                $('a[href]').click(function(e) {
+                                $('a.list-item[href]').click(function(e) {
+
+                                    $('.content-view .body-loading-overlay').fadeIn();
+
                                     e.preventDefault();
                                     ref = $(this).attr('href').split('=');
+
+                                    localStorage.setItem("page", ref[1]);
 
                                     $.ajax({
                                         method: "POST",
@@ -447,57 +436,38 @@
                                         },
                                         success: function(data) {
                                             $('.include').html(data);
+                                            $('.content-view .body-loading-overlay').slideUp();
+
+
+                                            $('.side').removeClass('hover');
+                                            $('.side-overlay').removeClass('show');
+
                                         }
                                     })
-
                                 });
-                                $('.include').load('page_controller.php');
+                                if (localStorage.getItem('page') != '') {
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "page_controller.php",
+                                        async: true,
+                                        data: {
+                                            page: localStorage.getItem('page'),
+                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>'
+                                        },
+                                        success: function(data) {
+                                            $('.include').html(data);
+                                        }
+                                    })
+                                } else {
+                                    $('.include').load('page_controller.php');
+                                }
 
                             })
-                            $(document).ajaxStart(function() {
-                                $('.content').addClass('loading');
-                            });
-
-                            $(document).ajaxComplete(function() {
-                                $('.content').removeClass('loading');
-                                $('.side').removeClass('hover');
-                                $('.side-overlay').removeClass('show');
-                            });
                         </script>
 
-                        <?php
 
-                        // include("view/" . $_GET['page'] . ".php");
-
-                        // foreach ($pathObj->paths_view as $path_x) {
-                        //     if (urlencode($_GET['page']) == urlencode($path_x)) {
-                        //         if (file_exists("view/" . $path_x . ".php")) {
-                        //             include("view/" . $path_x . ".php");
-                        //             $home_path = false;
-                        //         } else {
-                        //             // echo '<script>alert("This Feature will be next update")</script>';
-                        //             $home_path = false;
-                        //             include("view/upcomming_feature.php");
-                        //         }
-                        //         break;
-                        //     } else {
-                        //         $home_path = true;
-                        //         // include("view/upcomming_feature.php");
-                        //         // echo $path_x;
-                        //     }
-                        // }
-                        // if ($home_path) {
-                        //     include("view/my_profile.php");
-                        // }
-
-
-                        ?>
                     </div>
-                    <?php //print_r($user); 
-                    ?>
-
                 </div>
-                <div id="file_handle"></div>
 
                 <div class="footer flex-column-reverse flex-sm-row-reverse">
                     <p>© PVPP College of Engineering</p>
@@ -586,25 +556,13 @@
                     $('.side').addClass('hover');
                     $('.side-overlay').addClass('show');
                 })
-                $('[data-upload]').click(function() {
-                    $.ajax({
-                        method: "POST",
-                        url: "constraint/file_handler.php",
-                        data: {
-                            document: $(this).attr('data-upload'),
-                            ID: "<?php echo $user['student_id'] ?>"
-                        },
-                        success: function(result) {
-                            $("#file_handle").html(result);
-                            $("#upload").modal('show')
-                        }
-                    })
-                })
             </script>
         </div>
 
     </div>
 </body>
+<div id="file_handle"></div>
+
 
 <style>
     .min-height {
