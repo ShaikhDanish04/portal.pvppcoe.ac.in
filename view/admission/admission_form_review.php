@@ -65,18 +65,20 @@
             <p class="text-danger">Details Pending</p>
         </div>
         <div class="card-body">
-            <div id="input_check"></div>
+            <div class="pending-fields"></div>
         </div>
     </div>
     <?php
     // print_r($_POST);
+    $review = false;
     if (isset($_POST['user_uid_form']) || $result_SAT['form_status'] == "verified") {
         if (isset($_POST['user_uid_form'])) {
             $Selected_UID = $_POST['user_uid_form'];
         } else {
             $Selected_UID = $UID;
         }
-        $result = $conn->query("SELECT * FROM `student_admission_table` WHERE `UID` = '$Selected_UID'");
+        $review = true;
+        $result = $conn->query("SELECT * FROM student_admission_table WHERE UID = '$Selected_UID'");
         $result_SAT = $result->fetch_assoc();
 
         $personal_details = openssl_decrypt($result_SAT['personal'], "AES-128-CTR", "$Selected_UID", 0, $iv);
@@ -96,6 +98,7 @@
         var education_details = JSON.parse('<?php echo $education_details ?>');
         var bank_details = JSON.parse('<?php echo $bank_details ?>');
         var family_details = JSON.parse('<?php echo $family_details ?>');
+        var form_complete;
 
         $(document).ready(function() {
 
@@ -135,7 +138,28 @@
 
             });
 
+            count = 0;
+            $('.review_page [name]').each(function() {
+                if ($(this).val() == "") {
+                    if ($(this).hasClass('require')) {
+                        count++;
+                        $(this).addClass('required');
+                        $('.pending-fields').append("<li class='p-2 d-inline-block m-1 btn-sm btn-link'>" + count + ". " + $($(this).prev()).text() + "</li>");
+                        $($(this).next('small')).addClass('required');
 
+                        // $(this).closest()
+                    }
+                }
+            })
+
+            if (count > 0) {
+                $('.pending-fields').append("<p class='h6 p-3'>*" + count + " Fields Pending</p>");
+                form_complete = false;
+            } else {
+                $($('.pending-fields').closest('.card')).remove();
+                form_complete = true;
+
+            }
         });
     </script>
     <?php
@@ -146,7 +170,7 @@
     $education_details_decoded = json_decode($education_details, true);
     $bank_details_decoded = json_decode($bank_details, true);
     $family_details_decoded = json_decode($family_details, true);
-    
+
     include("admission_form/personal_details.php");
     include("admission_form/address_details.php");
     include("admission_form/allotment_details.php");
@@ -155,59 +179,58 @@
     include("admission_form/family_details.php");
 
     ?>
-    <script>
-        if ("<?php echo (isset($allotment_details_decoded['admission_type'])) ? $allotment_details_decoded['admission_type'] : $user["admission_type"]; ?>" == "F") {
-            $('.DSE').remove();
-            $('.alert-for-admision-type').remove();
-        } else if ("<?php echo (isset($allotment_details_decoded['admission_type'])) ? $allotment_details_decoded['admission_type'] : $user["admission_type"]; ?>" == "S") {
-            $('.FE').remove();
-            $('.alert-for-admision-type').remove();
+    <div class="card submit-form">
+        <form action="" method="post">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <p class="mr-2"><input type="checkbox" class="form-control-checkbox submit-form" disabled required> *I Agree all the above information is true and verified</p>
+                <input type="submit" class="btn btn-success btn-dark btn-sm m-1 submit-form" name="admission_form_submit" value="Submit Form" disabled>
+        </form>
+    </div>
+</div>
+<script>
+    if ("<?php echo (isset($allotment_details_decoded['admission_type'])) ? $allotment_details_decoded['admission_type'] : $user["admission_type"]; ?>" == "F") {
+        $('.DSE').remove();
+        $('.alert-for-admision-type').remove();
+    } else if ("<?php echo (isset($allotment_details_decoded['admission_type'])) ? $allotment_details_decoded['admission_type'] : $user["admission_type"]; ?>" == "S") {
+        $('.FE').remove();
+        $('.alert-for-admision-type').remove();
+    } else {
+        $('.admission-card input').attr('disabled', 'true');
+    }
+
+
+    $(document).ready(function() {
+
+
+
+        $('.review_page .personal_photo').removeClass('upload-here');
+        $('.review_page .form-group').addClass('form-preview');
+        $('.review_page .card-foot,.review_page input[type=file],.review_page [type=submit],.review_page [type=button]').addClass('d-none');
+        $(".review_page input,.review_page textarea,.review_page select").addClass('stick');
+        $(".review_page input,.review_page textarea,.review_page select").attr('disabled', "true");
+        $(".review_page button").remove();
+
+        // form_complete = true;
+        if (form_complete) {
+            $('.submit-form').removeAttr('disabled');
+            $('.submit-form').removeClass('btn-dark');
+            $('.submit-form').removeClass('d-none');
         } else {
-            $('.admission-card input').attr('disabled', 'true');
+            $('.submit-form').remove();
         }
-        $(document).ready(function() {
 
-
-            count = 0;
-            $('.review_page [name]').each(function() {
-                if ($(this).val() == "") {
-                    if ($(this).hasClass('require')) {
-                        count++;
-                        $(this).addClass('required');
-                        $('#input_check').append("<li class='p-2 d-inline-block m-1 btn-sm btn-link'>" + count + ". " +
-                            $(this).prev('label').text() + "</li>"
-                        );
-
-                        $(this).closest()
-                        $($(this).next('small')).addClass('required');
-                    }
-                }
-            })
-            if (count > 0) {
-                $('#input_check').append("<p class='h6 p-3'>*" + count + " Fields Pending</p>");
+        $(document).click(function() {
+            if (location.hash == "#p6") {
+                $('#print_button').removeClass('btn-danger');
+                $('#print_button').addClass('btn-success');
+                $('#print_button').removeAttr('disabled')
             } else {
-                $($('#input_check').closest('.card')).remove();
+                $('#print_button').addClass('btn-danger');
+                $('#print_button').removeClass('btn-success');
+                $('#print_button').attr('disabled', 'true');
             }
 
-            $('.review_page .personal_photo').removeClass('upload-here');
-            $('.review_page .form-group').addClass('form-preview');
-            $('.review_page .card-foot,.review_page input[type=file],.review_page [type=submit],.review_page [type=button]').addClass('d-none');
-            $(".review_page input,.review_page textarea,.review_page select").addClass('stick');
-            $(".review_page input,.review_page textarea,.review_page select").attr('disabled', "true");
-            $(".review_page button").remove();
-
-            $(document).click(function() {
-                if (location.hash == "#p6") {
-                    $('#print_button').removeClass('btn-danger');
-                    $('#print_button').addClass('btn-success');
-                    $('#print_button').removeAttr('disabled')
-                } else {
-                    $('#print_button').addClass('btn-danger');
-                    $('#print_button').removeClass('btn-success');
-                    $('#print_button').attr('disabled', 'true');
-                }
-
-            })
         })
-    </script>
+    })
+</script>
 </div>

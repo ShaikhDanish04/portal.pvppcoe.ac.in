@@ -34,7 +34,6 @@
             <label for="">Verification Status</label>
             <select type="text" name="admission_form_status" class="form-control" required>
                 <option class="p-2 alert-success" value="verified">Verified</option>
-                <option class="p-2 alert-success" value="verified">Verified</option>
                 <option class="p-2 alert-warning" value="pending">Pending</option>
                 <option class="p-2 alert-danger" value="rejected">Rejected</option>
 

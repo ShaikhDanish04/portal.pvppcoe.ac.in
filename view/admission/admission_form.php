@@ -5,7 +5,7 @@ if (isset($_POST['request_admission_form'])) {
     $encryption = openssl_encrypt($simpletext, "AES-128-CTR", "$UID", 0, $iv);
 
     $conn->query("INSERT INTO `student_admission_table` (`UID`, `personal`, `address`, `allotment`, `education`, `bank`, `family`, `form_status`) 
-        VALUES ('$UID', '$encryption', '$encryption', '$encryption', '$encryption', '$encryption', '$encryption', 'pending')");
+        VALUES ('$UID', '$encryption', '$encryption', '$encryption', '$encryption', '$encryption', '$encryption', 'incomplete')");
 
     $conn->error;
 }
@@ -48,7 +48,12 @@ if ($result->num_rows == 0) {
     $_have_form = true;
 }
 
-if ($result_SAT['form_status'] == "verified") {
+if (isset($_POST['admission_form_submit'])) {
+    $conn->query("UPDATE student_admission_table SET form_status = 'pending' WHERE student_admission_table.UID = '$UID'");
+}
+
+
+if ($result_SAT['form_status'] != "incomplete" || $result_SAT['form_status'] != "rejected") {
     $_form_verified = true;
 } else {
     $_form_verified = false;
@@ -130,8 +135,8 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
 </div>
 
 <div class="container <?php echo ($_form_verified) ? '' : 'd-none' ?>">
-    <div class="alert alert-success m-3">Your Admission Form is been verified.</div>
-    <?php include('admission_form_review.php'); ?>
+    <div class="alert alert-warning m-3">You do not have permission to edit the form.</div>
+    <?php if($_form_verified) include('admission_form_review.php'); ?>
 </div>
 
 <div class="container <?php echo ($_have_form) ? '' : 'd-none';
@@ -238,11 +243,10 @@ $family_details = openssl_decrypt($result_SAT['family'], "AES-128-CTR", "$UID", 
         });
 
         $('input,select,textarea').on('input', function() {
-
-            $($(this).closest("form")).find('input[type=submit]').removeAttr('disabled');
-            $($(this).closest("form")).find('input[type=submit]').val('Save');
-            $($(this).closest("form")).find('input[type=submit]').removeClass('btn-dark');
-        })
+            $($(this).closest("form")).find('.card-foot input[type=submit]').removeAttr('disabled');
+            $($(this).closest("form")).find('.card-foot input[type=submit]').val('Save');
+            $($(this).closest("form")).find('.card-foot input[type=submit]').removeClass('btn-dark');
+        });
 
     });
 </script>

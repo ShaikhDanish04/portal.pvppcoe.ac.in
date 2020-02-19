@@ -79,7 +79,7 @@
         <div class="row symbol-reference">
             <div class="col-6 col-md-2">
                 <i class="fa fa-exclamation text-info verification-response"></i>
-                <p>Not Filled</p>
+                <p>Incomplete</p>
             </div>
             <div class="col-6 col-md-2">
                 <i class="fa fa-question-circle text-warning verification-response"></i>

@@ -1,21 +1,44 @@
 <?php
 class PathController
 {
-    public $paths_view = array("my_profile,upcomming_feature");
+    public $paths_view = array("my_profile", "upcomming_feature", "settings", 'our_team');
 
-    public function
-    default()
-    {
-        array_push($this->paths_view, "settings", 'our_team');
-    }
     public function controlPanel()
     {
-        echo '<a class="list-item dash-button" href="?page=control%2Fadmin_control">' .
-            '<div class=" toggle-side-bar"><i class="fa fa-users"></i></div>' .
-            '<p>User Control</p>' .
-            '</a>';
+        // echo '<a class="list-item dash-button" href="?page=control/admin_control">' .
+        //     '<div class=" toggle-side-bar"><i class="fa fa-users"></i></div>' .
+        //     '</a>';
+        //     '<p>User Control</p>' .
 
-        array_push($this->paths_view, 'control/admin_control', 'control/staff_role_management');
+        echo '<div class="list-content">' .
+            '    <a class="list-item" data-target="#control_panel" data-toggle="collapse">' .
+            '        <div class="toggle-side-bar"><i class="fa fa-users"></i></div>' .
+            '        <div class="side-dropdown">' .
+            '            <p>User Control</p>' .
+            '            <i class="fa fa-caret-down"></i>' .
+            '        </div>' .
+            '    </a>' .
+            '    <div id="control_panel" class="fade collapse" data-parent="#student-accordion">' .
+            '        <a class="list-item" href="?page=control/adduser">' .
+            '            <div class="toggle-side-bar"><i class="fa fa-user-plus"></i></div>' .
+            '            <p>Add User</p>' .
+            '        </a>' .
+            '        <a class="list-item" href="?page=control/user_control">' .
+            '            <div class="toggle-side-bar"><i class="fa fa-table"></i></div>' .
+            '            <p>List of Users</p>' .
+            '        </a>' .
+            '        <a class="list-item" href="?page=control/staff_role_management">' .
+            '            <div class="toggle-side-bar"><i class="fa fa-table"></i></div>' .
+            '            <p>Staff Role Manager</p>' .
+            '        </a>' .
+            '        <a class="list-item" href="?page=control/student_academic_management">' .
+            '            <div class="toggle-side-bar"><i class="fa fa-table"></i></div>' .
+            '            <p>Student Academic Manager</p>' .
+            '        </a>' .
+            '    </div>' .
+            '</div>';
+
+        array_push($this->paths_view, 'control/user_control', 'control/adduser', 'control/staff_role_management', 'control/student_academic_management');
     }
     function student_dashboard()
     {
@@ -38,11 +61,11 @@ class PathController
             '        </div>' .
             '    </a>' .
             '    <div id="admission" class="fade collapse" data-parent="#student-accordion">' .
-            '        <a class="list-item" href="?page=admission%2Fadmission_form">' .
+            '        <a class="list-item" href="?page=admission/admission_form">' .
             '            <div class="toggle-side-bar"><i class="fa fa-id-card-o"></i></div>' .
             '            <p>Admission Form</p>' .
             '        </a>' .
-            '        <a class="list-item" href="?page=admission%2Fupload_documents">' .
+            '        <a class="list-item" href="?page=admission/upload_documents">' .
             '            <div class="toggle-side-bar"><i class="fa fa-upload"></i></div>' .
             '            <p>Upload Documents</p>' .
             '        </a>' .
@@ -171,11 +194,11 @@ class PathController
             '        </div>' .
             '    </a>' .
             '    <div id="student_section" class="collapse" data-parent="#student-accordion">' .
-            '        <a class="list-item" href="?page=student_section%2Fadmission%2Fadmission_forms">' .
+            '        <a class="list-item" href="?page=student_section/admission/admission_forms">' .
             '            <div class="toggle-side-bar"><i class="fa fa-circle-o"></i></div>' .
             '            <p>Admission Forms</p>' .
             '        </a>' .
-            '        <a class="list-item" href="?page=student_section%2Fstudent_data_register">' .
+            '        <a class="list-item" href="?page=student_section/student_data_register">' .
             '            <div class="toggle-side-bar"><i class="fa fa-circle-o"></i></div>' .
             '            <p>Student Data Register</p>' .
             '        </a>' .
