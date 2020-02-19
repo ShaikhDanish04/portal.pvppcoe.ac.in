@@ -42,7 +42,7 @@ $selected_UID = $_GET['UID'];
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 p-0">
+        <div class="col-6 col-sm-6 col-md-4 p-0">
             <div class="head-card bg-warning-gradient">
                 <div>
                     <span class="count"><?php echo $count_pending ?></span>
@@ -51,7 +51,7 @@ $selected_UID = $_GET['UID'];
 
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 p-0">
+        <div class="col-6 col-sm-6 col-md-4 p-0">
             <div class="head-card bg-danger-gradient">
                 <div>
                     <span class="count"><?php echo $count_admin ?></span>

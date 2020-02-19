@@ -43,7 +43,7 @@ div.divider {
     width: 100%;
     justify-content: space-between;
     padding: .5rem;
-    z-index: 1;
+    z-index: 2;
     background: linear-gradient(20deg, #b5b5b5, #ededed);
     /* border-bottom: 5px solid #4a4a4a; */
 }
@@ -184,7 +184,7 @@ div.divider {
     display: block;
     width: calc(100% - 50px);
     height: 100%;
-    /* z-index: 1; */
+    z-index: 1;
 }
 
 .side {
@@ -258,7 +258,8 @@ div.divider {
 
 .profile-card .user-img {
     transition: all .1s;
-    margin: auto;
+    /* margin: auto; */
+    margin: 0;
     height: 35px;
     width: 35px;
     display: block;
@@ -290,15 +291,21 @@ div.divider {
     .side.hover .my-profile .profile-card {
         display: flex;
         justify-content: space-around;
-        padding: 2px 10px 4px 0px;
+        /* padding: 2px 10px; */
     }
     .side.hover .my-profile .user-img {
-        height: 40px;
-        width: 40px;
-        margin: 0;
+        height: 50px;
+        width: 50px;
+        /* margin-left: 5px; */
     }
     .user-greet {
         text-align: center;
+    }
+    .side .my-profile .profile-link {
+        display: none
+    }
+    .side.hover .my-profile:hover {
+        height: unset !important;
     }
 }
 
@@ -342,6 +349,10 @@ div.divider {
     justify-content: center;
 }
 
+.side-list .list-item {
+    white-space: nowrap;
+}
+
 .side .list-item {
     background: none;
     display: flex;
@@ -351,7 +362,11 @@ div.divider {
     color: #fff;
     width: 100%;
     /* transition: all .3s; */
-    white-space: nowrap;
+    /* white-space: nowrap; */
+}
+
+.list-item:hover {
+    text-decoration: none;
 }
 
 .collapse .list-item {
@@ -395,7 +410,7 @@ div.divider {
     text-decoration: none;
 }
 
-.side .list-item:hover, .side .list-item:focus {
+.side-list .list-item:hover, .side-list .list-item:focus {
     background: rgba(0, 0, 0, .6);
     text-shadow: 0px 0px 2px;
     outline: 0;
