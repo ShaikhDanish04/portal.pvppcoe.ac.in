@@ -417,7 +417,7 @@
                         <div class="include"></div>
                         <script>
                             $(document).ready(function() {
-                                $('a.list-item[href]').click(function(e) {
+                                $('a.list-item[href],a.ref-item').click(function(e) {
 
                                     $('.content-view .body-loading-overlay').fadeIn();
 
@@ -446,6 +446,7 @@
                                     })
                                 });
                                 if (localStorage.getItem('page') != '') {
+                                    $('.content-view .body-loading-overlay').fadeIn();
                                     $.ajax({
                                         method: "POST",
                                         url: "page_controller.php",
@@ -456,6 +457,7 @@
                                         },
                                         success: function(data) {
                                             $('.include').html(data);
+                                            $('.content-view .body-loading-overlay').slideUp();
                                         }
                                     })
                                 } else {
@@ -471,7 +473,7 @@
 
                 <div class="footer flex-column-reverse flex-sm-row-reverse">
                     <p>© PVPP College of Engineering</p>
-                    <p><a href="?page=our_team" class="text-white text-uppercase">Meet Our Team</a></p>
+                    <p><a href="?page=our_team" class="ref-item text-white text-uppercase">Meet Our Team</a></p>
                     <p><b>Developed By</b> - Danish Shaikh and Team</p>
                 </div>
 
