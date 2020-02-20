@@ -71,7 +71,7 @@
             })
             $('[name="student_verification"]').click(function() {
 
-                $.post("view/student_section/admission/admission_form_review.php", {
+                $.post("view/staff/student_section/admission/admission_form_review.php", {
                         user_uid_form: $('[name="user_uid_form"]').val(),
                         admission_form_status: $('[name="admission_form_status"]').val(),
                         verification_response: $('[name="verification_response"]').val(),
@@ -81,7 +81,7 @@
                         // alert("Data: " + data + "\nStatus: " + status);
                         $('.modal-body').html(data);
                         $('.modal').modal('hide');
-                        $("#admission_table_data").load("view/student_section/admission/admission_form_table.php");
+                        $("#admission_table_data").load("view/staff/student_section/admission/admission_form_table.php");
                     });
             })
         })
