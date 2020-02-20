@@ -141,6 +141,10 @@
             cursor: pointer;
         }
 
+        .ref-item {
+            cursor: pointer;
+        }
+
         .footer {
             position: static;
             margin: unset;
@@ -181,7 +185,20 @@
 
 <body>
     <div id="login_slide" class="carousel slide" data-touch="false" data-ride="carousel" data-interval="false">
-        <div class="carousel-inner">
+        <div class="carousel-inner ">
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-head justify-content-end align-items-center">
+                            <p class="mr-3">Back To Login</p>
+                            <a class="btn btn-dark" href="#login_slide" tabindex="-1" data-slide="next">
+                                <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <?php include('view/our_team.php') ?>
+                </div>
+            </div>
             <div class="carousel-item active">
                 <div class="login-body">
                     <form class="login_input" action="" method="post">
@@ -206,11 +223,11 @@
                                 </div>
                                 <div class="form-group m-0">
                                     <input type="submit" class="btn btn-success w-100" name="login_submit" value="login">
-                                    <label for="" class="my-1"><a href="javscript:void(0)" onclick="$('#login_slide').carousel(1)">Forgot Password?</a></label>
+                                    <label for="" class="my-1"><a href="javscript:void(0)" onclick="$('#login_slide').carousel(2)">Forgot Password?</a></label>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <p class="text-center m-0">Our Term & Policies <a href="javascript:void(0)" onclick="$('#login_slide').carousel(0)"><i class="fa fa-question-circle"></i></a></p>
+                                <p class="text-center m-0">Our Term & Policies <a href="javascript:void(0)" onclick="$('#login_slide').carousel(1)"><i class="fa fa-question-circle"></i></a></p>
                             </div>
                         </div>
                     </form>
@@ -225,6 +242,7 @@
     </div>
     <div class="footer flex-column-reverse flex-sm-row-reverse">
         <p>© PVPP College of Engineering</p>
+        <p><a onclick="$('#login_slide').carousel(0)" class="ref-item text-white text-uppercase">Meet Our Team</a></p>
         <p><b>Developed By</b> - <a href="javascript:0" class="text-white">Danish Shaikh and Team</a></p>
     </div>
 </body>

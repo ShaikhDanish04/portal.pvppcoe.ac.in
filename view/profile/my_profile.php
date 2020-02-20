@@ -148,7 +148,7 @@
         $row_admission = $result->fetch_assoc();
 
         $JSON_admission_form = json_encode(array_merge(array("form_status" => $row_admission['form_status'])));
-        include('view/admission/admission_validation.php');
+        include('view/student/admission/admission_validation.php');
         $admission_form_status = true;
     }
     ?>
@@ -199,7 +199,7 @@
             </style>
             <div class="card ">
                 <?php
-                if ($admission_form_status) include('view/profile/student_id.php')
+                if ($admission_form_status) include('view/student/student_id.php')
 
                 ?>
             </div>
