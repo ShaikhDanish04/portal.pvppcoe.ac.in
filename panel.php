@@ -336,7 +336,7 @@
             </div>
             <div class="side">
                 <div class="my-profile">
-                    <a href="?page=my_profile" class="text-decoration-none list-item">
+                    <a href="?page=profile/my_profile" class="text-decoration-none list-item">
                         <div class="profile-card">
                             <div>
                                 <!-- <img class="user-img" src="" alt=""> -->

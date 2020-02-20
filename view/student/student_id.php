@@ -1,3 +1,12 @@
+<script>
+    $(document).ready(function() {
+        $("img").on("error", function() {
+            $(this).hide();
+            });
+
+    })
+</script>
+
 <style>
     .id-card-holder {
         overflow-x: scroll;
@@ -161,8 +170,12 @@
         <div class="id-card-body">
             <div class="image-col">
                 <!-- <img src="" alt=""> -->
-                <img class="photo" src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/photo.jpg")) ?>" alt="Profile Photo" height="100%" width="100%" />
-                <img class="sign" src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/signature.jpg")) ?>" alt="Profile Photo" height="100%" width="100%" />
+                <div class="photo">
+                    <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/photo.jpg")) ?>" height="100%" width="100%" />
+                </div>
+                <div class="sign">
+                    <img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("uploads/" . $user['student_id'] . "/signature.jpg")) ?>" height="100%" width="100%" />
+                </div>
                 <p>Student's Sign</p>
             </div>
             <div class="details-col">
