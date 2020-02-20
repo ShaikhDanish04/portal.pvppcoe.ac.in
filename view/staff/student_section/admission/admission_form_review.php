@@ -2,7 +2,7 @@
 
 
     <?php
-    include('../../../connect.php');
+    include('../../../../connect.php');
 
     if (isset($_POST['student_verification'])) {
         // print_r($_POST);
@@ -19,8 +19,8 @@
         $selected_UID = $_POST['user_uid_form'];
         $addr_space = "";
         // echo $selected_UID;
-        include("../../admission/admission_form_review.php");
-        include("../../student_section/admission/admission_form_verification.php");
+        include("../../../student/admission/admission_form_review.php");
+        include("../../../staff/student_section/admission/admission_form_verification.php");
     }
     // if (isset($_POST['user_uid_doc'])) {
     //     print_r($_POST);

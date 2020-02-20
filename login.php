@@ -105,7 +105,7 @@
                     setcookie("cKsd", $pass, time() + (10 * 365 * 24 * 60 * 60)); // 86400 = 1 day
                 }
 
-                echo '<script>location.href = "panel"</script>';
+                echo '<script>localStorage.setItem("page", "profile/my_profile");location.href = "panel"</script>';
             } else {
                 $login_response = '<div class="alert alert-danger">Incorrect Password !!! Try Again</div>';
             }
