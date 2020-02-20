@@ -7,7 +7,7 @@
     include("head.php") ?>
 
     <?php
-    
+
 
     // if (!isset($_COOKIE[$cookie_name])) {
     //     echo "Cookie named '" . $cookie_name . "' is not set!";
@@ -176,9 +176,6 @@
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
-
-
-
 </head>
 
 
@@ -209,11 +206,11 @@
                                 </div>
                                 <div class="form-group m-0">
                                     <input type="submit" class="btn btn-success w-100" name="login_submit" value="login">
-                                    <label for="" class="my-1"><a href="javascript:void(0)">Forgot Password?</a></label>
+                                    <label for="" class="my-1"><a href="javscript:void(0)" onclick="$('#login_slide').carousel(1)">Forgot Password?</a></label>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <p class="text-center m-0">Register? <a href="javascript:void(0)" onclick="$('#login_slide').carousel(1)">Create New Account</a></p>
+                                <p class="text-center m-0">Our Term & Policies <a href="javascript:void(0)" onclick="$('#login_slide').carousel(0)"><i class="fa fa-question-circle"></i></a></p>
                             </div>
                         </div>
                     </form>
@@ -222,7 +219,7 @@
 
 
             <div class="carousel-item">
-                <?php include('register/register.php') ?>
+                <?php include('forgot_password.php') ?>
             </div>
         </div>
     </div>
