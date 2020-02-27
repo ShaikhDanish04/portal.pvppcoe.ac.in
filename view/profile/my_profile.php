@@ -223,6 +223,20 @@
                     <div class="divider my-3"></div>
                     <div class="tab-content">
                         <div class="tab-pane container active" id="home">
+                            <form action="" method="post">
+                                <?php $form_data = $_POST['form_data'] ?>
+                                <pre>
+                                    <?php print_r($form_data); ?>
+                                </pre>
+
+                                <div class="form-group">
+                                    <label for="">Enter First Name</label>
+                                    <input type="text" class="form-control" value="" name="first_name">
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-success" type="submit" value="Submit">
+                                </div>
+                            </form>
                         </div>
                         <div class="tab-pane container fade" id="menu1">...</div>
                         <div class="tab-pane container fade" id="menu2">...</div>
