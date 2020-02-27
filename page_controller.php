@@ -67,4 +67,34 @@ if (isset($_POST['path_view']) && isset($_POST['page'])) {
             }
         })
     })
+    $('form').submit(function(e) {
+        e.preventDefault();
+
+        $('.content-view .body-loading-overlay').fadeIn();
+        $.ajax({
+            method: "POST",
+            url: "page_controller.php",
+            async: true,
+            data: {
+                page: '<?php echo $_POST['page'] ?>',
+                path_view: '<?php echo $_POST['path_view'] ?>',
+                form_data: ConvertFormToJSON($("form"))
+            },
+            success: function(data) {
+                $('.include').html(data);
+                $('.content-view .body-loading-overlay').slideUp();
+            }
+        })
+    })
+
+    function ConvertFormToJSON(form) {
+        var array = jQuery(form).serializeArray();
+        var json = {};
+
+        jQuery.each(array, function() {
+            json[this.name] = this.value || '';
+        });
+
+        return json;
+    }
 </script>

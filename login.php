@@ -30,7 +30,7 @@
 
     <?php
     if (isset($_SESSION["UID"])) {
-        header('Location: panel');
+        echo '<script>localStorage.setItem("page", "profile/my_profile");location.href = "panel"</script>';
     } else if (isset($_COOKIE['cK123']) && isset($_COOKIE['cKsd'])) {
         $UID = $_COOKIE['cK123'];
         $pass = $_COOKIE['cKsd'];
@@ -48,7 +48,7 @@
                 setcookie("cKsd", $pass, time() + (10 * 365 * 24 * 60 * 60)); // 86400 = 1 day
             }
 
-            echo '<script>location.href = "panel"</script>';
+            echo '<script>localStorage.setItem("page", "profile/my_profile");location.href = "panel"</script>';
         } else {
             $login_response = '<div class="alert alert-danger">Incorrect Password !!! Try Again</div>';
         }

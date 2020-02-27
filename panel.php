@@ -414,15 +414,20 @@
             <div class="content">
                 <div class="view">
                     <div class="min-height">
+                        <?php include('utility/navigation.php'); ?>
                         <div class="include"></div>
                         <script>
                             $(document).ready(function() {
                                 $('a.list-item[href],a.ref-item').click(function(e) {
 
+
                                     $('.content-view .body-loading-overlay').fadeIn();
 
                                     e.preventDefault();
                                     ref = $(this).attr('href').split('=');
+
+                                    current_page = ref[1].split('/');
+                                    $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
 
                                     localStorage.setItem("page", ref[1]);
 
@@ -432,12 +437,13 @@
                                         async: true,
                                         data: {
                                             page: ref[1],
-                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>'
+                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
+                                            form_data: ''
                                         },
                                         success: function(data) {
                                             $('.include').html(data);
-                                            $('.content-view .body-loading-overlay').slideUp();
 
+                                            $('.content-view .body-loading-overlay').slideUp();
 
                                             $('.side').removeClass('hover');
                                             $('.side-overlay').removeClass('show');
@@ -445,15 +451,21 @@
                                         }
                                     })
                                 });
+
                                 if (localStorage.getItem('page') != '') {
                                     $('.content-view .body-loading-overlay').fadeIn();
+
+                                    current_page = localStorage.getItem('page').split('/');
+                                    $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
+
                                     $.ajax({
                                         method: "POST",
                                         url: "page_controller.php",
                                         async: true,
                                         data: {
                                             page: localStorage.getItem('page'),
-                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>'
+                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
+                                            form_data: ''
                                         },
                                         success: function(data) {
                                             $('.include').html(data);
@@ -463,7 +475,6 @@
                                 } else {
                                     $('.include').load('page_controller.php');
                                 }
-
                             })
                         </script>
 
@@ -518,7 +529,8 @@
                     } else {
                         document.documentElement.requestFullscreen();
                     }
-                })
+                });
+
 
 
                 var caret_on = 0;
