@@ -1,8 +1,8 @@
 <style>
     .navigation-bar {
-        padding: 10px;
+        padding: 0px 10px;
         box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.32);
-        background: #d4d4d4;
+        background: #e9ecef;
     }
 
     .navigation-bar .btn.back {
@@ -26,16 +26,12 @@
 
     }
 </style>
-<div class="navigation-bar d-flex align-items-center justify-content-between">
-    <div class="d-flex align-items-center">
-        <button class="btn back text-danger" onclick="window.history.back()"><i class="fa fa-chevron-left"></i></button>
-        <button class="btn back text-success" onclick="window.history.forward()"><i class="fa fa-chevron-right"></i></button>
+<div class="navigation-bar">
 
-        <p class=" px-3 text-capitalize"><?php echo str_replace('_', ' ', str_replace('/', ' / ', str_replace('.view', ' ', $_GET['page']))); ?></p>
-    </div>
-    <div>
-        <a class="btn btn-lg p-0 px-2 btn-dark" href="?page=dashboard.view"><i class="fa fa-home"></i></a>
-    </div>
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a class="ref-item" href="?page=profile/my_profile"><i class="fa fa-home"></i> Home</a></li>
+        <li class="breadcrumb-item active text-capitalize">My Profile</li>
+    </ul>
 
 
 </div>
