@@ -366,6 +366,7 @@
 
                     if ($user['u_admin'] == "1") {
                         $pathObj->controlPanel();
+                        $pathObj->web_control();
                         $pathObj->student_admission();
                         $pathObj->student_section();
                         $pathObj->student_academics();

@@ -223,4 +223,25 @@ class PathController
 
         array_push($this->paths_view, 'staff/student_section/admission/admission_forms', 'staff/student_section/student_data_register');
     }
+
+    function web_control()
+    {
+        echo '<div class="list-content">' .
+            '    <a class="list-item" data-target="#web_control" data-toggle="collapse">' .
+            '        <div class="toggle-side-bar"><i class="fa fa-sitemap"></i></div>' .
+            '        <div class="side-dropdown">' .
+            '            <p>Web Control</p>' .
+            '            <i class="fa fa-caret-down"></i>' .
+            '        </div>' .
+            '    </a>' .
+            '    <div id="web_control" class="collapse" data-parent="#student-accordion">' .
+            '        <a class="list-item" href="?page=web_control/latest_news">' .
+            '            <div class="toggle-side-bar"><i class="fa fa-circle-o"></i></div>' .
+            '            <p>Latest News</p>' .
+            '        </a>' .
+            '    </div>' .
+            '</div>';
+
+        array_push($this->paths_view, 'web_control/latest_news');
+    }
 }
