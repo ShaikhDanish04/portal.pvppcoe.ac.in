@@ -87,7 +87,7 @@
 
         </div>
         <div class="card-footer">
-            <p class="text-center m-0">Our Term & Policies <a href="javascript:void(0)" onclick="$('#login_slide').carousel(0)"><i class="fa fa-question-circle"></i></a></p>
+            <p class="text-center m-0">Our Term & Policies <a href="javascript:void(0)" onclick="$('#login_slide').carousel(1)"><i class="fa fa-question-circle"></i></a></p>
         </div>
     </div>
 </div>

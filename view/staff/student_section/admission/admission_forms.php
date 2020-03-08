@@ -69,10 +69,10 @@
 
 <script>
     $(document).ready(function() {
-        $("#admission_table_data").load("view/student_section/admission/admission_form_table.php");
+        $("#admission_table_data").load("view/staff/student_section/admission/admission_form_table.php");
         
         $('#reload_table').click(function(){
-            $("#admission_table_data").load("view/student_section/admission/admission_form_table.php");
+            $("#admission_table_data").load("view/staff/student_section/admission/admission_form_table.php");
         })
         
     })

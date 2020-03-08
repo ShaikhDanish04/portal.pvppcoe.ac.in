@@ -13,6 +13,16 @@ if ($_SESSION['u_type'] == "staff") {
     $user = $result->fetch_assoc();
 }
 
+// print_r($_SESSION);
+if (!isset($_SESSION["UID"])) {
+    setcookie("cK123", "", 0); // 86400 = 1 day
+    setcookie("cKsd", "", 0); // 86400 = 1 day
+    session_unset();
+    session_destroy();
+
+    echo '<script>window.location.href = "?logout=true"</script>';
+}
+
 if (isset($_POST['path_view']) && isset($_POST['page'])) {
 
     $paths_view = json_decode($_POST['path_view']);
@@ -57,4 +67,34 @@ if (isset($_POST['path_view']) && isset($_POST['page'])) {
             }
         })
     })
+    $('form').submit(function(e) {
+        e.preventDefault();
+
+        $('.content-view .body-loading-overlay').fadeIn();
+        $.ajax({
+            method: "POST",
+            url: "page_controller.php",
+            async: true,
+            data: {
+                page: '<?php echo $_POST['page'] ?>',
+                path_view: '<?php echo $_POST['path_view'] ?>',
+                form_data: ConvertFormToJSON($("form"))
+            },
+            success: function(data) {
+                $('.include').html(data);
+                $('.content-view .body-loading-overlay').slideUp();
+            }
+        })
+    })
+
+    function ConvertFormToJSON(form) {
+        var array = jQuery(form).serializeArray();
+        var json = {};
+
+        jQuery.each(array, function() {
+            json[this.name] = this.value || '';
+        });
+
+        return json;
+    }
 </script>

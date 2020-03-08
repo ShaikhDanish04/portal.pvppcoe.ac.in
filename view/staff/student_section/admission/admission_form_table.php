@@ -60,7 +60,7 @@
     }
 </style>
 <?php
-include('../../../connect.php');
+include('../../../../connect.php');
 
 $sql = "SELECT * FROM student_admission_table";
 $result = $conn->query($sql);
@@ -134,7 +134,7 @@ while ($row_admission = $result->fetch_assoc()) {
         $('#admission_table').on('click', '.user-ref', function() {
             $("#admission_modal").modal("show");
 
-            $.post("view/student_section/admission/admission_form_review.php", {
+            $.post("view/staff/student_section/admission/admission_form_review.php", {
                     user_uid_form: $(this).attr('data-uid')
                 },
                 function(data, status) {

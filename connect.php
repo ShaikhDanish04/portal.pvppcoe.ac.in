@@ -8,15 +8,20 @@
 $servername = "localhost";
 $username = "pvppcuwv";
 $password = "l!#7%V6!tZ0S";
-$dbname = "pvppcuwv_portal_pvpp";
+$dbname1 = "pvppcuwv_portal_pvpp";
+$dbname2 = "pvppcuwv_main";
 $iv = '1234567891011122';
 
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname1);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: Please " . $conn->connect_error);
+}
+$conn_main = new mysqli($servername, $username, $password, $dbname2);
+if ($conn_main->connect_error) {
+    die("Connection failed: Please " . $conn_main->connect_error);
 }
 
 require 'mail/Exception.php';

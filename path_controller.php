@@ -1,7 +1,7 @@
 <?php
 class PathController
 {
-    public $paths_view = array("my_profile", "upcomming_feature", "settings", 'our_team');
+    public $paths_view = array("profile/my_profile", "upcomming_feature", "settings", 'our_team');
 
     public function controlPanel()
     {
@@ -42,12 +42,12 @@ class PathController
     }
     function student_dashboard()
     {
-        echo '<a class="list-item dash-button" href="?page=student_dashboard">' .
+        echo '<a class="list-item dash-button" href="?page=student/student_dashboard">' .
             '   <div class=" toggle-side-bar"><i class="fa fa-dashboard"></i></div>' .
             '   <p>Dashboard</p>' .
             '</a>';
 
-        array_push($this->paths_view, 'student_dashboard');
+        array_push($this->paths_view, 'student/student_dashboard');
     }
 
     function student_admission()
@@ -61,11 +61,11 @@ class PathController
             '        </div>' .
             '    </a>' .
             '    <div id="admission" class="fade collapse" data-parent="#student-accordion">' .
-            '        <a class="list-item" href="?page=admission/admission_form">' .
+            '        <a class="list-item" href="?page=student/admission/admission_form">' .
             '            <div class="toggle-side-bar"><i class="fa fa-id-card-o"></i></div>' .
             '            <p>Admission Form</p>' .
             '        </a>' .
-            '        <a class="list-item" href="?page=admission/upload_documents">' .
+            '        <a class="list-item" href="?page=student/admission/upload_documents">' .
             '            <div class="toggle-side-bar"><i class="fa fa-upload"></i></div>' .
             '            <p>Upload Documents</p>' .
             '        </a>' .
@@ -84,14 +84,14 @@ class PathController
             '    </div>' .
             '</div>';
 
-        array_push($this->paths_view, 'admission/admission_form', 'admission/upload_documents', 'course_enrollment.view', 'payment.view');
+        array_push($this->paths_view, 'student/admission/admission_form', 'student/admission/upload_documents', 'course_enrollment.view', 'payment.view');
     }
 
     function student_academics()
     {
         echo '<div class="list-content">' .
             '    <a class="list-item" data-target="#academics" data-toggle="collapse">' .
-            '        <div class="toggle-side-bar"><i class="fa fa-graduation-cap  "></i></div>' .
+            '        <div class="toggle-side-bar"><i class="fa fa-graduation-cap"></i></div>' .
             '        <div class="side-dropdown">' .
             '            <p>Academics</p>' .
             '            <i class="fa fa-caret-down"></i>' .
@@ -194,11 +194,11 @@ class PathController
             '        </div>' .
             '    </a>' .
             '    <div id="student_section" class="collapse" data-parent="#student-accordion">' .
-            '        <a class="list-item" href="?page=student_section/admission/admission_forms">' .
+            '        <a class="list-item" href="?page=staff/student_section/admission/admission_forms">' .
             '            <div class="toggle-side-bar"><i class="fa fa-circle-o"></i></div>' .
             '            <p>Admission Forms</p>' .
             '        </a>' .
-            '        <a class="list-item" href="?page=student_section/student_data_register">' .
+            '        <a class="list-item" href="?page=staff/student_section/student_data_register">' .
             '            <div class="toggle-side-bar"><i class="fa fa-circle-o"></i></div>' .
             '            <p>Student Data Register</p>' .
             '        </a>' .
@@ -221,6 +221,27 @@ class PathController
             '    </div>' .
             '</div>';
 
-        array_push($this->paths_view, 'student_section/admission/admission_forms', 'student_section/admission_form_review', 'student_section/student_data_register');
+        array_push($this->paths_view, 'staff/student_section/admission/admission_forms', 'staff/student_section/student_data_register');
+    }
+
+    function web_control()
+    {
+        echo '<div class="list-content">' .
+            '    <a class="list-item" data-target="#web_control" data-toggle="collapse">' .
+            '        <div class="toggle-side-bar"><i class="fa fa-sitemap"></i></div>' .
+            '        <div class="side-dropdown">' .
+            '            <p>Web Control</p>' .
+            '            <i class="fa fa-caret-down"></i>' .
+            '        </div>' .
+            '    </a>' .
+            '    <div id="web_control" class="collapse" data-parent="#student-accordion">' .
+            '        <a class="list-item" href="?page=web_control/latest_news">' .
+            '            <div class="toggle-side-bar"><i class="fa fa-circle-o"></i></div>' .
+            '            <p>Latest News</p>' .
+            '        </a>' .
+            '    </div>' .
+            '</div>';
+
+        array_push($this->paths_view, 'web_control/latest_news');
     }
 }

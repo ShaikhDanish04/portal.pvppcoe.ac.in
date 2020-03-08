@@ -148,7 +148,7 @@
         $row_admission = $result->fetch_assoc();
 
         $JSON_admission_form = json_encode(array_merge(array("form_status" => $row_admission['form_status'])));
-        include('view/admission/admission_validation.php');
+        include('view/student/admission/admission_validation.php');
         $admission_form_status = true;
     }
     ?>
@@ -199,7 +199,7 @@
             </style>
             <div class="card ">
                 <?php
-                if ($admission_form_status) include('view/profile/student_id.php')
+                if ($admission_form_status) include('view/student/student_id.php')
 
                 ?>
             </div>
@@ -223,6 +223,20 @@
                     <div class="divider my-3"></div>
                     <div class="tab-content">
                         <div class="tab-pane container active" id="home">
+                            <form action="" method="post">
+                                <?php $form_data = $_POST['form_data'] ?>
+                                <pre>
+                                    <?php print_r($form_data); ?>
+                                </pre>
+
+                                <div class="form-group">
+                                    <label for="">Enter First Name</label>
+                                    <input type="text" class="form-control" value="" name="first_name">
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-success" type="submit" value="Submit">
+                                </div>
+                            </form>
                         </div>
                         <div class="tab-pane container fade" id="menu1">...</div>
                         <div class="tab-pane container fade" id="menu2">...</div>
