@@ -15,23 +15,23 @@
     <script src="<?php echo $addr_space ?>assets/action.js?v4.6"></script>
 
     <?php
-    // if (!isset($_SESSION["UID"])) {
-    //     header('Location: login');
-    // } else if (!isset($_GET['page'])) {
-    //     $_GET['page'] = "dashboard.view";
-    // }
+    if (!isset($_SESSION["UID"])) {
+        header('Location: login');
+    } else if (!isset($_GET['page'])) {
+        $_GET['page'] = "dashboard.view";
+    }
 
-    // $UID = $_SESSION["UID"];
-    // if ($_SESSION['u_type'] == "student") {
-    //     $result = $conn->query("SELECT * FROM users INNER JOIN student_academic_manager ON users.UID = student_academic_manager.UID 
-    //                         WHERE users.UID = '$UID' OR student_academic_manager.student_id = '$UID'");
-    //     $user = $result->fetch_assoc();
-    // }
-    // if ($_SESSION['u_type'] == "staff") {
-    //     $result = $conn->query("SELECT * FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
-    //                             WHERE users.UID = '$UID' OR staff_role_manager.staff_biometic = '$UID'");
-    //     $user = $result->fetch_assoc();
-    // }
+    $UID = $_SESSION["UID"];
+    if ($_SESSION['u_type'] == "student") {
+        $result = $conn->query("SELECT * FROM users INNER JOIN student_academic_manager ON users.UID = student_academic_manager.UID 
+                            WHERE users.UID = '$UID' OR student_academic_manager.student_id = '$UID'");
+        $user = $result->fetch_assoc();
+    }
+    if ($_SESSION['u_type'] == "staff") {
+        $result = $conn->query("SELECT * FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
+                                WHERE users.UID = '$UID' OR staff_role_manager.staff_biometic = '$UID'");
+        $user = $result->fetch_assoc();
+    }
     ?>
 
 
