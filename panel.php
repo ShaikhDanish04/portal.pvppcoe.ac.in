@@ -362,48 +362,48 @@
                     <?php include("path_controller.php") ?>
                     <?php
 
-                    // $pathObj = new PathController;
-                    // // $pathObj->default();
+                    $pathObj = new PathController;
+                    // $pathObj->default();
 
-                    // if ($user['u_admin'] == "1") {
-                    //     $pathObj->controlPanel();
-                    //     $pathObj->web_control();
-                    //     $pathObj->student_admission();
-                    //     $pathObj->student_section();
-                    //     $pathObj->student_academics();
-                    //     $pathObj->student_department();
-                    //     $pathObj->student_examination();
-                    // } else {
-                    //     if ($user['u_usage'] == '1') {
-                    //         switch ($user['u_type']) {
-                    //             case "staff":
-                    //                 $row_result = $conn->query("SELECT * FROM staff_role_manager WHERE `UID` = '$UID'");
-                    //                 $role_row = $row_result->fetch_assoc();
-                    //                 switch ($role_row['staff_branch']) {
-                    //                     case "Student section":
-                    //                         $pathObj->student_section();
-                    //                         break;
+                    if ($user['u_admin'] == "1") {
+                        $pathObj->controlPanel();
+                        $pathObj->web_control();
+                        $pathObj->student_admission();
+                        $pathObj->student_section();
+                        $pathObj->student_academics();
+                        $pathObj->student_department();
+                        $pathObj->student_examination();
+                    } else {
+                        if ($user['u_usage'] == '1') {
+                            switch ($user['u_type']) {
+                                case "staff":
+                                    $row_result = $conn->query("SELECT * FROM staff_role_manager WHERE `UID` = '$UID'");
+                                    $role_row = $row_result->fetch_assoc();
+                                    switch ($role_row['staff_branch']) {
+                                        case "Student section":
+                                            $pathObj->student_section();
+                                            break;
 
-                    //                     case "Registrar Office":
-                    //                         $pathObj->controlPanel();
-                    //                         $pathObj->student_section();
-                    //                         break;
-                    //                 }
-                    //                 break;
+                                        case "Registrar Office":
+                                            $pathObj->controlPanel();
+                                            $pathObj->student_section();
+                                            break;
+                                    }
+                                    break;
 
-                    //             case "student":
-                    //                 $pathObj->student_admission();
-                    //                 $pathObj->student_academics();
-                    //                 $pathObj->student_department();
-                    //                 $pathObj->student_examination();
-                    //                 break;
-                    //             default:
-                    //                 $_GET['page'] = "my_profile";
-                    //         }
-                    //     } else {
-                    //         $_GET['page'] = "my_profile";
-                    //     }
-                    // }
+                                case "student":
+                                    $pathObj->student_admission();
+                                    $pathObj->student_academics();
+                                    $pathObj->student_department();
+                                    $pathObj->student_examination();
+                                    break;
+                                default:
+                                    $_GET['page'] = "my_profile";
+                            }
+                        } else {
+                            $_GET['page'] = "my_profile";
+                        }
+                    }
                     ?>
 
                 </div>
