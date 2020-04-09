@@ -143,7 +143,6 @@
 </style>
 
 <body>
-    <?php print_r($_SESSION) ?>
     <div class="body-loading-overlay">
         <div class="pre-loader">
             <img src="assets/img/college_logo.png" alt="" class="pre-loader-logo">
@@ -168,7 +167,7 @@
                     <p>Padmabhushan Vasantdada Patil Pratishthan's</p>
                     <p>College of Engineering</p>
                 </div>
-
+                
             </div>
             <div class="banner-zoom">
                 <button onclick="$('body').css('font-size','1.0rem');" class="btn scale-zoom-in">+</button>
@@ -214,14 +213,14 @@
                 <div class="user-content">
                     <i class="fa fa-calendar"></i>
                 </div>
-                <a href="">
+                <a href="?logout=true">
                     <div class="user-content">
                         <p>Logout</p> <i class="fa fa-power-off ml-1"> </i>
                     </div>
                 </a>
             </div>
         </div>
-
+        
         <style>
             .user-content .dropdown-menu.show {
                 top: 15px !important;
@@ -325,8 +324,9 @@
             }
         </style>
 
-        <div class="content-view">
-            <div class="body-loading-overlay" style="display:none">
+<div class="content-view">
+    <?php print_r($_SESSION) ?>
+    <div class="body-loading-overlay" style="display:none">
                 <div class="pre-loader">
                     <img src="assets/img/college_logo.png" alt="" class="pre-loader-logo">
                     <p class="h3 mt-3 mb-1">Loading ...</p>
