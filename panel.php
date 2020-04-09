@@ -359,8 +359,7 @@
                     </a>
                 </div>
                 <div id="student-accordion" class="side-list">
-                    <?php //include("path_controller.php") 
-                    ?>
+                    <?php include("path_controller.php") ?>
                     <?php
 
                     // $pathObj = new PathController;
