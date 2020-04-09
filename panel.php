@@ -213,7 +213,7 @@
                 <div class="user-content">
                     <i class="fa fa-calendar"></i>
                 </div>
-                <a href="?logout=true">
+                <a href="">
                     <div class="user-content">
                         <p>Logout</p> <i class="fa fa-power-off ml-1"> </i>
                     </div>
