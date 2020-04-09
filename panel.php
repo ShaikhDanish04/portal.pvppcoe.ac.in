@@ -461,20 +461,20 @@
                                     current_page = localStorage.getItem('page').split('/');
                                     $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
 
-                                    // $.ajax({
-                                    //     method: "POST",
-                                    //     url: "page_controller.php",
-                                    //     async: true,
-                                    //     data: {
-                                    //         page: localStorage.getItem('page'),
-                                    //         path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
-                                    //         form_data: ''
-                                    //     },
-                                    //     success: function(data) {
-                                    //         $('.include').html(data);
-                                    //         $('.content-view .body-loading-overlay').slideUp();
-                                    //     }
-                                    // })
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "page_controller.php",
+                                        async: true,
+                                        data: {
+                                            page: localStorage.getItem('page'),
+                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
+                                            form_data: ''
+                                        },
+                                        success: function(data) {
+                                            $('.include').html(data);
+                                            $('.content-view .body-loading-overlay').slideUp();
+                                        }
+                                    })
                                 } else {
                                     $('.include').load('page_controller.php');
                                 }

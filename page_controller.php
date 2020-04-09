@@ -14,14 +14,14 @@ if ($_SESSION['u_type'] == "staff") {
 }
 
 // print_r($_SESSION);
-if (!isset($_SESSION["UID"])) {
-    setcookie("cK123", "", 0); // 86400 = 1 day
-    setcookie("cKsd", "", 0); // 86400 = 1 day
-    session_unset();
-    session_destroy();
+// if (!isset($_SESSION["UID"])) {
+//     setcookie("cK123", "", 0); // 86400 = 1 day
+//     setcookie("cKsd", "", 0); // 86400 = 1 day
+//     session_unset();
+//     session_destroy();
 
-    echo '<script>window.location.href = "?logout=true"</script>';
-}
+//     echo '<script>window.location.href = "?logout=true"</script>';
+// }
 
 if (isset($_POST['path_view']) && isset($_POST['page'])) {
 
