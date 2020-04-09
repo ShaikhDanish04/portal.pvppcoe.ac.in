@@ -416,7 +416,7 @@
             <div class="content">
                 <div class="view">
                     <div class="min-height">
-                        <?php //include('utility/navigation.php'); 
+                        <?php include('utility/navigation.php'); 
                         ?>
                         <div class="include"></div>
                         <script>
