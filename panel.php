@@ -15,23 +15,23 @@
     <script src="<?php echo $addr_space ?>assets/action.js?v4.6"></script>
 
     <?php
-    if (!isset($_SESSION["UID"])) {
-        header('Location: login');
-    } else if (!isset($_GET['page'])) {
-        $_GET['page'] = "dashboard.view";
-    }
+    // if (!isset($_SESSION["UID"])) {
+    //     header('Location: login');
+    // } else if (!isset($_GET['page'])) {
+    //     $_GET['page'] = "dashboard.view";
+    // }
 
-    $UID = $_SESSION["UID"];
-    if ($_SESSION['u_type'] == "student") {
-        $result = $conn->query("SELECT * FROM users INNER JOIN student_academic_manager ON users.UID = student_academic_manager.UID 
-                            WHERE users.UID = '$UID' OR student_academic_manager.student_id = '$UID'");
-        $user = $result->fetch_assoc();
-    }
-    if ($_SESSION['u_type'] == "staff") {
-        $result = $conn->query("SELECT * FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
-                                WHERE users.UID = '$UID' OR staff_role_manager.staff_biometic = '$UID'");
-        $user = $result->fetch_assoc();
-    }
+    // $UID = $_SESSION["UID"];
+    // if ($_SESSION['u_type'] == "student") {
+    //     $result = $conn->query("SELECT * FROM users INNER JOIN student_academic_manager ON users.UID = student_academic_manager.UID 
+    //                         WHERE users.UID = '$UID' OR student_academic_manager.student_id = '$UID'");
+    //     $user = $result->fetch_assoc();
+    // }
+    // if ($_SESSION['u_type'] == "staff") {
+    //     $result = $conn->query("SELECT * FROM users INNER JOIN staff_role_manager ON users.UID = staff_role_manager.UID 
+    //                             WHERE users.UID = '$UID' OR staff_role_manager.staff_biometic = '$UID'");
+    //     $user = $result->fetch_assoc();
+    // }
     ?>
 
 
@@ -358,51 +358,51 @@
                     </a>
                 </div>
                 <div id="student-accordion" class="side-list">
-                    <?php include("path_controller.php") ?>
+                    <?php //include("path_controller.php") ?>
                     <?php
 
-                    $pathObj = new PathController;
-                    // $pathObj->default();
+                    // $pathObj = new PathController;
+                    // // $pathObj->default();
 
-                    if ($user['u_admin'] == "1") {
-                        $pathObj->controlPanel();
-                        $pathObj->web_control();
-                        $pathObj->student_admission();
-                        $pathObj->student_section();
-                        $pathObj->student_academics();
-                        $pathObj->student_department();
-                        $pathObj->student_examination();
-                    } else {
-                        if ($user['u_usage'] == '1') {
-                            switch ($user['u_type']) {
-                                case "staff":
-                                    $row_result = $conn->query("SELECT * FROM staff_role_manager WHERE `UID` = '$UID'");
-                                    $role_row = $row_result->fetch_assoc();
-                                    switch ($role_row['staff_branch']) {
-                                        case "Student section":
-                                            $pathObj->student_section();
-                                            break;
+                    // if ($user['u_admin'] == "1") {
+                    //     $pathObj->controlPanel();
+                    //     $pathObj->web_control();
+                    //     $pathObj->student_admission();
+                    //     $pathObj->student_section();
+                    //     $pathObj->student_academics();
+                    //     $pathObj->student_department();
+                    //     $pathObj->student_examination();
+                    // } else {
+                    //     if ($user['u_usage'] == '1') {
+                    //         switch ($user['u_type']) {
+                    //             case "staff":
+                    //                 $row_result = $conn->query("SELECT * FROM staff_role_manager WHERE `UID` = '$UID'");
+                    //                 $role_row = $row_result->fetch_assoc();
+                    //                 switch ($role_row['staff_branch']) {
+                    //                     case "Student section":
+                    //                         $pathObj->student_section();
+                    //                         break;
 
-                                        case "Registrar Office":
-                                            $pathObj->controlPanel();
-                                            $pathObj->student_section();
-                                            break;
-                                    }
-                                    break;
+                    //                     case "Registrar Office":
+                    //                         $pathObj->controlPanel();
+                    //                         $pathObj->student_section();
+                    //                         break;
+                    //                 }
+                    //                 break;
 
-                                case "student":
-                                    $pathObj->student_admission();
-                                    $pathObj->student_academics();
-                                    $pathObj->student_department();
-                                    $pathObj->student_examination();
-                                    break;
-                                default:
-                                    $_GET['page'] = "my_profile";
-                            }
-                        } else {
-                            $_GET['page'] = "my_profile";
-                        }
-                    }
+                    //             case "student":
+                    //                 $pathObj->student_admission();
+                    //                 $pathObj->student_academics();
+                    //                 $pathObj->student_department();
+                    //                 $pathObj->student_examination();
+                    //                 break;
+                    //             default:
+                    //                 $_GET['page'] = "my_profile";
+                    //         }
+                    //     } else {
+                    //         $_GET['page'] = "my_profile";
+                    //     }
+                    // }
                     ?>
 
                 </div>
@@ -415,68 +415,68 @@
             <div class="content">
                 <div class="view">
                     <div class="min-height">
-                        <?php include('utility/navigation.php'); ?>
+                        <?php //include('utility/navigation.php'); ?>
                         <div class="include"></div>
                         <script>
-                            $(document).ready(function() {
-                                $('a.list-item[href],a.ref-item').click(function(e) {
+                            // $(document).ready(function() {
+                            //     $('a.list-item[href],a.ref-item').click(function(e) {
 
 
-                                    $('.content-view .body-loading-overlay').fadeIn();
+                            //         $('.content-view .body-loading-overlay').fadeIn();
 
-                                    e.preventDefault();
-                                    ref = $(this).attr('href').split('=');
+                            //         e.preventDefault();
+                            //         ref = $(this).attr('href').split('=');
 
-                                    current_page = ref[1].split('/');
-                                    $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
+                            //         current_page = ref[1].split('/');
+                            //         $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
 
-                                    localStorage.setItem("page", ref[1]);
+                            //         localStorage.setItem("page", ref[1]);
 
-                                    $.ajax({
-                                        method: "POST",
-                                        url: "page_controller.php",
-                                        async: true,
-                                        data: {
-                                            page: ref[1],
-                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
-                                            form_data: ''
-                                        },
-                                        success: function(data) {
-                                            $('.include').html(data);
+                            //         $.ajax({
+                            //             method: "POST",
+                            //             url: "page_controller.php",
+                            //             async: true,
+                            //             data: {
+                            //                 page: ref[1],
+                            //                 path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
+                            //                 form_data: ''
+                            //             },
+                            //             success: function(data) {
+                            //                 $('.include').html(data);
 
-                                            $('.content-view .body-loading-overlay').slideUp();
+                            //                 $('.content-view .body-loading-overlay').slideUp();
 
-                                            $('.side').removeClass('hover');
-                                            $('.side-overlay').removeClass('show');
+                            //                 $('.side').removeClass('hover');
+                            //                 $('.side-overlay').removeClass('show');
 
-                                        }
-                                    })
-                                });
+                            //             }
+                            //         })
+                            //     });
 
-                                if (localStorage.getItem('page') != '') {
-                                    $('.content-view .body-loading-overlay').fadeIn();
+                            //     if (localStorage.getItem('page') != '') {
+                            //         $('.content-view .body-loading-overlay').fadeIn();
 
-                                    current_page = localStorage.getItem('page').split('/');
-                                    $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
+                            //         current_page = localStorage.getItem('page').split('/');
+                            //         $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
 
-                                    $.ajax({
-                                        method: "POST",
-                                        url: "page_controller.php",
-                                        async: true,
-                                        data: {
-                                            page: localStorage.getItem('page'),
-                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
-                                            form_data: ''
-                                        },
-                                        success: function(data) {
-                                            $('.include').html(data);
-                                            $('.content-view .body-loading-overlay').slideUp();
-                                        }
-                                    })
-                                } else {
-                                    $('.include').load('page_controller.php');
-                                }
-                            })
+                            //         $.ajax({
+                            //             method: "POST",
+                            //             url: "page_controller.php",
+                            //             async: true,
+                            //             data: {
+                            //                 page: localStorage.getItem('page'),
+                            //                 path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
+                            //                 form_data: ''
+                            //             },
+                            //             success: function(data) {
+                            //                 $('.include').html(data);
+                            //                 $('.content-view .body-loading-overlay').slideUp();
+                            //             }
+                            //         })
+                            //     } else {
+                            //         $('.include').load('page_controller.php');
+                            //     }
+                            // })
                         </script>
 
 
