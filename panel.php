@@ -16,7 +16,8 @@
 
     <?php
     if (!isset($_SESSION["UID"])) {
-        header('Location: login');
+        echo '<script>window.location.href = "login"</script>';
+
     } else if (!isset($_GET['page'])) {
         $_GET['page'] = "dashboard.view";
     }
@@ -325,7 +326,6 @@
         </style>
 
 <div class="content-view">
-    <?php print_r($_SESSION) ?>
     <div class="body-loading-overlay" style="display:none">
                 <div class="pre-loader">
                     <img src="assets/img/college_logo.png" alt="" class="pre-loader-logo">

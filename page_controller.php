@@ -13,15 +13,15 @@ if ($_SESSION['u_type'] == "staff") {
     $user = $result->fetch_assoc();
 }
 
-// print_r($_SESSION);
-// if (!isset($_SESSION["UID"])) {
-//     setcookie("cK123", "", 0); // 86400 = 1 day
-//     setcookie("cKsd", "", 0); // 86400 = 1 day
-//     session_unset();
-//     session_destroy();
+print_r($_SESSION);
+if (!isset($_SESSION["UID"])) {
+    setcookie("cK123", "", 0); // 86400 = 1 day
+    setcookie("cKsd", "", 0); // 86400 = 1 day
+    session_unset();
+    session_destroy();
 
-//     echo '<script>window.location.href = "?logout=true"</script>';
-// }
+    echo '<script>window.location.href = "?logout=true"</script>';
+}
 
 if (isset($_POST['path_view']) && isset($_POST['page'])) {
 
