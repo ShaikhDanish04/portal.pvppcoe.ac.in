@@ -143,6 +143,7 @@
 </style>
 
 <body>
+    <?php print_r($_SESSION) ?>
     <div class="body-loading-overlay">
         <div class="pre-loader">
             <img src="assets/img/college_logo.png" alt="" class="pre-loader-logo">
@@ -358,7 +359,8 @@
                     </a>
                 </div>
                 <div id="student-accordion" class="side-list">
-                    <?php //include("path_controller.php") ?>
+                    <?php //include("path_controller.php") 
+                    ?>
                     <?php
 
                     // $pathObj = new PathController;
@@ -415,7 +417,8 @@
             <div class="content">
                 <div class="view">
                     <div class="min-height">
-                        <?php //include('utility/navigation.php'); ?>
+                        <?php //include('utility/navigation.php'); 
+                        ?>
                         <div class="include"></div>
                         <script>
                             // $(document).ready(function() {
