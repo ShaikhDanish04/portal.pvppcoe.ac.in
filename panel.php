@@ -17,7 +17,6 @@
     <?php
     if (!isset($_SESSION["UID"])) {
         echo '<script>window.location.href = "login"</script>';
-
     } else if (!isset($_GET['page'])) {
         $_GET['page'] = "dashboard.view";
     }
@@ -59,89 +58,6 @@
         </div>
     </div>
 </div>
-<style>
-    .body-loading-overlay {
-        position: fixed;
-        height: 100%;
-        width: 100%;
-        background: #fff;
-        /* background: rgba(0, 0, 0, 0.75); */
-        display: flex;
-        z-index: 99999;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .content-view .body-loading-overlay {
-        position: absolute;
-        top: 0;
-        background: rgba(0, 0, 0, 0.75);
-    }
-
-    .pre-loader {
-        position: relative;
-    }
-
-    .content-view .pre-loader {
-        background: #fff;
-        padding: 30px 10px;
-        border-radius: 2rem;
-    }
-
-    .content-view .body-loading-overlay .pre-loader-logo {
-        height: 160px;
-    }
-
-    .body-loading-overlay .pre-loader-logo {
-        height: 200px;
-        display: block;
-        margin: auto;
-    }
-
-    .body-loading-overlay .pre-loader-gif {
-        height: 80px;
-        display: block;
-        margin: auto;
-    }
-
-    .body-loading-overlay .fa {
-        margin-top: 20px;
-        color: #fff;
-        display: block;
-        font-size: 50px;
-    }
-
-    .bar-menu {
-        transition: .3s;
-        height: 0px;
-        font-size: 0px;
-        width: 0px;
-        padding: 0px;
-        overflow: hidden;
-        color: #fff;
-        border-radius: 5rem;
-        background: rgba(0, 0, 0, 0);
-    }
-
-    .bar-menu.open {
-        background: rgba(0, 0, 0, 0.5);
-        font-size: unset;
-        height: unset;
-        width: unset;
-        padding: 4px 10px;
-    }
-
-    .bar-menu i.fa:hover {
-        cursor: pointer;
-        text-shadow: 0 0 3px;
-    }
-
-    .caret-on .banner {
-        padding: 0;
-        height: 0;
-    }
-</style>
 
 <body>
     <div class="body-loading-overlay">
@@ -149,12 +65,8 @@
             <img src="assets/img/college_logo.png" alt="" class="pre-loader-logo">
             <p class="h3 mt-3 mb-1">Portal</p>
             <img src="assets/img/loader.gif" alt="" class="pre-loader-gif">
-
-            <!-- <i class="fa fa-circle-o-notch fa-spin "></i> -->
         </div>
     </div>
-
-
     <script>
         $(document).ready(function() {
             $('.body-loading-overlay').fadeOut();
@@ -168,7 +80,7 @@
                     <p>Padmabhushan Vasantdada Patil Pratishthan's</p>
                     <p>College of Engineering</p>
                 </div>
-                
+
             </div>
             <div class="banner-zoom">
                 <button onclick="$('body').css('font-size','1.0rem');" class="btn scale-zoom-in">+</button>
@@ -221,112 +133,8 @@
                 </a>
             </div>
         </div>
-        
-        <style>
-            .user-content .dropdown-menu.show {
-                top: 15px !important;
-                left: 15px !important;
-                text-shadow: 0 0 0;
-                padding-bottom: 0px;
-                overflow: hidden;
-            }
-
-            .user-content .content-data p.title {
-                white-space: nowrap;
-                width: 250px;
-                overflow: hidden;
-                font-size: 12px;
-                text-overflow: ellipsis;
-                padding: 5px 0px;
-                font-weight: 400;
-            }
-
-            .user-content .dropdown-foot {
-                font-size: 12px;
-                background: #ebebeb;
-                padding: 10px;
-                margin-top: 10px;
-                text-align: center;
-                font-weight: 400;
-            }
-
-            .user-content .dropdown-head {
-                text-align: center;
-                color: #ad2822;
-                padding: 10px;
-                border-bottom: 1px solid #ebebeb;
-                margin-bottom: 10px;
-            }
-
-            .content-data .date-time {
-                transition: .2s;
-                height: 0;
-                overflow: hidden;
-                font-size: 10px;
-                /* color: inher; */
-            }
-
-            .content-data:hover .date-time {
-                height: unset;
-            }
-
-            .banner-zoom {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .banner-zoom .btn {
-                padding: 0.1rem .4rem !important;
-                /* box-shadow: none; */
-                border-radius: 5rem;
-                font-size: 10px;
-            }
-
-            .side.hover .my-profile:hover,
-            .side.stick .my-profile:hover {
-                /* transition: all 1s; */
-                background: linear-gradient(-45deg, #dcdcdc, #969696);
-                box-shadow: 0 0 10px #000;
-                height: 265px;
-            }
-
-            .my-profile {
-                cursor: pointer;
-
-            }
-
-            .my-profile .profile-link {
-                transition: .5s;
-                height: 0px;
-                /* display: inline-block; */
-                overflow: hidden;
-            }
-
-            .side:hover .my-profile:hover .profile-link {
-                transition: .5s;
-                height: 20px;
-            }
-
-            .side-dropdown {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-                padding-right: 10px;
-            }
-
-            .content.stick {
-                margin-left: 200px;
-                width: calc(100% - 150px);
-            }
-
-            .ui-loader {
-                opacity: 0;
-            }
-        </style>
-
-<div class="content-view">
-    <div class="body-loading-overlay" style="display:none">
+        <div class="content-view">
+            <div class="body-loading-overlay" style="display:none">
                 <div class="pre-loader">
                     <img src="assets/img/college_logo.png" alt="" class="pre-loader-logo">
                     <p class="h3 mt-3 mb-1">Loading ...</p>
@@ -360,11 +168,8 @@
                 </div>
                 <div id="student-accordion" class="side-list">
                     <?php include("path_controller.php") ?>
-                    <?php
-
-                    $pathObj = new PathController;
+                    <?php $pathObj = new PathController;
                     // $pathObj->default();
-
                     if ($user['u_admin'] == "1") {
                         $pathObj->controlPanel();
                         $pathObj->web_control();
@@ -416,75 +221,10 @@
             <div class="content">
                 <div class="view">
                     <div class="min-height">
-                        <?php include('utility/navigation.php'); 
-                        ?>
+                        <?php include('utility/navigation.php'); ?>
                         <div class="include"></div>
-                        <script>
-                            $(document).ready(function() {
-                                $('a.list-item[href],a.ref-item').click(function(e) {
-
-
-                                    $('.content-view .body-loading-overlay').fadeIn();
-
-                                    e.preventDefault();
-                                    ref = $(this).attr('href').split('=');
-
-                                    current_page = ref[1].split('/');
-                                    $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
-
-                                    localStorage.setItem("page", ref[1]);
-
-                                    $.ajax({
-                                        method: "POST",
-                                        url: "page_controller.php",
-                                        async: true,
-                                        data: {
-                                            page: ref[1],
-                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
-                                            form_data: ''
-                                        },
-                                        success: function(data) {
-                                            $('.include').html(data);
-
-                                            $('.content-view .body-loading-overlay').slideUp();
-
-                                            $('.side').removeClass('hover');
-                                            $('.side-overlay').removeClass('show');
-
-                                        }
-                                    })
-                                });
-
-                                if (localStorage.getItem('page') != '') {
-                                    $('.content-view .body-loading-overlay').fadeIn();
-
-                                    current_page = localStorage.getItem('page').split('/');
-                                    $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
-
-                                    $.ajax({
-                                        method: "POST",
-                                        url: "page_controller.php",
-                                        async: true,
-                                        data: {
-                                            page: localStorage.getItem('page'),
-                                            path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
-                                            form_data: ''
-                                        },
-                                        success: function(data) {
-                                            $('.include').html(data);
-                                            $('.content-view .body-loading-overlay').slideUp();
-                                        }
-                                    })
-                                } else {
-                                    $('.include').load('page_controller.php');
-                                }
-                            })
-                        </script>
-
-
                     </div>
                 </div>
-
                 <div class="footer flex-column-reverse flex-sm-row-reverse">
                     <p>© PVPP College of Engineering</p>
                     <p><a href="?page=our_team" class="ref-item text-white text-uppercase">Meet Our Team</a></p>
@@ -494,112 +234,153 @@
             </div>
             <div class="side-overlay"></div>
 
-            <script>
-                var activeListItem = $('a.list-item[href="' + window.location.search + '"]');
-
-                activeListItem.addClass('superactive');
-
-                $(activeListItem).closest('.collapse').addClass('show');
-
-                var closetListContent = $(activeListItem).closest('.list-content');
-
-                $(closetListContent.find('[data-toggle="collapse"]')).addClass('active');
-
-                $('[data-toggle="collapse"]').click(function() {
-                    $('a.list-item').removeClass('active');
-                    $(this).addClass('active');
-                })
-
-                $('#pin_menu').click(function() {
-                    if (innerWidth > 996) {
-
-                        $('.side,.content').toggleClass('stick');
-
-
-                        if ($('.side,.content').hasClass('stick')) {
-                            $('#pin_menu').css('transform', 'rotateZ(-45deg)')
-                            localStorage.setItem("side-stick", "true");
-                        } else {
-                            $('#pin_menu').css('transform', 'rotateZ(0deg)')
-                            localStorage.setItem("side-stick", "false");
-                        }
-                    }
-                })
-
-                $('#full_screen').click(function() {
-                    if (document.fullscreen) {
-                        document.exitFullscreen();
-                    } else {
-                        document.documentElement.requestFullscreen();
-                    }
-                });
-
-
-
-                var caret_on = 0;
-                $('#banner_up').click(function() {
-                    if (caret_on == 0) {
-                        $('.body-container').addClass('caret-on');
-                        $('.content-view').css("height", "calc(100% - " + Number($('.top-bar').outerHeight()) + "px)");
-                        $('.content').css("height", "calc(" + Number($(window).outerHeight()) + "px - " + Number($('.top-bar').outerHeight()) + "px + 1px)");
-
-                        caret_on = 1;
-                    } else {
-                        $('.body-container').removeClass('caret-on');
-                        $('.content').css("height", "calc(" + Number($(window).outerHeight()) + "px - " + Number($('.banner').outerHeight() + $('.top-bar').outerHeight()) + "px + 1px)");
-                        $('.content-view').css("height", "calc(100% - " + Number($('.banner').outerHeight() + $('.top-bar').outerHeight()) + "px)");
-
-                        caret_on = 0;
-                    }
-                })
-
-                if (localStorage.getItem("side-stick") == "true" && innerWidth > 996) {
-                    $('.side,.content').addClass('stick');
-                    $('#pin_menu').css('transform', 'rotateZ(-45deg)')
-                    // $('.bar-menu').addClass('open');
-                }
-
-                $('#lock_side,.side-overlay').click(function() {
-                    $('.side').toggleClass('hover');
-                    $('.bar-menu').removeClass('open');
-                    $('.side-overlay').toggleClass('show');
-                });
-
-                $('#lock_side').click(function() {
-                    $('.bar-menu').toggleClass('open');
-                })
-
-                $('.list-content').click(function() {
-                    $('.side').addClass('hover');
-                    $('.side-overlay').addClass('show');
-                })
-            </script>
         </div>
 
     </div>
 </body>
 <div id="file_handle"></div>
 
+<script>
+    $(document).ready(function() {
+        $('a.list-item[href],a.ref-item').click(function(e) {
 
-<style>
-    .min-height {
-        min-height: calc(100vh - 120px);
+            $('.content-view .body-loading-overlay').fadeIn();
+
+            e.preventDefault();
+            ref = $(this).attr('href').split('=');
+
+            current_page = ref[1].split('/');
+            $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
+
+            localStorage.setItem("page", ref[1]);
+
+            $.ajax({
+                method: "POST",
+                url: "page_controller.php",
+                async: true,
+                data: {
+                    page: ref[1],
+                    path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
+                    form_data: ''
+                },
+                success: function(data) {
+                    $('.include').html(data);
+
+                    $('.content-view .body-loading-overlay').slideUp();
+
+                    $('.side').removeClass('hover');
+                    $('.side-overlay').removeClass('show');
+
+                }
+            })
+        });
+
+        if (localStorage.getItem('page') != '') {
+            $('.content-view .body-loading-overlay').fadeIn();
+
+            current_page = localStorage.getItem('page').split('/');
+            $('.breadcrumb-item.active').text(current_page[current_page.length - 1].replace(/_/g, " "));
+
+            $.ajax({
+                method: "POST",
+                url: "page_controller.php",
+                async: true,
+                data: {
+                    page: localStorage.getItem('page'),
+                    path_view: '<?php echo json_encode($pathObj->paths_view) ?>',
+                    form_data: ''
+                },
+                success: function(data) {
+                    $('.include').html(data);
+                    $('.content-view .body-loading-overlay').slideUp();
+                }
+            })
+        } else {
+            $('.include').load('page_controller.php');
+        }
+    })
+</script> <!-- Page Controller Script -->
+
+<script>
+    var activeListItem = $('a.list-item[href="' + window.location.search + '"]');
+
+    activeListItem.addClass('superactive');
+
+    $(activeListItem).closest('.collapse').addClass('show');
+
+    var closetListContent = $(activeListItem).closest('.list-content');
+
+    $(closetListContent.find('[data-toggle="collapse"]')).addClass('active');
+
+    $('[data-toggle="collapse"]').click(function() {
+        $('a.list-item').removeClass('active');
+        $(this).addClass('active');
+    })
+
+    $('#pin_menu').click(function() {
+        if (innerWidth > 996) {
+
+            $('.side,.content').toggleClass('stick');
+
+
+            if ($('.side,.content').hasClass('stick')) {
+                $('#pin_menu').css('transform', 'rotateZ(-45deg)')
+                localStorage.setItem("side-stick", "true");
+            } else {
+                $('#pin_menu').css('transform', 'rotateZ(0deg)')
+                localStorage.setItem("side-stick", "false");
+            }
+        }
+    })
+
+    $('#full_screen').click(function() {
+        if (document.fullscreen) {
+            document.exitFullscreen();
+        } else {
+            document.documentElement.requestFullscreen();
+        }
+    });
+
+
+
+    var caret_on = 0;
+    $('#banner_up').click(function() {
+        if (caret_on == 0) {
+            $('.body-container').addClass('caret-on');
+            $('.content-view').css("height", "calc(100% - " + Number($('.top-bar').outerHeight()) + "px)");
+            $('.content').css("height", "calc(" + Number($(window).outerHeight()) + "px - " + Number($('.top-bar').outerHeight()) + "px + 1px)");
+
+            caret_on = 1;
+        } else {
+            $('.body-container').removeClass('caret-on');
+            $('.content').css("height", "calc(" + Number($(window).outerHeight()) + "px - " + Number($('.banner').outerHeight() + $('.top-bar').outerHeight()) + "px + 1px)");
+            $('.content-view').css("height", "calc(100% - " + Number($('.banner').outerHeight() + $('.top-bar').outerHeight()) + "px)");
+
+            caret_on = 0;
+        }
+    })
+
+    if (localStorage.getItem("side-stick") == "true" && innerWidth > 996) {
+        $('.side,.content').addClass('stick');
+        $('#pin_menu').css('transform', 'rotateZ(-45deg)')
+        // $('.bar-menu').addClass('open');
     }
 
-    .reg-user-img {
-        display: block;
-        height: 65px;
-        width: 65px;
-        border-radius: 5rem;
-        background: url(assets/img/dummy-avatar.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        box-shadow: 0 3px 5px #ddd;
+    $('#lock_side,.side-overlay').click(function() {
+        $('.side').toggleClass('hover');
+        $('.bar-menu').removeClass('open');
+        $('.side-overlay').toggleClass('show');
+    });
 
-    }
-</style>
+    $('#lock_side').click(function() {
+        $('.bar-menu').toggleClass('open');
+    })
 
+    $('.list-content').click(function() {
+        $('.side').addClass('hover');
+        $('.side-overlay').addClass('show');
+    })
+</script> <!-- UI SCRIPT -->
 
 <?php $addr_space = "" ?>
 <script src="<?php echo $addr_space ?>assets/dataTables/jquery.dataTables.min.js?v4.6"></script>
@@ -612,10 +393,5 @@
 
 <script src="<?php echo $addr_space ?>assets/slick/slick.js?v4.6"></script>
 
-<style>
-    table:hover {
-        overflow-x: scroll !important;
-    }
-</style>
 
 </html>

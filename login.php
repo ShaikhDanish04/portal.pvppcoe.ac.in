@@ -6,26 +6,21 @@
     <?php $addr_space = "";
     include("head.php") ?>
 
-    <?php
+    <?php if (!isset($_COOKIE[$cookie_name])) {
+        echo "Cookie named '" . $cookie_name . "' is not set!";
+    } else {
+        echo "Cookie '" . $cookie_name . "' is set!<br>";
+        echo "Value is: " . $_COOKIE[$cookie_name];
+    }
 
-
-    // if (!isset($_COOKIE[$cookie_name])) {
-    //     echo "Cookie named '" . $cookie_name . "' is not set!";
-    // } else {
-    //     echo "Cookie '" . $cookie_name . "' is set!<br>";
-    //     echo "Value is: " . $_COOKIE[$cookie_name];
-    // }
-
-    // $UID = 'UR2020D0002';
-    // $UID = sha1($UID);
-    // if (isset($_POST['login'])) {
-    //     if (!empty($_POST['signed_in'])) {
-    //         setcookie("u_uid", $UID, time() + (86400 * 30), "/"); // 86400 = 1 day
-    //     }
-    // }
-    // setcookie("u_uid", "", time() + (86400 * 30), "/"); // 86400 = 1 day
-
-
+    $UID = 'UR2020D0002';
+    $UID = sha1($UID);
+    if (isset($_POST['login'])) {
+        if (!empty($_POST['signed_in'])) {
+            setcookie("u_uid", $UID, time() + (86400 * 30), "/"); // 86400 = 1 day
+        }
+    }
+    setcookie("u_uid", "", time() + (86400 * 30), "/"); // 86400 = 1 day
     ?>
 
     <?php
