@@ -44,4 +44,5 @@ $mail->setFrom('shaikh.danish44444@gmail.com', 'PVPP Portal'); // From email and
 
 
 session_start();
+ob_start();
 date_default_timezone_set('Asia/Kolkata');
